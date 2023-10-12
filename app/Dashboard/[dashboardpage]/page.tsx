@@ -1,3 +1,7 @@
+
+
+import Homepage from "@/Components/Homepage";
+
 export default function Page({
   params,
 }: {
@@ -5,7 +9,9 @@ export default function Page({
 }) {
   return (
     <div>
-      <div>My Post: {params.dashboardpage}</div>
+      <div>
+        <Homepage/>
+      </div>
     </div>
   );
 }
