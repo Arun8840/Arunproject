@@ -5,15 +5,21 @@ import NavHeader from "./HomeComponents/NavHeader";
 import { Poppins } from "next/font/google";
 import { HomeScreen } from "@/Utility/Style";
 import LandingPage from "./HomeComponents/LandingPage";
+import Knowledge from "./HomeComponents/Knowledge";
 
-
+const poppins = Poppins({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "block",
+});
 function Homepage() {
   return (
     <div
-      className={`w-full h-[100vh] ${HomeScreen.Main} flex flex-col`}
+      className={`w-full  ${HomeScreen.Main} ${poppins.className}`}
     >
-      <NavHeader />
+      
       <LandingPage />
+      <Knowledge />
     </div>
   );
 }

@@ -8,6 +8,7 @@ function useGetMenus() {
   let NavMenus: NavTypes[] = [
     { name: "ShowCase", path: "", icon: "" },
     { name: "Templates", path: "", icon: "" },
+    { name: "Projects", path: "", icon: "" },
     { name: "About", path: "", icon: "" },
   ];
 

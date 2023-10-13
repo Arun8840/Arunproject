@@ -1,25 +1,29 @@
+import { useState } from "react";
+
 function useGetAnimations() {
-  const handleClickripple = (e: any) => {
-    const btn: any = document.getElementById("btn");
-    // Create span element
-    let ripple = document.createElement("span");
-    // Add ripple class to span
-    ripple.classList.add("ripple");
-    // Add span to the button
-    btn.appendChild(ripple);
-    // Get position of X
-    let x = e.clientX - e.target.offsetLeft;
-    // Get position of Y
-    let y = e.clientY - e.target.offsetTop;
-    // Position the span element
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    // Remove span after 0.3s
-    setTimeout(() => {
-      ripple.remove();
-    }, 300);
+  // const { handleClickripple } = useGetAnimations();
+  const [ripple, setRipple] = useState(false);
+
+  const handleRipple = (e:any) => {
+    setRipple(true);
+    const button = e.currentTarget;
+    const rippleElement = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    rippleElement.style.width = rippleElement.style.height = `${size}px`;
+    rippleElement.style.top = `${y}px`;
+    rippleElement.style.left = `${x}px`;
+    rippleElement.classList.add('ripple');
+    button.appendChild(rippleElement);
+
+    rippleElement.addEventListener('animationend', () => {
+      setRipple(false);
+      rippleElement.remove();
+    });
   };
-  return { handleClickripple };
+  return { handleRipple ,ripple};
 }
 
 export default useGetAnimations;
