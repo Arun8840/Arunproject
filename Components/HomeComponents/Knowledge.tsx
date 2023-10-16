@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import NavHeader from "./NavHeader";
-import Overview from "../knowledgeComponents/Overview";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import Analytics from "../knowledgeComponents/Analytics";
+import Projects from "../knowledgeComponents/Projects";
+import Components from "../knowledgeComponents/Components";
+import Package from "../knowledgeComponents/Package";
+import Templates from "../knowledgeComponents/Templates";
 interface TabTypes {
   name: string;
   component: any;
@@ -12,27 +16,26 @@ function Knowledge() {
   const animatedElementRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
   const [Tabcomponent, settabComponent] = useState<any>({
-    name: "Overview",
-    component: <Overview />,
+    name: "Analytics",
+    component: <Analytics/>,
   });
   const Tablist: TabTypes[] = [
-    { name: "Overview", component: "OverView", componentName: "OverView" },
-    { name: "Analytics", component: "Analytics", componentName: "Analytics" },
-    { name: "Projects", component: "Projects", componentName: "Projects" },
+    { name: "Analytics", component: Analytics, componentName: "Analytics" },
+    { name: "Projects", component: Projects, componentName: "Projects" },
     {
       name: "Components",
-      component: "Components",
+      component: Components,
       componentName: "Components",
     },
-    { name: "Package", component: "Package", componentName: "Package" },
-    { name: "Templates", component: "Templates", componentName: "Templates" },
+    { name: "Package", component: Package, componentName: "Package" },
+    { name: "Templates", component: Templates, componentName: "Templates" },
   ];
 
   //   todo handle tab click
   const handleTabclick = (items: any) => {
     settabComponent((prev: any) => ({
       ...prev,
-      component: items.component,
+      component: <items.component Tabcomponent={Tabcomponent.name} />,
       name: items.name,
     }));
   };
