@@ -14,6 +14,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      gridTemplateRows: {
+        // Simple 8 row grid
+        "12": "repeat(12, minmax(0, 1fr))",
+      },
     },
   },
   plugins: [],

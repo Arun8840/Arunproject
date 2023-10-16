@@ -1,99 +1,190 @@
 interface ComponentsTypes {
   title: string;
-  styles?: any;
+  styles: {
+    gridColumn: string;
+    gridRow: string;
+  };
+  component: any;
 }
 
 export const ComponentsData: ComponentsTypes[] = [
   {
     title: "Button",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Dialog",
-    styles: "",
-  },
-  {
-    title: "Avatar",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Badge",
-    styles: "row-span-2",
-  },
-  {
-    title: "Card",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Checkbox",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
+    title: "Card",
+    styles: {
+      gridColumn: "span 3 / auto",
+      gridRow: "span 6 /auto",
+    },
+    component: "",
+  },
+
+  {
     title: "Dropdown Menu",
-    styles: "",
+    styles: {
+      gridColumn: "span 2 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
+  },
+  {
+    title: "Avatar",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 2 /auto",
+    },
+    component: "",
   },
   {
     title: "Form",
-    styles: "",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 5 /auto",
+    },
+    component: "",
   },
   {
     title: "Hover Card",
-    styles: "",
+    styles: {
+      gridColumn: "span 2 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
-  {
-    title: "Input",
-    styles: "",
-  },
+
   {
     title: "Menubar",
-    styles: "",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Navigation Menu",
-    styles: "",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Progress",
-    styles: "",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
-  {
-    title: "Radio",
-    styles: "",
-  },
+
   {
     title: "Select",
-    styles: "",
+    styles: {
+      gridColumn: "span 2 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Skeleton",
-    styles: "",
+    styles: {
+      gridColumn: "span 3 / auto",
+      gridRow: "span 2 /auto",
+    },
+    component: "",
   },
   {
     title: "Slider",
-    styles: "",
+    styles: {
+      gridColumn: "span 5 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
-    title: "Switch",
-    styles: "",
+    title: "Input",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Table",
-    styles: "",
+    styles: {
+      gridColumn: "span 5 / auto",
+      gridRow: "span 5 /auto",
+    },
+    component: "",
   },
   {
     title: "Tabs",
-    styles: "",
+    styles: {
+      gridColumn: "span 4 / auto",
+      gridRow: "span 5 /auto",
+    },
+    component: "",
   },
   {
     title: "Textarea",
-    styles: "",
+    styles: {
+      gridColumn: "span 3 / auto",
+      gridRow: "span 3 /auto",
+    },
+    component: "",
   },
   {
     title: "Tooltip",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
   {
     title: "Sheet",
-    styles: "",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
+  },
+  {
+    title: "Radio",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "",
   },
 ];
