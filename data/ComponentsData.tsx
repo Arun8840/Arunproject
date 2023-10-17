@@ -1,3 +1,5 @@
+import TextField from "@/Utility/components/Input";
+
 interface ComponentsTypes {
   title: string;
   styles: {
@@ -14,7 +16,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Button",
   },
   {
     title: "Dialog",
@@ -22,7 +24,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Dialog",
   },
   {
     title: "Badge",
@@ -30,7 +32,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Badge",
   },
   {
     title: "Checkbox",
@@ -38,7 +40,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Checkbox",
   },
   {
     title: "Card",
@@ -46,16 +48,15 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 3 / auto",
       gridRow: "span 6 /auto",
     },
-    component: "",
+    component: "Card",
   },
-
   {
     title: "Dropdown Menu",
     styles: {
       gridColumn: "span 2 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "DropdownMenu",
   },
   {
     title: "Avatar",
@@ -63,7 +64,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 2 /auto",
     },
-    component: "",
+    component: "Avatar",
   },
   {
     title: "Form",
@@ -71,7 +72,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 4 / auto",
       gridRow: "span 5 /auto",
     },
-    component: "",
+    component: "Form",
   },
   {
     title: "Hover Card",
@@ -79,16 +80,15 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 2 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "HoverCard",
   },
-
   {
     title: "Menubar",
     styles: {
       gridColumn: "span 4 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Menubar",
   },
   {
     title: "Navigation Menu",
@@ -96,7 +96,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 4 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "NavigationMenu",
   },
   {
     title: "Progress",
@@ -104,16 +104,15 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 4 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Progress",
   },
-
   {
     title: "Select",
     styles: {
       gridColumn: "span 2 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Select",
   },
   {
     title: "Skeleton",
@@ -121,7 +120,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 3 / auto",
       gridRow: "span 2 /auto",
     },
-    component: "",
+    component: "Skeleton",
   },
   {
     title: "Slider",
@@ -129,7 +128,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 5 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Slider",
   },
   {
     title: "Input",
@@ -137,7 +136,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 4 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Input",
   },
   {
     title: "Table",
@@ -145,7 +144,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 5 / auto",
       gridRow: "span 5 /auto",
     },
-    component: "",
+    component: "Table",
   },
   {
     title: "Tabs",
@@ -153,7 +152,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 4 / auto",
       gridRow: "span 5 /auto",
     },
-    component: "",
+    component: "Tabs",
   },
   {
     title: "Textarea",
@@ -161,7 +160,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 3 / auto",
       gridRow: "span 3 /auto",
     },
-    component: "",
+    component: "Textarea",
   },
   {
     title: "Tooltip",
@@ -169,7 +168,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Tooltip",
   },
   {
     title: "Sheet",
@@ -177,7 +176,7 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Sheet",
   },
   {
     title: "Radio",
@@ -185,6 +184,6 @@ export const ComponentsData: ComponentsTypes[] = [
       gridColumn: "span 1 / auto",
       gridRow: "span 1 /auto",
     },
-    component: "",
+    component: "Radio",
   },
 ];

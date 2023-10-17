@@ -3,7 +3,6 @@ import { AnalyticsData } from "@/data/AnalyticsData";
 import React from "react";
 
 function Analytics({ Tabcomponent }: any) {
-  console.log(Tabcomponent);
   return (
     <div className="border-b border-b-[#27272a] w-full h-full flex flex-col justify-end">
       <ul className="h-full flex justify-evenly items-end text-xs select-none">

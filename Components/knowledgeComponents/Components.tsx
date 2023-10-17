@@ -1,4 +1,5 @@
 import { ComponentsData } from "@/data/ComponentsData";
+import dynamic from "next/dynamic";
 import React from "react";
 
 function Components() {
@@ -6,6 +7,9 @@ function Components() {
     <div className="h-full grid grid-cols-12 grid-rows-12 gap-1">
       {ComponentsData &&
         ComponentsData.map((values) => {
+          const Components = dynamic(
+            () => import(`../../Utility/components/${values.component}`)
+          );
           return (
             <div
               style={{
@@ -14,9 +18,7 @@ function Components() {
               }}
               className={`p-1 border border-[#27272a]/30 rounded cursor-pointer hover:bg-[#27272a]/20 grid place-items-center`}
             >
-              <button className="bg-[#27272a] rounded-lg px-5 py-1 shadow-lg text-sm">
-                {values.title}
-              </button>
+              <Components />
             </div>
           );
         })}
