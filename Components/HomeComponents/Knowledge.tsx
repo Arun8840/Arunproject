@@ -63,7 +63,7 @@ function Knowledge() {
     };
   }, []);
   return (
-    <div className="w-full h-[100vh] p-1 flex flex-col gap-3">
+    <div className="w-full  p-1 flex flex-col gap-3">
       <h1 className="text-center capitalize tracking-wider font-bold text-[2rem]">
         lets introduce something
       </h1>
@@ -93,7 +93,7 @@ function Knowledge() {
           </ul>
         </div>
 
-        <div className="p-2 w-full h-full">{Tabcomponent.component}</div>
+        <div className="p-2 w-full h-[80vh]">{Tabcomponent.component}</div>
       </div>
     </div>
   );

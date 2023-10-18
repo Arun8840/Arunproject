@@ -16,7 +16,7 @@ function Input(props: InputTypes) {
 
   // todo input properties
   let inputProp = {
-    placeholder: placeholder ? placeholder : "Type",
+    placeholder: placeholder ? placeholder : "Input",
     required: required ? required : false,
     type: type ? type : "text",
     name: name ? name : "",
