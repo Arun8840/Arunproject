@@ -61,7 +61,7 @@ export const ComponentsData: ComponentsTypes[] = [
   {
     title: "Avatar",
     styles: {
-      gridColumn: "span 1 / auto",
+      gridColumn: "span 3 / auto",
       gridRow: "span 2 /auto",
     },
     component: "Avatar",
@@ -185,5 +185,13 @@ export const ComponentsData: ComponentsTypes[] = [
       gridRow: "span 1 /auto",
     },
     component: "Radio",
+  },
+  {
+    title: "Switch",
+    styles: {
+      gridColumn: "span 1 / auto",
+      gridRow: "span 1 /auto",
+    },
+    component: "Switch",
   },
 ];

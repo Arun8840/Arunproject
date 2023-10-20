@@ -7,7 +7,7 @@ interface ButtonpropTypes {
 }
 function Button(props: ButtonpropTypes) {
   // todo props items
-  const { className, varient, label, handleAction } = props;
+  const { className, varient="Success", label, handleAction } = props;
   let defaultStyle = `text-sm font-semibold px-5 py-2 rounded-lg ${
     varient?.includes("Primary")
       ? "bg-blue-600 text-white"

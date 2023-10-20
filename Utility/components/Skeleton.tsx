@@ -2,7 +2,7 @@ import React from "react";
 
 function Skeleton() {
   return (
-    <div className="w-full h-full rounded-lg flex gap-2 items-center px-2">
+    <div className="w-full h-full rounded-lg flex gap-2 items-center px-2 border border-[#27272a]">
       <div className="min-w-[80px] min-h-[80px] rounded-full bg-gradient-to-r from-[#e0e0e0]/30 to-white/20 animate-pulse"></div>
 
       <div className="min-w-[80px] min-h-[80px]  flex-1">

@@ -16,7 +16,7 @@ function Components() {
                 gridColumn: values.styles.gridColumn,
                 gridRow: values.styles.gridRow,
               }}
-              className={`p-1 border border-[#27272a]/30 rounded cursor-pointer hover:bg-[#27272a]/20 grid place-items-center`}
+              className={`p-1 rounded cursor-pointer hover:bg-[#27272a]/20 grid place-items-center`}
             >
               <Components />
             </div>

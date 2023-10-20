@@ -69,7 +69,7 @@ function DropdownMenu(props: ButtonPropTypes) {
       {/* items */}
       <ul
         ref={(el) => (DropdownContainer = el)}
-        className="border border-[#27272a] p-1 rounded-lg bg-black absolute top-10 w-full left-0 text-sm opacity-0 hidden scale-95 "
+        className="border border-[#27272a] p-1 rounded-lg bg-black absolute top-10 w-full left-0 text-sm opacity-0 hidden scale-95 z-10"
       >
         {buttonProp.data &&
           buttonProp.data.length > 0 &&

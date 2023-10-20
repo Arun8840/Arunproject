@@ -7,7 +7,7 @@ interface ProgressTypes {
 }
 function Progress(props: ProgressTypes) {
   // todo props items
-  const { className, varient, data } = props;
+  const { className, varient="Warning", data } = props;
   let progressProp = {
     className: className
       ? className
@@ -26,7 +26,7 @@ function Progress(props: ProgressTypes) {
             : varient?.includes("Success")
             ? "bg-green-600"
             : varient?.includes("Warning")
-            ? "bg-yellow-600"
+            ? "bg-yellow-400"
             : "bg-white"
         } hover:bg-white/80`}
       ></div>

@@ -8,7 +8,7 @@ interface ButtonpropTypes {
 }
 function Checkbox(props: ButtonpropTypes) {
   // todo props items
-  const { className, varient, size, handleAction } = props;
+  const { className, varient="Success", size="lg", handleAction } = props;
   let defaultStyle = `text-sm font-semibold px-5 py-2 rounded-lg ${
     varient?.includes("Primary")
       ? "accent-blue-600"
@@ -37,6 +37,7 @@ function Checkbox(props: ButtonpropTypes) {
     <>
       <input
         type="checkbox"
+        checked={true}
         className={`${ButtonProps.className} ${ButtonProps.defaultSize} border`}
       />
     </>
