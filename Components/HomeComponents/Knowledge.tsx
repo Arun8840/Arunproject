@@ -6,7 +6,6 @@ import Analytics from "../knowledgeComponents/Analytics";
 import Projects from "../knowledgeComponents/Projects";
 import Components from "../knowledgeComponents/Components";
 import Package from "../knowledgeComponents/Package";
-import Templates from "../knowledgeComponents/Templates";
 interface TabTypes {
   name: string;
   component: any;
@@ -27,8 +26,7 @@ function Knowledge() {
       component: Components,
       componentName: "Components",
     },
-    { name: "Package", component: Package, componentName: "Package" },
-    { name: "Templates", component: Templates, componentName: "Templates" },
+    { name: "Package", component: Package, componentName: "Package" }
   ];
 
   //   todo handle tab click

@@ -12,12 +12,8 @@ function LandingPage() {
     TweenMax.staggerTo([Headerref, Contentref], 0.3, { scaleY: 1 }, 0.2);
   }, []);
 
-
   return (
-    <div
-      
-      className="w-full h-[100vh] flex flex-col justify-center items-center gap-3 cursor-none group select-none"
-    >
+    <div className="w-full h-[100vh] flex flex-col justify-center items-center gap-3  group select-none">
       <h1
         ref={(el) => (Headerref = el)}
         className={`text-start text-[3rem] font-bold italic overflow-hidden px-2 origin-bottom scale-y-[0]`}
@@ -42,8 +38,6 @@ function LandingPage() {
       >
         <DownArrow width={15} />
       </button>
-
-    
     </div>
   );
 }
