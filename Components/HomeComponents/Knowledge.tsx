@@ -16,7 +16,7 @@ function Knowledge() {
   gsap.registerPlugin(ScrollTrigger);
   const [Tabcomponent, settabComponent] = useState<any>({
     name: "Analytics",
-    component: <Analytics/>,
+    component: <Analytics />,
   });
   const Tablist: TabTypes[] = [
     { name: "Analytics", component: Analytics, componentName: "Analytics" },
@@ -26,7 +26,7 @@ function Knowledge() {
       component: Components,
       componentName: "Components",
     },
-    { name: "Package", component: Package, componentName: "Package" }
+    { name: "Package", component: Package, componentName: "Package" },
   ];
 
   //   todo handle tab click
@@ -61,8 +61,8 @@ function Knowledge() {
     };
   }, []);
   return (
-    <div className="w-full  p-1 flex flex-col gap-3">
-      <h1 className="text-center capitalize tracking-wider font-bold text-[2rem]">
+    <div className="w-full  px-1 py-[3rem] flex flex-col gap-3">
+      <h1 className="text-center capitalize tracking-wider font-bold text-[4rem]">
         lets introduce something
       </h1>
       {/* //todo dashboard */}

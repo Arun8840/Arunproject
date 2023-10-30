@@ -28,11 +28,12 @@ function AnalyticsBars({ values, index, Tabcomponent }: any) {
       ref={(el) => (barsRef.current[index] = el)}
       className={`w-[70px] p-1 rounded-t-lg relative `}
     >
-      <span className="absolute -top-4 left-0 text-center w-full">
-        {values.title}
-      </span>
-      <h1 className="text-center p-1 text-slate-800 font-semibold">
+      <div className="absolute -top-10 left-0 text-center w-full">
+        <div className="w-[30px] mx-auto">{values.icon}</div>
+      </div>
+      <h1 className="text-center text-slate-800 font-semibold">
         {values.value}
+        <small className="block">{values.title}</small>
       </h1>
     </li>
   );

@@ -15,7 +15,6 @@ function Homepage() {
   return (
     <div className={`w-full   ${HomeScreen.Main} ${poppins.className}`}>
       <LandingPage />
-      <Templates />
       <Knowledge />
     </div>
   );
