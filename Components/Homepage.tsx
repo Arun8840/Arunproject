@@ -5,6 +5,7 @@ import { HomeScreen } from "@/Utility/Style";
 import LandingPage from "./HomeComponents/LandingPage";
 import Knowledge from "./HomeComponents/Knowledge";
 import Templates from "./knowledgeComponents/Templates";
+import AboutMe from "./HomeComponents/AboutMe";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -15,6 +16,7 @@ function Homepage() {
   return (
     <div className={`w-full   ${HomeScreen.Main} ${poppins.className}`}>
       <LandingPage />
+      <AboutMe />
       <Knowledge />
     </div>
   );

@@ -6,7 +6,7 @@ function AnalyticsBars({ values, index, Tabcomponent }: any) {
   useEffect(() => {
     const animation = gsap.to(barsRef.current, {
       // height: barsref?.current?.value,
-      background: `linear-gradient(to bottom, #adfa1d, #09090bbd)`,
+      background: `linear-gradient(to bottom, #FF9130, #09090bbd)`,
       height: `${values.value}`,
       duration: 1.5,
       ease: Power4.easeOut,

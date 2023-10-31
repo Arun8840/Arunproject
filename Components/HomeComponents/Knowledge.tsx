@@ -20,13 +20,11 @@ function Knowledge() {
   });
   const Tablist: TabTypes[] = [
     { name: "Analytics", component: Analytics, componentName: "Analytics" },
-    { name: "Projects", component: Projects, componentName: "Projects" },
     {
       name: "Components",
       component: Components,
       componentName: "Components",
     },
-    { name: "Package", component: Package, componentName: "Package" },
   ];
 
   //   todo handle tab click
@@ -61,8 +59,8 @@ function Knowledge() {
     };
   }, []);
   return (
-    <div className="w-full  px-1 py-[3rem] flex flex-col gap-3">
-      <h1 className="text-center capitalize tracking-wider font-bold text-[4rem]">
+    <div className="w-full  px-1  flex flex-col gap-3">
+      <h1 className="text-center capitalize tracking-wider font-bold text-[3rem]">
         lets introduce something
       </h1>
       {/* //todo dashboard */}
