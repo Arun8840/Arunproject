@@ -5,18 +5,14 @@ function AnalyticsBars({ values, index, Tabcomponent }: any) {
   const barsRef: any = useRef([]);
   useEffect(() => {
     const animation = gsap.to(barsRef.current, {
-      // height: barsref?.current?.value,
-      background: `linear-gradient(to bottom, #FF9130, #09090bbd)`,
       height: `${values.value}`,
       duration: 1.5,
-      ease: Power4.easeOut,
+      ease: "bounce.out",
       stagger: 0.5,
       scrollTrigger: {
         trigger: barsRef.current,
-        start: "top bottom", // Start the animation when the element enters the viewport
-        end: "bottom bottom", // End the animation when the element is centered in the viewport
-        scrub: false, // Smoothly updates animation as the user scrolls
-        markers: false, // Add markers to visualize trigger and animation positions (optional)
+        start: "top bottom",
+        end: "center bottom",
       },
     });
     return () => {
@@ -25,13 +21,13 @@ function AnalyticsBars({ values, index, Tabcomponent }: any) {
   }, [Tabcomponent]);
   return (
     <li
-      ref={(el) => (barsRef.current[index] = el)}
-      className={`w-[70px] p-1 rounded-t-lg relative `}
+      ref={barsRef}
+      className={`w-[70px] bg-gradient-to-t from-[#FF9130] to-[white]/20 shadow-custom p-1 rounded-t-lg relative backdrop-blur-sm`}
     >
       <div className="absolute -top-10 left-0 text-center w-full">
         <div className="w-[30px] mx-auto">{values.icon}</div>
       </div>
-      <h1 className="text-center text-slate-800 font-semibold">
+      <h1 className="text-center font-semibold">
         {values.value}
         <small className="block">{values.title}</small>
       </h1>

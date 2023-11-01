@@ -18,6 +18,9 @@ const config: Config = {
         // Simple 8 row grid
         "12": "repeat(12, minmax(0, 1fr))",
       },
+      boxShadow: {
+        custom: "0px -5px 19px #0000006e",
+      },
     },
   },
   plugins: [],

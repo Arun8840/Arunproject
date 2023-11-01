@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { Poppins } from "next/font/google";
 import React, { useEffect, useRef } from "react";
 const poppins = Poppins({
@@ -8,85 +8,75 @@ const poppins = Poppins({
   display: "block",
 });
 function AboutMe() {
-  let TriggerRef = useRef(null);
-  let Image1Ref: any = useRef(null);
-  let Image2Ref: any = useRef(null);
-  let Image3Ref: any = useRef(null);
+  let ScrollanimationTrigger = useRef(null);
+  let TitleRef = useRef(null);
+  let contentRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
   useEffect(() => {
-    const animation = gsap.fromTo(
-      [Image1Ref.current, Image2Ref.current, Image3Ref.current],
-      { opacity: 0 },
+    const title = gsap.fromTo(
+      TitleRef.current,
       {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: "bounce.out",
-        stagger: 0.3,
+        translateX: "300%",
+      },
+      {
+        translateX: "0%",
+        duration: 2,
+        ease: "circ.out",
         scrollTrigger: {
-          trigger: TriggerRef.current,
-          start: "top center", // Start the animation when the element enters the viewport
-          end: "center bottom", // End the animation when the element is centered in the viewport
+          trigger: ScrollanimationTrigger.current,
+          start: "top center",
+          end: "900",
+          scrub: true,
+        },
+        onStart: () => {
+          gsap.fromTo(
+            contentRef.current,
+            { opacity: 0, scale: 0 },
+            {
+              opacity: 1,
+              scale: 1,
+              color: "#232323",
+              duration: 0.5,
+              delay: 1,
+            }
+          );
         },
       }
     );
     return () => {
-      animation.kill();
+      title.kill();
     };
   }, []);
-
   return (
     <div
-      ref={TriggerRef}
-      className="w-full h-[100vh] flex flex-col  container mx-auto p-5 bg-black"
+      ref={ScrollanimationTrigger}
+      className="w-full h-[100vh] grid place-items-center bg-black relative  overflow-hidden"
     >
-      <div className="grid grid-cols-2 place-items-center gap-4 h-full">
-        {/* image group */}
-        <div className=" w-full h-full grid place-items-center relative">
-          <div
-            ref={Image1Ref}
-            className="w-[350px]  to-[black] absolute top-10 left-10 shadow-lg origin-center scale-0"
-          >
-            <img
-              src="https://images.pexels.com/photos/3254429/pexels-photo-3254429.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="banner image"
-              className="w-full h-full "
-            />
-          </div>
-          <div
-            ref={Image2Ref}
-            className="w-[350px]  to-[black] absolute right-0 top-[30%] border border-dashed border-slate-800 origin-center scale-0"
-          >
-            <img
-              src="https://images.pexels.com/photos/1671643/pexels-photo-1671643.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="banner image"
-              className="w-full h-full "
-            />
-          </div>
-          <div
-            ref={Image3Ref}
-            className="w-[350px]  to-[black] absolute top-[20%] left-[30%]  origin-center scale-0"
-          >
-            <img
-              src="https://images.pexels.com/photos/2629372/pexels-photo-2629372.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="banner image"
-              className="w-full h-full "
-            />
-          </div>
+      <span
+        ref={TitleRef}
+        className="absolute text-[30rem] bg-gradient-to-br from-[#FF9130] to-[#FECDA6] bg-clip-text text-transparent font-extrabold"
+      >
+        About
+      </span>
+      <div
+        ref={contentRef}
+        className="max-w-[50%] min-h-[300px] bg-white/80  shadow-lg mx-auto p-4 rounded-lg backdrop-blur-lg flex flex-col justify-center gap-5 opacity-0"
+      >
+        <div className="w-28 h-28 border rounded-lg">
+          <img
+            src="https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="profile"
+            className="w-full h-full rounded-lg object-cover"
+          />
         </div>
-        <div>
-          <h1 className="capitalize tracking-wider font-bold text-[4rem]">
-            About Me
-          </h1>
-          <p
-            className={`capitalize tracking-wider leading-7 text-lg ${poppins.className}`}
-          >
-            I am an enthusiastic Frontend Developer with a strong penchant for
-            creating elegant and responsive user interfaces. My journey in web
-            development began ZettaStack, which has sharpened my skills and
-            passion for creating exceptional web applications.
-          </p>
-        </div>
+        <p
+          className={`capitalize tracking-wider leading-7 text-lg ${poppins.className}`}
+        >
+          I am an enthusiastic Frontend Developer with a strong penchant for
+          creating elegant and responsive user interfaces. My journey in web
+          development began ZettaStack, which has sharpened my skills and
+          passion for creating exceptional web applications.
+        </p>
       </div>
     </div>
   );

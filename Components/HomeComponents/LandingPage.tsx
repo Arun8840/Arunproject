@@ -50,10 +50,6 @@ function LandingPage() {
           Hi I'm ARUN FrontEnd Developer
         </h1>
         <div className="h-[1px] w-1/2 mx-auto bg-black"></div>
-        <p className="text-center text-black">
-          Passionate about creating responsive and user-friendly web
-          applications with a focus on front-end technologies
-        </p>
       </div>
     </div>
   );

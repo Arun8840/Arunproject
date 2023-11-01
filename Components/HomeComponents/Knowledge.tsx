@@ -1,19 +1,25 @@
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { Poppins } from "next/font/google";
 import React, { useEffect, useRef, useState } from "react";
 import NavHeader from "./NavHeader";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import gsap from "gsap";
 import Analytics from "../knowledgeComponents/Analytics";
-import Projects from "../knowledgeComponents/Projects";
 import Components from "../knowledgeComponents/Components";
-import Package from "../knowledgeComponents/Package";
+const poppins = Poppins({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "block",
+});
 interface TabTypes {
   name: string;
   component: any;
   componentName: string;
 }
 function Knowledge() {
-  const animatedElementRef = useRef(null);
+  let titleRef = useRef(null);
+  let scrollingTrigger = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
+
   const [Tabcomponent, settabComponent] = useState<any>({
     name: "Analytics",
     component: <Analytics />,
@@ -36,61 +42,39 @@ function Knowledge() {
     }));
   };
   useEffect(() => {
-    const animation = gsap.fromTo(
-      animatedElementRef.current,
-      { opacity: 0, x: 100 },
+    let titleAnimation = gsap.fromTo(
+      titleRef.current,
+      { translateX: "-300rem", duration: 2, ease: "power1.out" },
       {
-        opacity: 1,
-        x: 0,
-        duration: 2,
+        translateX: "0rem",
+        duration: 1,
+        ease: "power1.out",
         scrollTrigger: {
-          trigger: animatedElementRef.current,
-          start: "top bottom", // Start the animation when the element enters the viewport
-          end: "center center", // End the animation when the element is centered in the viewport
-          scrub: false, // Smoothly updates animation as the user scrolls
-          markers: false, // Add markers to visualize trigger and animation positions (optional)
+          trigger: scrollingTrigger.current,
+          start: "center bottom",
+          end: "bottom bottom",
+          scrub: true,
         },
       }
     );
 
-    // When the component unmounts, kill the animation to prevent memory leaks
     return () => {
-      animation.kill();
+      titleAnimation.kill();
     };
   }, []);
   return (
-    <div className="w-full  px-1  flex flex-col gap-3">
-      <h1 className="text-center capitalize tracking-wider font-bold text-[3rem]">
+    <div
+      ref={scrollingTrigger}
+      className={`w-full h-[100vh] bg-black relative  overflow-hidden ${poppins.className}`}
+    >
+      <h1
+        ref={titleRef}
+        className="text-center absolute top-[30%] w-full h-full text-[9rem] bg-gradient-to-br from-[#FECDA6] to-[#FECDA6] bg-clip-text text-transparent font-extrabold"
+      >
         lets introduce something
       </h1>
-      {/* //todo dashboard */}
-      <div
-        ref={animatedElementRef}
-        className="border container mx-auto border-[#27272a] rounded-lg w-full h-full flex flex-col"
-      >
-        {/* dash header */}
-        <NavHeader />
 
-        {/* tab header */}
-        <div className="p-2">
-          <ul className="text-sm flex items-center gap-1 bg-[#27272a] w-fit p-1 rounded-lg">
-            {Tablist.map((items) => {
-              return (
-                <li
-                  onClick={() => handleTabclick(items)}
-                  className={`${
-                    items.name === Tabcomponent.name && "bg-[#09090b]"
-                  } py-1 px-2 rounded-lg cursor-pointer transition-colors duration-200`}
-                >
-                  {items.name}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-
-        <div className="p-2 w-full h-[80vh]">{Tabcomponent.component}</div>
-      </div>
+      <Analytics />
     </div>
   );
 }
