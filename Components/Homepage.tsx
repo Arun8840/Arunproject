@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Poppins } from "next/font/google";
 import { HomeScreen } from "@/Utility/Style";
 import LandingPage from "./HomeComponents/LandingPage";
-import Knowledge from "./HomeComponents/Knowledge";
-import Templates from "./knowledgeComponents/Templates";
 import AboutMe from "./HomeComponents/AboutMe";
+import Skills from "./knowledgeComponents/Skills";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -17,7 +16,7 @@ function Homepage() {
     <div className={`w-full   ${HomeScreen.Main} ${poppins.className}`}>
       <LandingPage />
       <AboutMe />
-      <Knowledge />
+      <Skills />
     </div>
   );
 }

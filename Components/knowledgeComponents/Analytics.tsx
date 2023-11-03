@@ -1,23 +1,23 @@
-import AnalyticsBars from "@/Utility/animations/AnalyticsBars";
-import { AnalyticsData } from "@/data/AnalyticsData";
+import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 
-function Analytics({ Tabcomponent }: any) {
-
+function Analytics({ items, index }: any) {
+  let progressBar: any = useRef(null);
+  useEffect(() => {
+    gsap.to(progressBar.current, {
+      width: items.value,
+      duration: 1,
+      delay: 3,
+      ease: "bounce.out",
+    });
+  }, []);
   return (
-    <div className="w-full h-full flex flex-col justify-end">
-      <ul className="h-full flex justify-evenly items-end text-xs select-none">
-        {AnalyticsData &&
-          AnalyticsData.map((values, index: number) => {
-            return (
-              <AnalyticsBars
-                values={values}
-                index={index}
-                Tabcomponent={Tabcomponent}
-              />
-            );
-          })}
-      </ul>
+    <div className=" w-full rounded-full h-2 bg-white/10">
+      {/* inner progress value */}
+      <div
+        ref={progressBar}
+        className="bg-gradient-to-r from-[white]/10 to-[#FF9130] w-0 h-full rounded-full"
+      ></div>
     </div>
   );
 }

@@ -149,7 +149,7 @@ function useGetSkills() {
               <path d="M329 0H0V400H329V0Z" fill="white" />
             </mask>
             <g mask="url(#mask0_6_9)">
-              <path d="M329 0H0V400H329V0Z" fill="black" />
+              <path d="M329 0H0V400H329V0Z" fill="none" />
               <path
                 d="M64 106C64 78.3858 86.3858 56 114 56H164V156H114C86.3858 156 64 133.614 64 106Z"
                 fill="#D80032"
