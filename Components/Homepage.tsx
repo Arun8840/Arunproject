@@ -5,6 +5,7 @@ import { HomeScreen } from "@/Utility/Style";
 import LandingPage from "./HomeComponents/LandingPage";
 import AboutMe from "./HomeComponents/AboutMe";
 import Skills from "./knowledgeComponents/Skills";
+import DetailPage1 from "./knowledgeComponents/DetailPage1";
 
 const poppins = Poppins({
   weight: ["400"],
@@ -17,6 +18,7 @@ function Homepage() {
       <LandingPage />
       <AboutMe />
       <Skills />
+      <DetailPage1 />
     </div>
   );
 }

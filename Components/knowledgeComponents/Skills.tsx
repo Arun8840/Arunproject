@@ -17,7 +17,7 @@ function Skills() {
   useEffect(() => {
     const skillItems = gsap.fromTo(
       skillsListref.current.children,
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: -50 },
       {
         y: 0,
         opacity: 1,
@@ -34,84 +34,78 @@ function Skills() {
       }
     );
 
-    // todo time line animation
-    const detailsShow = gsap.timeline({
-      scrollTrigger: {
-        trigger: ScrollanimationTrigger.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: true,
-        markers: true,
-      },
-    });
-    detailsShow.to("#HTML", {
-      scale: 1,
-      translateY: "0%",
-      translateX:"0%",
-      backgroundColor: "white",
-      color: "gray",
-      duration: 1,
-    });
-    detailsShow.to("#HTML", {
-      scale: 2,
-      translateY: "1000%",
-      translateX:"300%",
-      backgroundColor: "white",
-      color: "gray",
-      duration: 1,
-    });
-    detailsShow.to("#HTML", {
-      translateY: "1000%",
-      translateX:"0%",
-      color: "gray",
-      backgroundColor: "white",
-      duration: 1,
-    });
     return () => {
       skillItems.kill();
-      detailsShow.kill();
     };
   }, []);
-
   return (
-    <div
-      ref={ScrollanimationTrigger}
-      className="w-full min-h-[200vh] h-full  bg-black flex flex-col"
-    >
-      <h1 className="text-center text-[5rem] block py-10 bg-gradient-to-br from-[#FF9130] to-[#FECDA6] bg-clip-text text-transparent font-extrabold">
+    <div ref={ScrollanimationTrigger} className="w-full p-3">
+      <h1 className="text-center text-[3rem] block py-2 bg-gradient-to-br from-[#FF9130] to-[#FECDA6] bg-clip-text text-transparent font-extrabold">
         Introduce Something
       </h1>
 
-      <ul
-        ref={skillsListref}
-        className="lg:container mx-auto h-full p-5 grid grid-cols-4 place-items-center gap-4"
-      >
-        {AnalyticsData.map((items, index) => {
-          return (
-            <li
-              id={items.title}
-              className="bg-white/5 rounded-lg p-2 w-full h-full flex gap-2"
-            >
-              {/* image */}
-              <div className="w-16 h-w-16 rounded-lg bg-white/5">
-                <div className="w-full h-full p-1">{items.icon}</div>
-              </div>
-              {/* title and percentage */}
-              <div className="flex-1 flex justify-between flex-col pb-2">
-                <div className="flex justify-between text-sm">
-                  <h1>{items.title}</h1>
-                  <div className="border border-white/10 p-1 rounded-lg">
-                    {items.value}
-                  </div>
-                </div>
-                <Analytics items={items} index={index} />
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="w-full h-full py-10">
+        <div className="w-1/2 mx-auto">
+          <ul
+            ref={skillsListref}
+            className="flex flex-1 flex-col justify-center gap-2 border-l border-l-slate-800 px-5"
+          >
+            {AnalyticsData &&
+              AnalyticsData.map((values, index) => {
+                return (
+                  <li
+                    id={values.title}
+                    className="bg-white/5 border border-slate-800 rounded-lg p-2 w-full h-full flex gap-2"
+                  >
+                    <div className="w-16 h-w-16 rounded-lg bg-white/5">
+                      <div className="w-full h-full p-1">{values.icon}</div>
+                    </div>
+                    <div className="flex-1 flex justify-between flex-col pb-2">
+                      <div className="flex justify-between text-sm">
+                        <h1>{values.title}</h1>
+                        <div className="border border-white/10 p-1 rounded-lg">
+                          {values.value}
+                        </div>
+                      </div>
+                      <Analytics items={values} index={index} />
+                    </div>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }
 
 export default Skills;
+
+{
+  /* <ul
+ref={skillsListref}
+className="lg:container mx-auto h-full p-5 grid grid-cols-4 place-items-center gap-4"
+>
+{AnalyticsData.map((items, index) => {
+  return (
+    <li
+      id={items.title}
+      className="bg-white/5 rounded-lg p-2 w-full h-full flex gap-2"
+    >
+      <div className="w-16 h-w-16 rounded-lg bg-white/5">
+        <div className="w-full h-full p-1">{items.icon}</div>
+      </div>
+      <div className="flex-1 flex justify-between flex-col pb-2">
+        <div className="flex justify-between text-sm">
+          <h1>{items.title}</h1>
+          <div className="border border-white/10 p-1 rounded-lg">
+            {items.value}
+          </div>
+        </div>
+        <Analytics items={items} index={index} />
+      </div>
+    </li>
+  );
+})}
+</ul> */
+}
