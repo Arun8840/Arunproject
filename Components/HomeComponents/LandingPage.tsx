@@ -1,25 +1,24 @@
-import useGetSkills from "@/data/SkillsData";
+import Arun from "../images/arun.jpg";
+
 import gsap from "gsap";
 import _ScrollTrigger, { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Poppins } from "next/font/google";
+import { Lobster, Poppins } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-const HeaderFont = Poppins({
-  weight: "600",
+const HeaderFont = Lobster({
+  weight: "400",
   subsets: ["latin"],
   display: "block",
 });
 function LandingPage() {
-  let Header1ref = useRef(null);
   let Header2ref = useRef(null);
   gsap.registerPlugin(_ScrollTrigger);
   useEffect(() => {
     const headeranimation1 = gsap.fromTo(
-      [Header1ref.current, Header2ref.current],
-      { translateY: "-700%" },
+      [Header2ref.current],
+      { y: 100, opacity: 0 },
       {
-        translateX: "0%",
-        translateY: "0%",
-        ease: "bounce.out",
+        y: 0,
+        opacity: 1,
         duration: 1,
         stagger: 0.5,
       }
@@ -30,31 +29,17 @@ function LandingPage() {
   }, []);
   return (
     <div
-      className={`w-full h-[100vh] overflow-hidden flex justify-center items-center gap-5 bg-white ${HeaderFont.className}`}
+      className={`w-full h-[100vh] flex flex-col justify-center gap-16  bg-[#fffce1] z-2`}
     >
-      <div className="w-full h-full border-r"></div>
-      <div className=" text-slate-700 flex flex-col gap-5 container">
-        <h1
-          ref={Header1ref}
-          className="capitalize tracking-wider text-3xl origin-top"
-        >
-          Hi Im arun
-        </h1>
-        <h1
-          ref={Header2ref}
-          className="capitalize text-[5rem] tracking-wider leading-[5rem] origin-top"
-        >
-          frontend developer
-        </h1>
-        <p>
-          I am an enthusiastic Frontend Developer with a strong penchant for
-          creating elegant and responsive user interfaces. My journey in web
-          development began ZettaStack, which has sharpened my skills and
-          passion for creating exceptional web applications.
-        </p>
-
-        <span className="animate-pulse">Scroll Down</span>
-      </div>
+      <h1
+        ref={Header2ref}
+        className={`w-1/2 mx-auto capitalize text-[3rem] lg:text-[13rem]  text-center tracking-wider leading-[11rem] origin-top  ${HeaderFont.className} bg-gradient-to-br from-[#FF6C22] to-[#2B3499] bg-clip-text text-transparent`}
+      >
+        Frontend Developer
+      </h1>
+      <p className="text-center font-semibold text-lg tracking-wider text-slate-700">
+        I design and code beautifully simple things, and I love what I do.
+      </p>
     </div>
   );
 }

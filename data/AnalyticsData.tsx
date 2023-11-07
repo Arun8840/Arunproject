@@ -113,13 +113,13 @@ export const AnalyticsData: AnalyticsTypes[] = [
         <g clipPath="url(#clip0_5_10)">
           <path
             d="M4.5 7.5V4.5L8.3725 9.825C7.41419 10.4202 6.26727 10.6338 5.15894 10.4234C4.05061 10.2131 3.06172 9.59406 2.38818 8.68907C1.71465 7.78408 1.4056 6.65912 1.52226 5.53705C1.63891 4.41497 2.17277 3.37764 3.01806 2.63056C3.86336 1.88348 4.95843 1.48114 6.08633 1.50325C7.21424 1.52536 8.2927 1.97031 9.10806 2.74995C9.92343 3.52959 10.4162 4.58705 10.4888 5.71283C10.5614 6.83862 10.2085 7.9506 9.5 8.8285"
-            stroke="#F5F7F8"
+            stroke="silver"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <path
             d="M7.5 6V4.5"
-            stroke="#F5F7F8"
+            stroke="silver"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -150,7 +150,7 @@ export const AnalyticsData: AnalyticsTypes[] = [
             <path d="M329 0H0V400H329V0Z" fill="white" />
           </mask>
           <g mask="url(#mask0_6_9)">
-            <path d="M329 0H0V400H329V0Z" fill="black" />
+            <path d="M329 0H0V400H329V0Z" fill="nont" />
             <path
               d="M64 106C64 78.3858 86.3858 56 114 56H164V156H114C86.3858 156 64 133.614 64 106Z"
               fill="#D80032"
