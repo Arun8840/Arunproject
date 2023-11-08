@@ -13,10 +13,9 @@ function Analytics({ items, index }: any) {
   }, []);
   return (
     <div className=" w-full rounded-full h-2 bg-white/10">
-      {/* inner progress value */}
       <div
         ref={progressBar}
-        className="bg-gradient-to-r from-[#FF6C22]/5 to-[#FF6C22] w-0 h-full rounded-full"
+        className="bg-gradient-to-r from-[#FF6C22]/5 to-slate-500 w-0 h-full rounded-full"
       ></div>
     </div>
   );

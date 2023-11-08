@@ -33,25 +33,9 @@ function AboutMe() {
         },
       }
     );
-    const animate = gsap.fromTo(
-      ["#Square", "#Circle"],
-      { width: 0, height: 0 },
-      {
-        width: 200,
-        height: 200,
-        duration: 1,
-        ease: "bounce.out",
-        stagger: 0.5,
-        scrollTrigger: {
-          trigger: ScrollanimationTrigger.current,
-          start: "top bottom",
-          end: "bottom",
-        },
-      }
-    );
+
     return () => {
       title.kill();
-      animate.kill();
     };
   }, []);
   return (
@@ -73,23 +57,13 @@ function AboutMe() {
           <h1 className="text-[4rem] bg-gradient-to-br from-[#FF6C22] to-[#2B3499] bg-clip-text text-transparent font-extrabold">
             I'm Arun.
           </h1>
-          <p className="text-lg capitalize tracking-wider leading-[2rem] border-l border-l-slate-700 pl-5">
+          <p className="text-lg capitalize tracking-wider leading-[2rem] border-l border-l-slate-700 pl-5 text-white">
             I am an enthusiastic Frontend Developer with a strong penchant for
             creating elegant and responsive user interfaces. My journey in web
             development began ZettaStack, which has sharpened my skills and
             passion for creating exceptional web applications.
           </p>
         </div>
-
-        {/* animation ball */}
-        <div
-          id="Circle"
-          className=" absolute bg-red-400 -bottom-10 rounded-full left-10  origin-center"
-        ></div>
-        <div
-          id="Square"
-          className="absolute bg-lime-400 -top-10 rounded-3xl right-10 z-[-2] origin-center"
-        ></div>
       </div>
     </div>
   );

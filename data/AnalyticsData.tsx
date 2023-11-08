@@ -2,7 +2,12 @@ interface AnalyticsTypes {
   title: string;
   value: string;
   icon: any;
-  direction: string;
+  style?: {
+    left?: string;
+    right?: string;
+    bottom?: string;
+    top?: string;
+  };
 }
 
 export const AnalyticsData: AnalyticsTypes[] = [
@@ -24,7 +29,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "right",
+    style: {
+      top: "-10rem",
+      left:"10rem"
+    },
   },
   {
     title: "CSS",
@@ -37,7 +45,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         />
       </svg>
     ),
-    direction: "left",
+    style: {
+      left: "-15rem",
+      top: "-6rem",
+    },
   },
   {
     title: "TAILWINDCSS",
@@ -57,7 +68,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "right",
+    style: {
+      right: "-14rem",
+      top: "-7rem",
+    },
   },
   {
     title: "SASS",
@@ -77,7 +91,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "left",
+    style: {
+      left: "-15rem",
+      top: "4rem",
+    },
   },
   {
     title: "JS",
@@ -90,7 +107,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         />
       </svg>
     ),
-    direction: "right",
+    style: {
+      right: "-15rem",
+      top: "6rem",
+    },
   },
   {
     title: "REACT.JS",
@@ -103,7 +123,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         />
       </svg>
     ),
-    direction: "left",
+    style: {
+      left: "-10rem",
+      top: "15rem",
+    },
   },
   {
     title: "NEXT.JS",
@@ -131,7 +154,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "right",
+    style: {
+      right: "-10rem",
+      bottom: "8rem",
+    },
   },
   {
     title: "FIGMA",
@@ -180,7 +206,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "left",
+    style: {
+      left: "-8rem",
+      bottom: "-3rem",
+    },
   },
   {
     title: "SPLINE",
@@ -213,7 +242,10 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "right",
+    style: {
+      right: "5rem",
+      top: "-1rem",
+    },
   },
   {
     title: "ANINIX",
@@ -233,6 +265,9 @@ export const AnalyticsData: AnalyticsTypes[] = [
         </defs>
       </svg>
     ),
-    direction: "left",
+    style: {
+      right: "-3rem",
+      bottom: "-2rem",
+    },
   },
 ];
