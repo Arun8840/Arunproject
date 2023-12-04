@@ -1,15 +1,15 @@
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { Lobster } from "next/font/google";
-import { useEffect, useRef } from "react";
+import gsap from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger"
+import { Lobster } from "next/font/google"
+import { useEffect, useRef } from "react"
 const HeaderFont = Lobster({
   weight: "400",
   subsets: ["latin"],
   display: "block",
-});
+})
 function LandingPage() {
-  let Header2ref = useRef(null);
-  gsap.registerPlugin(ScrollTrigger);
+  let Header2ref = useRef(null)
+  gsap.registerPlugin(ScrollTrigger)
   useEffect(() => {
     const headeranimation1 = gsap.fromTo(
       [Header2ref.current],
@@ -20,19 +20,19 @@ function LandingPage() {
         duration: 1,
         stagger: 0.5,
       }
-    );
+    )
     return () => {
-      headeranimation1.kill();
-    };
-  }, []);
+      headeranimation1.kill()
+    }
+  }, [])
   return (
     <div
-      className={`w-full h-[100vh] flex flex-col justify-center gap-16  bg-[#fffce1]/60 backdrop-blur-lg`}
+      className={`w-full h-[100vh] flex flex-col justify-center gap-16  bg-gradient-radial from-[#FFF5C2] to-[white] backdrop-blur-lg`}
     >
       <div className="container mx-auto">
         <h1
           ref={Header2ref}
-          className={` capitalize text-[7rem] lg:text-[13rem] leading-tight text-center tracking-wider  origin-top  ${HeaderFont.className} bg-gradient-to-br from-[#F25287] to-[#2B3499] bg-clip-text text-transparent`}
+          className={` capitalize text-[7rem] lg:text-[13rem] leading-tight text-center tracking-wider  origin-top  ${HeaderFont.className} bg-gradient-to-br from-[#ED7D31] to-[#ED7D31] bg-clip-text text-transparent`}
         >
           Frontend Developer
         </h1>
@@ -41,7 +41,7 @@ function LandingPage() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default LandingPage;
+export default LandingPage

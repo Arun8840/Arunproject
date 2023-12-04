@@ -41,14 +41,14 @@ function AboutMe() {
   return (
     <div
       ref={ScrollanimationTrigger}
-      className={`w-full h-[100vh] sm:overflow-hidden lg:overflow-visible flex justify-center items-center bg-[#fffce1] ${FontStyle.className}`}
+      className={`w-full h-[100vh] sm:overflow-hidden lg:overflow-visible flex justify-center items-center bg-gradient-radial from-[#FFF5C2] to-[white] ${FontStyle.className}`}
     >
       <div
         ref={containerRef}
-        className="container flex justify-center items-center pt-5 border bg-black rounded-3xl relative z-0"
+        className="container flex justify-center items-center p-5 gap-10 bg-white shadow-lg rounded-3xl relative z-0"
       >
-        <div className="w-[400px]">
-          <img src={bannerImage} alt="bannerimage" className="object-contain" />
+        <div className="w-[400px] h-[400px] bg-zinc-200 rounded-full">
+          {/* <img src={bannerImage} alt="bannerimage" className="object-contain" /> */}
         </div>
         <div className="w-1/2">
           <span className="text-lg bg-gradient-to-br from-[#FF6C22] to-[#2B3499] bg-clip-text text-transparent font-extrabold">
@@ -57,7 +57,7 @@ function AboutMe() {
           <h1 className="text-[4rem] bg-gradient-to-br from-[#FF6C22] to-[#2B3499] bg-clip-text text-transparent font-extrabold">
             I'm Arun.
           </h1>
-          <p className="text-lg capitalize tracking-wider leading-[2rem] border-l border-l-slate-700 pl-5 text-white">
+          <p className="capitalize tracking-wider leading-[2rem]">
             I am an enthusiastic Frontend Developer with a strong penchant for
             creating elegant and responsive user interfaces. My journey in web
             development began ZettaStack, which has sharpened my skills and

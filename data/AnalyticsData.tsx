@@ -30,7 +30,7 @@ export const AnalyticsData: AnalyticsTypes[] = [
       </svg>
     ),
     style: {
-      top: "-10rem",
+      top: "-6rem",
       left:"10rem"
     },
   },
@@ -46,8 +46,8 @@ export const AnalyticsData: AnalyticsTypes[] = [
       </svg>
     ),
     style: {
-      left: "-15rem",
-      top: "-6rem",
+      left: "-10rem",
+      top: "-2rem",
     },
   },
   {
@@ -69,8 +69,8 @@ export const AnalyticsData: AnalyticsTypes[] = [
       </svg>
     ),
     style: {
-      right: "-14rem",
-      top: "-7rem",
+      right: "-6rem",
+      top: "-4rem",
     },
   },
   {
@@ -93,7 +93,7 @@ export const AnalyticsData: AnalyticsTypes[] = [
     ),
     style: {
       left: "-15rem",
-      top: "4rem",
+      top: "6rem",
     },
   },
   {
@@ -125,7 +125,7 @@ export const AnalyticsData: AnalyticsTypes[] = [
     ),
     style: {
       left: "-10rem",
-      top: "15rem",
+      top: "18rem",
     },
   },
   {
@@ -244,7 +244,7 @@ export const AnalyticsData: AnalyticsTypes[] = [
     ),
     style: {
       right: "5rem",
-      top: "-1rem",
+      top: "4rem",
     },
   },
   {

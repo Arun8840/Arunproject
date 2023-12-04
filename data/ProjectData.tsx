@@ -20,28 +20,5 @@ export const ProjectDatas: ProjectDataTypes[] = [
     title: "DND",
     image: "",
   },
-  {
-    title: "JS",
-    image: "",
-  },
-  {
-    title: "REACT.JS",
-    image: "",
-  },
-  {
-    title: "NEXT.JS",
-    image: "",
-  },
-  {
-    title: "FIGMA",
-    image: "",
-  },
-  {
-    title: "SPLINE",
-    image: "",
-  },
-  {
-    title: "ANINIX",
-    image: "",
-  },
+
 ];
