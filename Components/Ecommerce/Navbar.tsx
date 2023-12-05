@@ -1,5 +1,7 @@
+import { EcommerceStore } from "@/Store/EcommerceStore"
 import { CartIcon } from "@/Utility/icons/icons"
 import { Poppins } from "next/font/google"
+import Link from "next/link"
 import React from "react"
 const HeaderFont = Poppins({
   weight: "500",
@@ -7,6 +9,7 @@ const HeaderFont = Poppins({
   display: "block",
 })
 function Navbar() {
+  const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
   return (
     <nav
       id="NavHeader"
@@ -24,9 +27,19 @@ function Navbar() {
         />
       </div>
       <ul className="flex items-center gap-2 text-sm tracking-wider">
-        <li className=" rounded-full px-3 py-2 cursor-pointer flex items-center gap-2">
-          <CartIcon width={20} className="text-[#F05454]" />
-          Cart
+        <li className=" rounded-full px-3 py-2 cursor-pointer flex items-center gap-2 relative">
+          <Link
+            href={"/projects/Ecommerce/CartPage"}
+            className={`flex items-center gap-2 `}
+          >
+            <CartIcon width={20} />
+            cart
+            <span
+              className={`absolute content-["0"] left-5 -top-0 text-sm bg-red-500 text-white w-[20px] text-center rounded-full`}
+            >
+              {CartProducts?.length ? CartProducts?.length : 0}
+            </span>
+          </Link>
         </li>
         <li className=" rounded-full px-3 py-2 cursor-pointer">Profile</li>
         <li className="rounded-full px-3 py-2 cursor-pointer bg-[#222831] text-white">

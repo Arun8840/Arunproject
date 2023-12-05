@@ -8,12 +8,14 @@ interface ClothingTypes {
   image: string
   description: string
   details: string[]
+  qty: number
 }
 
 export const clothingProducts: ClothingTypes[] = [
   {
     id: 1,
     liked: false,
+    qty: 0,
     ratings: 5,
     name: "Men's Casual Shirt",
     price: 35.99,
@@ -25,6 +27,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 2,
     liked: true,
+    qty: 0,
     ratings: 3,
     name: "Women's Denim Jeans",
     price: 49.95,
@@ -40,6 +43,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 3,
     liked: false,
+    qty: 0,
     ratings: 4,
     name: "Men's Sports Jacket",
     price: 79.99,
@@ -55,6 +59,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 4,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Yoga Leggings",
     price: 29.5,
@@ -66,6 +71,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 5,
     liked: false,
+    qty: 0,
     ratings: 2,
     name: "Men's Formal Suit",
     price: 149.99,
@@ -81,6 +87,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 1,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Casual Shirt",
     price: 35.99,
@@ -92,6 +99,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 2,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Denim Jeans",
     price: 49.95,
@@ -107,6 +115,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 3,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Sports Jacket",
     price: 79.99,
@@ -122,6 +131,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 4,
     liked: false,
+    qty: 0,
     ratings: 5,
     name: "Women's Yoga Leggings",
     price: 29.5,
@@ -133,6 +143,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 5,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Formal Suit",
     price: 149.99,
@@ -148,6 +159,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 1,
     liked: true,
+    qty: 0,
     ratings: 3,
     name: "Men's Casual Shirt",
     price: 35.99,
@@ -159,6 +171,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 2,
     liked: false,
+    qty: 0,
     ratings: 4,
     name: "Women's Denim Jeans",
     price: 49.95,
@@ -174,6 +187,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 3,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Sports Jacket",
     price: 79.99,
@@ -189,6 +203,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 4,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Yoga Leggings",
     price: 29.5,
@@ -200,6 +215,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 5,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Formal Suit",
     price: 149.99,
@@ -216,6 +232,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 1,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Casual Shirt",
     price: 35.99,
@@ -227,6 +244,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 2,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Denim Jeans",
     price: 49.95,
@@ -242,6 +260,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 3,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Sports Jacket",
     price: 79.99,
@@ -257,6 +276,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 4,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Yoga Leggings",
     price: 29.5,
@@ -268,6 +288,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 5,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Formal Suit",
     price: 149.99,
@@ -283,6 +304,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 1,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Casual Shirt",
     price: 35.99,
@@ -294,6 +316,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 2,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Denim Jeans",
     price: 49.95,
@@ -309,6 +332,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 3,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Sports Jacket",
     price: 79.99,
@@ -324,6 +348,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 4,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Women's Yoga Leggings",
     price: 29.5,
@@ -335,6 +360,7 @@ export const clothingProducts: ClothingTypes[] = [
   {
     id: 5,
     liked: false,
+    qty: 0,
     ratings: 3,
     name: "Men's Formal Suit",
     price: 149.99,
