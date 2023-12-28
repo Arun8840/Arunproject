@@ -10,12 +10,7 @@ import { RocketIcon } from "@/Utility/icons/icons"
 
 function Homepage() {
   return (
-    <div className={`w-full relative z-0`}>
-      {/* icon */}
-      {/* <button className="absolute top-0 left-0 z-10">
-        <RocketIcon width={50} />
-      </button> */}
-
+    <div className={`w-full relative z-0 divide-y`}>
       <LandingPage />
       <AboutMe />
       <Skills />

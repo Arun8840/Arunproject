@@ -1,46 +1,42 @@
 import { ProjectDatas } from "@/data/ProjectData"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Lobster, Merriweather, Poppins } from "next/font/google"
+import useGetFonts from "@/font/fonts"
 import { useRouter } from "next/navigation"
-import React, { useEffect, useRef } from "react"
-const HeaderFont = Merriweather({
-  weight: "400",
-  subsets: ["latin"],
-  display: "block",
-})
+import React from "react"
+
 function Projects() {
   const router = useRouter()
+  const { HeaderFont, ContentFont } = useGetFonts()
   const handleRedirect = (path: string) => {
     path && router.push(path)
   }
   return (
-    <div
-      id="MainContainer"
-      className={`w-full bg-[#f2f2f2] flex flex-col p-2  `}
-    >
+    <div className={`w-full pt-[4rem] bg-[#f3f5f7] flex flex-col p-2  `}>
       <div className="container mx-auto">
         <h1
-          className={`text-[4rem] text-[#131727] font-extrabold ${HeaderFont.className}`}
+          className={`text-[4rem] text-[#131727] font-extrabold ${HeaderFont.className} pb-10`}
         >
           Projects
         </h1>
-        <div className="w-full h-full mx-auto grid lg:grid-cols-2 gap-1">
-          {ProjectDatas.map((values) => {
+        <div className="container mx-auto grid gap-1 ">
+          {ProjectDatas.map((values, index: number) => {
             return (
-              <div className="border w-full min-h-[300px] rounded bg-white p-5 grid place-items-center relative overflow-hidden group hover:shadow-lg">
-                {/* //todo hover object */}
-                <div className="absolute  bg-black w-[50px] h-[50px] rounded-full scale-0 group-hover:scale-[20] transition-scale duration-300"></div>
-                <div className="w-full h-full flex justify-between flex-col z-[1] rounded">
-                  <div>
-                    <h1 className="font-semibold tracking-wide text-lg text-[#131727] group-hover:text-white pb-3 border-b">
-                      {values.title}
-                    </h1>
-                    <p className="line-clamp-6 text-gray-400 tracking-wide text-sm py-1 leading-6">
-                      {values.description}
-                    </p>
-                  </div>
-                  <div className="flex justify-end">
+              <div
+                style={{
+                  backgroundColor: values?.color,
+                  color: values?.fontColor,
+                }}
+                className="grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg"
+              >
+                <div className="flex-1">
+                  <h1 className="font-semibold tracking-wide text-3xl pb-3">
+                    <span>{index + 1}</span> .{values.title}
+                  </h1>
+                  <p
+                    className={`line-clamp-6 tracking-wide  py-1 leading-6 ${ContentFont.className}`}
+                  >
+                    {values.description}
+                  </p>
+                  <div className="flex justify-end p-5">
                     <button
                       onClick={() => handleRedirect(values?.path)}
                       className="px-5 py-2 rounded text-white bg-[#131727] group-hover:bg-[#940B92]"
@@ -49,6 +45,7 @@ function Projects() {
                     </button>
                   </div>
                 </div>
+                <div className="w-full min-h-[90vh] bg-white rounded-3xl shadow"></div>
               </div>
             )
           })}
@@ -60,7 +57,12 @@ function Projects() {
 
 export default Projects
 {
-  /* <div className="container  p-[3rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5">
+  /*
+  
+ 
+
+                  
+  <div className="container  p-[3rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="w-full min-h-[500px] bg-yellow-50 rounded-2xl"></div>
 
         <div className="">
