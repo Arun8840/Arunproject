@@ -25,7 +25,7 @@ function Projects() {
                   backgroundColor: values?.color,
                   color: values?.fontColor,
                 }}
-                className="grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg"
+                className="grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg shadow-[0px_-5px_7px_lightgray]"
               >
                 <div className="flex-1">
                   <h1 className="font-semibold tracking-wide text-3xl pb-3">

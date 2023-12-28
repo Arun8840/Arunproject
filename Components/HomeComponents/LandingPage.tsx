@@ -1,6 +1,5 @@
 import useGetFonts from "@/font/fonts"
-import gsap, { Power3 } from "gsap"
-import { SplitText } from "gsap/all"
+import gsap, { Power4 } from "gsap"
 import { useEffect, useRef } from "react"
 
 function LandingPage() {
@@ -13,41 +12,47 @@ function LandingPage() {
   let header = useRef(null)
   let subheader = useRef(null)
 
-  let tl = gsap.timeline({})
-
   useEffect(() => {
-    gsap.registerPlugin(SplitText)
-    const leftlineAnimation = gsap.to(leftline.current, {
-      backgroundColor: "#131727",
-      transformOrigin: "right",
-      flex: 1,
-      duration: 2,
-    })
-    const rightlineAnimation = gsap.to(rightline.current, {
-      backgroundColor: "#131727",
-      transformOrigin: "left",
+    let tl = gsap.timeline({})
+    tl.to([leftline.current, rightline.current], {
+      backgroundColor: "#101010",
       flex: 1,
       duration: 2,
     })
     tl.to(outerCircle.current, { scale: 1, duration: 0.5, ease: "bounce.out" })
     tl.to(innerCircle.current, { scale: 1, duration: 0.7, ease: "bounce.out" })
+    tl.to([leftline.current, rightline.current], {
+      opacity: 0,
+      display: "none",
+      duration: 1,
+    })
+    tl.to(innerCircle.current, { scale: 0, duration: 0.7, ease: Power4.easeIn })
+    tl.to(outerCircle.current, {
+      backgroundColor: "#101010",
+      duration:.2,
+      ease: Power4.easeIn,
+    })
+    tl.to(outerCircle.current, {
+      scale: 100,
+      opacity: 0,
+      border: "none",
+      display: "none",
+      duration: 1,
+      ease: Power4.easeIn,
+    })
     tl.to(mainframe.current, { opacity: 1, display: "block" })
     tl.to(header.current, {
       opacity: 1,
       y: 0,
       duration: 0.5,
-      ease: Power3.easeInOut,
+      ease: Power4.easeInOut,
     })
     tl.to(subheader.current, {
       opacity: 1,
       y: 0,
       duration: 0.3,
-      ease: Power3.easeInOut,
+      ease: Power4.easeInOut,
     })
-    return () => {
-      leftlineAnimation.kill()
-      rightlineAnimation.kill()
-    }
   }, [])
 
   return (
@@ -74,11 +79,11 @@ function LandingPage() {
         <div ref={leftline} className="h-[1px] "></div>
         <div
           ref={outerCircle}
-          className="w-[80px] h-[80px] scale-0 border border-[#131727] rounded-full grid place-items-center"
+          className="w-[80px] h-[80px] scale-0 border border-[#101010] rounded-full grid place-items-center"
         >
           <div
             ref={innerCircle}
-            className="bg-[#131727] rounded-full scale-0 p-2 w-[30px] h-[30px]"
+            className="bg-[#101010] rounded-full scale-0 p-2 w-[30px] h-[30px]"
           ></div>
         </div>
         <div ref={rightline} className="h-[1px] "></div>

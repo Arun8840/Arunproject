@@ -25,15 +25,17 @@ function AboutMe() {
         start: "top bottom",
         end: "bottom bottom",
       },
+      onComplete: () => {
+        tl.to(messagecontainer.current, {
+          opacity: 1,
+          scale: 1,
+          transformOrigin: "left",
+          duration: 1,
+          ease: "bounce.out",
+        })
+      },
     })
-    tl.to(messagecontainer.current, {
-      opacity: 1,
-      scale: 1,
-      transformOrigin: "left",
-      duration: 1,
-      delay: 3,
-      ease: "bounce.out",
-    })
+
     return () => {
       animation1.kill()
     }
@@ -52,8 +54,7 @@ function AboutMe() {
         <h1
           className={` text-[4rem] ${HeaderFont.className} group-hover:text-[#4e4aeb]  transition-colors duration-300`}
         >
-          About me{" "}
-          <span className="group-hover:text-yellow-500">:)</span>
+          About me <span className="group-hover:text-yellow-500">:)</span>
         </h1>
         <div className="container grid grid-cols-2 place-items-center  gap-10">
           <div className="w-full h-full relative">
