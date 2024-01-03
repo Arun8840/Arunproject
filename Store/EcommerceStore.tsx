@@ -1,4 +1,5 @@
 import { clothingProducts } from "@/data/ClothingData"
+import getEcommerceService from "@/service/EcommerceService"
 import { create } from "zustand"
 
 interface CartTypes {
@@ -12,24 +13,15 @@ interface CartTypes {
   description: string
   details: string[]
 }
+
 export const EcommerceStore = create((set, get: any) => ({
   ClothingProducts: clothingProducts,
   CartItems: [],
   AddCart: (newItem: any) => {
-    const cartItems = get().CartItems
-
-    const itemExists = cartItems.some(
-      (existingItem: any) => existingItem.name === newItem.name
-    )
-
-    if (itemExists) {
-      alert("Item already exists in the cart")
-    } else {
-      set((state: any) => ({
-        ...state,
-        CartItems: [...state.CartItems, newItem],
-      }))
-    }
+    set((state: any) => ({
+      ...state,
+      CartItems: [...state.CartItems, newItem],
+    }))
   },
   removeFromCart: (items: CartTypes) =>
     set((state: any) => ({

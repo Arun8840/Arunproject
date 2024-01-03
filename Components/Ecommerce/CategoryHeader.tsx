@@ -1,5 +1,8 @@
+import getEcommerceService from "@/service/EcommerceService"
 import { Poppins } from "next/font/google"
+import { useRouter } from "next/navigation"
 import React from "react"
+import useSWR from "swr"
 
 const HeaderFont = Poppins({
   weight: "500",
@@ -12,35 +15,51 @@ type categoryTypes = {
   category: string
 }
 function CategoryHeader() {
-  const ecommerceCategories: categoryTypes[] = [
-    { id: 1, category: "Electronics" },
-    { id: 2, category: "Clothing" },
-    { id: 3, category: "Kitchen" },
-    { id: 4, category: "Beauty" },
-    { id: 5, category: "Books" },
-    { id: 6, category: "Toys & Games" },
-    { id: 7, category: "Health" },
-    { id: 8, category: "Sports" },
-    { id: 9, category: "Automotive" },
-    { id: 10, category: "Grocery" },
-    { id: 11, category: "Pet Supplies" },
-    { id: 12, category: "Jewelry" },
-    { id: 14, category: "Tools" },
-    { id: 15, category: "Baby Products" },
-    { id: 16, category: "Musical" },
-    { id: 19, category: "Electrical" },
-  ]
+  const { loadAllCategorys } = getEcommerceService()
+  const router = useRouter()
+  const loadCategorys = async () => {
+    let data
+    try {
+      data = await loadAllCategorys()
+    } catch (error) {
+      console.error(error)
+    }
+    return data
+  }
+
+  const {
+    data: categories,
+    error,
+    isLoading,
+  } = useSWR("load-all-categoryes", loadCategorys)
+  const firstTenItems = categories?.slice(0, 14)
+
+  const handleDirectProduct = (category: string) => {
+    router.push(`/projects/Ecommerce/${category}`)
+  }
+
   return (
     <nav
       id="CategoryHeader"
       className={` flex items-center justify-between p-2 ${HeaderFont.className} bg-white-80 backdrop-blur-sm rounded-full`}
     >
-      <ul className="w-full flex justify-evenly items-center gap-2 text-center text-sm tracking-wider">
-        {ecommerceCategories.map((items) => {
-          return (
-            <li className="text-xs flex-1 cursor-pointer">{items?.category}</li>
-          )
-        })}
+      <ul
+        className={`w-full  lg:grid grid-cols-12 gap-1 text-start lg:text-center text-sm tracking-wider overflow-x-auto ${
+          isLoading &&
+          "p-5 bg-gradient-to-br from-zinc-100 to-zinc-200 animate-pulse rounded"
+        }`}
+      >
+        {!isLoading &&
+          firstTenItems?.map((items: string) => {
+            return (
+              <li
+                onClick={() => handleDirectProduct(items)}
+                className="text-xs flex-1 cursor-pointer capitalize tracking-wide bg-zinc-100 p-2 rounded"
+              >
+                {items}
+              </li>
+            )
+          })}
       </ul>
     </nav>
   )

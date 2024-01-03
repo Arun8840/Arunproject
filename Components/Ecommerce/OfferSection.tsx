@@ -10,7 +10,6 @@ type Offertypes = {
 }
 function OfferSection() {
   const [initial, setinitial] = useState(1)
-  let carouselContainer: any = useRef(null)
   const productOffers: Offertypes[] = [
     {
       id: 2,
@@ -79,36 +78,19 @@ function OfferSection() {
   ]
 
   const next = () => {
-    const carouselItems = carouselContainer.current.children
-    gsap.to(carouselItems, {
-      duration: 0.6, // Duration of the animation
-      opacity: 0, // Fade out
-      onComplete: () => {
-        setinitial((prev) => prev + 1)
-
-        if (initial > 9) {
-          setinitial(0)
-        }
-      },
-    })
+    initial > productOffers.length
+      ? setinitial(0)
+      : setinitial((prev) => prev + 1)
   }
 
   const Prev = () => {
-    const carouselItems = carouselContainer.current.children
-    gsap.to(carouselItems, {
-      duration: 0.6, // Duration of the animation
-      opacity: 0, // Fade out
-      onComplete: () => {
-        setinitial((prev) => prev - 1)
-        if (initial <= -1) {
-          setinitial(0)
-        }
-      },
-    })
+    initial < 0
+      ? setinitial(productOffers.length)
+      : setinitial((prev) => prev - 1)
   }
   return (
-    <div className="w-full p-1 relative container mx-auto">
-      <ul ref={carouselContainer} className="w-full h-[500px] overflow-hidden">
+    <div className="w-full flex-1 p-1 relative">
+      <ul className="w-full h-full overflow-hidden">
         {productOffers.map((items, index: number) => {
           return (
             index === initial && (
@@ -118,7 +100,7 @@ function OfferSection() {
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                 }}
-                className="p-2 border rounded-lg h-full flex flex-col justify-center items-center bg-center bg-cover translate-x-0"
+                className="p-2 border rounded-lg h-full flex flex-col justify-center items-center bg-center bg-cover "
               >
                 <div className="flex flex-col justify-center  rounded-lg p-5 text-[white] backdrop-blur-sm">
                   <h1 className="font-bold  text-center text-[4rem] tracking-widest">

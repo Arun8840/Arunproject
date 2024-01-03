@@ -22,7 +22,7 @@ function Navbar() {
       <div className="w-full flex justify-center">
         <input
           type="text"
-          className="border border-zinc-100 w-1/2 p-2 rounded-full outline-none text-sm"
+          className="border border-zinc-200 w-1/2 p-2 rounded outline-none text-sm"
           placeholder="Search..."
         />
       </div>

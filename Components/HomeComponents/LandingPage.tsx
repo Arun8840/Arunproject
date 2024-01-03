@@ -1,3 +1,4 @@
+import { DownArrow } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import gsap, { Power4 } from "gsap"
 import { useEffect, useRef } from "react"
@@ -29,7 +30,7 @@ function LandingPage() {
     tl.to(innerCircle.current, { scale: 0, duration: 0.7, ease: Power4.easeIn })
     tl.to(outerCircle.current, {
       backgroundColor: "#101010",
-      duration:.2,
+      duration: 0.2,
       ease: Power4.easeIn,
     })
     tl.to(outerCircle.current, {
@@ -74,6 +75,7 @@ function LandingPage() {
         >
           I design and code beautifully simple things, and I love what I do.
         </p>
+        {/* <button className="bg-[#101010]"><DownArrow width={15} /></button> */}
       </div>
       <div className="flex justify-center items-center container gap-1 mx-auto">
         <div ref={leftline} className="h-[1px] "></div>

@@ -2,7 +2,7 @@ import { ProjectDatas } from "@/data/ProjectData"
 import useGetFonts from "@/font/fonts"
 import { useRouter } from "next/navigation"
 import React from "react"
-
+import image from "../images/magicpattern-mesh-gradient-1704291343624.png"
 function Projects() {
   const router = useRouter()
   const { HeaderFont, ContentFont } = useGetFonts()
@@ -22,10 +22,10 @@ function Projects() {
             return (
               <div
                 style={{
-                  backgroundColor: values?.color,
+                  background: `linear-gradient(86deg,${values.color})`,
                   color: values?.fontColor,
                 }}
-                className="grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg shadow-[0px_-5px_7px_lightgray]"
+                className={`grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg backdrop-blur-sm`}
               >
                 <div className="flex-1">
                   <h1 className="font-semibold tracking-wide text-3xl pb-3">
@@ -45,7 +45,7 @@ function Projects() {
                     </button>
                   </div>
                 </div>
-                <div className="w-full min-h-[90vh] bg-white rounded-3xl shadow"></div>
+                <div className="w-full min-h-[80vh] bg-white rounded-3xl shadow"></div>
               </div>
             )
           })}

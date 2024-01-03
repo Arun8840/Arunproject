@@ -1,8 +1,13 @@
 import React from "react"
 import { LikeIcon, RatingIcon } from "../icons/icons"
 import { EcommerceStore } from "@/Store/EcommerceStore"
+import { mobileTypes } from "@/model/Ecommerce"
 
-function Productlist({ items, placement }: any) {
+interface PropsTypes {
+  items: mobileTypes
+  placement: string
+}
+function Productlist({ items, placement }: PropsTypes) {
   const ratingValue: number[] = [1, 2, 3, 4, 5]
 
   const AddCartitems = EcommerceStore((state: any) => state.AddCart)
@@ -30,44 +35,33 @@ function Productlist({ items, placement }: any) {
   return (
     <div className="col-span-4 row-span-2 border rounded min-h-[300px] p-1 flex gap-2">
       {/* //todo image */}
-      <div className="w-[250px] bg-zinc-50 h-full rounded"></div>
+      <div className="w-[250px] h-full rounded">
+        <img
+          src={items?.images[0]}
+          alt={items?.thumbnail}
+          className="w-full h-full object-contain"
+        />
+      </div>
       {/* //todo header */}
       <div className="p-1 flex-1 flex flex-col justify-between">
         <div>
           <h1 className="text-[#30475E] flex justify-between items-center">
-            {items?.name}{" "}
+            {items?.title}{" "}
             <button onClick={handleLike}>
-              <LikeIcon
-                width={20}
-                className={`${
-                  items?.liked
-                    ? "fill-red-400 text-red-400"
-                    : "fill-white text-zinc-300"
-                }`}
-              />
+              <LikeIcon width={20} />
             </button>
           </h1>
-          <p className="font-semibold text-[#F05454] text-sm py-3">
-            {items?.offer}
-          </p>
-          <h1 className="text-[#30475E] text-sm">Details :</h1>
-          <p className="text-sm text-slate-500 tracking-wider indent-8 line-clamp-4">
-            {items?.details} Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Tempore debitis ipsam consectetur aliquam vel voluptate
-            exercitationem neque. Veritatis ratione nobis illo est.
-          </p>
-
           {/* //todo rating */}
-          <ul className="flex items-center gap-3 py-3">
+          <ul className="flex items-center gap-3">
             {" "}
             {ratingValue.map((vals, index: number) => {
               return (
                 <li>
                   <button onClick={() => handleRating(vals)}>
                     <RatingIcon
-                      width={20}
+                      width={15}
                       className={`${
-                        index < items?.ratings
+                        index < items?.rating
                           ? "text-yellow-400 fill-yellow-400"
                           : "text-zinc-200 fill-white"
                       }`}
@@ -77,12 +71,19 @@ function Productlist({ items, placement }: any) {
               )
             })}
           </ul>
+          <p className="font-semibold text-[#F05454] text-sm py-3">
+            {items?.discountPercentage}%
+          </p>
+          <h1 className="text-[#30475E] text-sm">Details :</h1>
+          <p className="text-sm text-slate-500 tracking-wider indent-8 line-clamp-4">
+            {items?.description}
+          </p>
         </div>
 
         {placement !== "product" && (
           <div className="p-2 flex justify-start items-center gap-3">
             <button className="border py-1 px-2 rounded">-</button>
-            <span>{items?.qty}</span>
+            {/* <span>{items?.qty}</span> */}
             <button className="border py-1 px-2 rounded">+</button>
           </div>
         )}

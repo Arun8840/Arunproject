@@ -3,15 +3,13 @@ import React from "react"
 import Navbar from "../Ecommerce/Navbar"
 import CategoryHeader from "../Ecommerce/CategoryHeader"
 import OfferSection from "../Ecommerce/OfferSection"
-import CategoryOffers from "../Ecommerce/CategoryOffers"
 
 function Ecommerce() {
   return (
-    <main className="p-2 flex flex-col gap-1">
+    <main className="p-2 flex flex-col gap-1 h-screen">
       <Navbar />
-      {/* <CategoryHeader /> */}
+      <CategoryHeader />
       <OfferSection />
-      <CategoryOffers />
     </main>
   )
 }
