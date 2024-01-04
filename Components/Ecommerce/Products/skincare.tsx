@@ -6,7 +6,7 @@ import { smartMobilesTypes } from "@/model/Ecommerce"
 import getEcommerceService from "@/service/EcommerceService"
 import React from "react"
 import useSWR from "swr"
-function skincare() {
+function Skincare() {
   const { loadSkinCare } = getEcommerceService()
   const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
   const loadskincareProducts = async (): Promise<smartMobilesTypes> => {
@@ -35,4 +35,4 @@ function skincare() {
   )
 }
 
-export default skincare
+export default Skincare

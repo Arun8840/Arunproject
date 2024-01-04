@@ -9,7 +9,7 @@ import Link from "next/link"
 import React from "react"
 import useSWR from "swr"
 
-function laptops() {
+function Laptops() {
   const { loadLaptops } = getEcommerceService()
 
   const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
@@ -43,4 +43,4 @@ function laptops() {
   )
 }
 
-export default laptops
+export default Laptops

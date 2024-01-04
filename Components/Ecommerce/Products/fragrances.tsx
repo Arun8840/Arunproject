@@ -7,7 +7,7 @@ import getEcommerceService from "@/service/EcommerceService"
 import React from "react"
 import useSWR from "swr"
 
-function fragrances() {
+function Fragrances() {
   const { loadFragrance } = getEcommerceService()
   const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
   const loadfrangranceProducts = async (): Promise<smartMobilesTypes> => {
@@ -36,4 +36,4 @@ function fragrances() {
   )
 }
 
-export default fragrances
+export default Fragrances

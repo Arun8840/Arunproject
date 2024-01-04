@@ -8,7 +8,7 @@ import getEcommerceService from "@/service/EcommerceService"
 import Link from "next/link"
 import React, { useState } from "react"
 import useSWR from "swr"
-function smartphones() {
+function Smartphones() {
   const { loadSmartMobiles } = getEcommerceService()
   const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
   const loadsmartmobileProducts = async (): Promise<smartMobilesTypes> => {
@@ -38,4 +38,4 @@ function smartphones() {
   )
 }
 
-export default smartphones
+export default Smartphones
