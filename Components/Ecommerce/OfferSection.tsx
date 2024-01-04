@@ -95,6 +95,7 @@ function OfferSection() {
           return (
             index === initial && (
               <li
+              key={index}
                 style={{
                   background: `url(${items?.image})`,
                   backgroundPosition: "center",

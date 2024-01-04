@@ -1,7 +1,8 @@
 import { url } from "inspector"
 import dynamic from "next/dynamic"
+import Image from "next/image"
 import React, { useEffect, useState } from "react"
-function Image({ Url }: any) {
+function ImageViewer({ Url }: any) {
   const [testBanner, setTestBanner] = useState("")
 
   useEffect(() => {
@@ -13,9 +14,9 @@ function Image({ Url }: any) {
       .catch((error) => {
         console.error("Error loading image:", error)
       })
-  }, [])
+  }, [Url])
 
-  return <img src={testBanner} alt="bannerImage" className="w-1/3" />
+  return <Image src={testBanner} alt="bannerImage" width={150} height={100} />
 }
 
-export default Image
+export default ImageViewer

@@ -66,6 +66,7 @@ function Projects() {
             {ProjectDatas.map((values, index: number) => {
               return (
                 <li
+                  key={index}
                   className={`flex gap-2 rounded backdrop-blur-sm bg-[#f3f3f3] relative opacity-0 translate-x-16`}
                 >
                   {/* //todo list */}

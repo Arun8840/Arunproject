@@ -14,9 +14,9 @@ function Skills() {
           Frameworks and Tools
         </h1>
         <div className={`flex flex-col gap-y-5 ${ContentFont.className}`}>
-          {AnalyticsData.map((values) => {
+          {AnalyticsData.map((values,index) => {
             return (
-              <div className="flex items-center">
+              <div key={index} className="flex items-center">
                 <div className="flex gap-2 items-center">
                   <div className="w-[50px]">{values.icon}</div>
                   <h1 className="font-semibold tracking-wide px-2 text-[#131727]">
