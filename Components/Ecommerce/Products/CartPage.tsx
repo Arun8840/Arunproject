@@ -49,8 +49,8 @@ function CartPage() {
         className={`w-full py-5 container mx-auto grid  grid-cols-1 lg:grid-cols-12 gap-2 ${HeaderFont.className}`}
       >
         {CartProducts && CartProducts.length > 0 ? (
-          CartProducts.map((items) => {
-            return <Productlist items={items} placement="cartPage" />
+          CartProducts.map((items:any,index) => {
+            return <Productlist key={index} items={items} placement="cartPage" />
           })
         ) : (
           <div className="font-bold text-lg tracking-wider font-italic col-span-12 text-center p-4">

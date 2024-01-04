@@ -28,8 +28,8 @@ function skincare() {
     <ProductWrapper isLoading={isLoading} CartProducts={CartProducts}>
       {!isLoading &&
         skincare &&
-        skincare?.products.map((items) => {
-          return <Productlist items={items} placement="product" />
+        skincare?.products.map((items,index) => {
+          return <Productlist key={index} items={items} placement="product" />
         })}
     </ProductWrapper>
   )

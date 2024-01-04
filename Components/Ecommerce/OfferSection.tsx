@@ -90,7 +90,7 @@ function OfferSection() {
   }
   return (
     <div className="w-full flex-1 p-1 relative">
-      <ul className="w-full h-full overflow-hidden">
+      <ul className="w-full h-[600px] overflow-hidden">
         {productOffers.map((items, index: number) => {
           return (
             index === initial && (

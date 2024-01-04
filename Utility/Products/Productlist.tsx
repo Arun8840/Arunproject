@@ -34,7 +34,7 @@ function Productlist({ items, placement }: PropsTypes) {
     Addrating(items, ratingValue)
   }
   return (
-    <div className="col-span-4 row-span-2 border rounded min-h-[300px] p-1 flex gap-2">
+    <div className="col-span-4 row-span-2 border rounded min-h-[300px] p-1 flex gap-2 bg-white">
       {/* //todo image */}
       <div className="w-[250px] h-full rounded">
         <img
@@ -78,15 +78,15 @@ function Productlist({ items, placement }: PropsTypes) {
           <h1 className="text-[#30475E] text-sm">Details :</h1>
           <p className="text-sm text-slate-500 tracking-wider indent-8 line-clamp-4">
             {items?.description}
-            <Link
-              href={`/projects/Ecommerce/${items?.category}/${items.title}/?id=${items?.id}`}
-            >
-              <span className="text-blue-600 tracking-wide cursor-pointer">
-                ...view
-              </span>
-            </Link>
           </p>
-
+          <Link
+            className="bg-zinc-100 rounded-full px-3 py-1 text-sm font-semibold tracking-wide"
+            href={`/projects/Ecommerce/${items?.category}/${items.title}/?id=${items?.id}`}
+          >
+            <span className="text-blue-600 tracking-wide cursor-pointer">
+              view
+            </span>
+          </Link>
           <h1 className="text-[#F05454] font-semibold  py-2">
             Price-${items?.price}
           </h1>

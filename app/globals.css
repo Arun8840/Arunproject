@@ -13,7 +13,39 @@
     opacity: 0;
   }
 }
+::-webkit-scrollbar-track {
+  background-color: #aca8a8dc;
+  border-radius: 20px;
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: #232323;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Hide the default arrow button of the color picker */
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-color: gray !important;
+  border: 2px !important;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  /* border-radius: 50%; */
+  padding: 0;
+  border-color: gray !important;
+  border: 2px !important;
+}
+
+/* Webkit-based browsers */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
 .ripple {
   position: absolute;
   border-radius: 50%;

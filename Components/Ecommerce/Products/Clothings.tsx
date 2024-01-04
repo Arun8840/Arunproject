@@ -43,8 +43,8 @@ function Clothings() {
         className={`w-full py-5 container mx-auto grid  grid-cols-1 lg:grid-cols-12 gap-2 ${HeaderFont.className}`}
       >
         {ClothingProducts &&
-          ClothingProducts.map((items) => {
-            return <Productlist items={items} placement="product" />
+          ClothingProducts.map((items,index) => {
+            return <Productlist  key={index} items={items} placement="product" />
           })}
       </div>
     </>

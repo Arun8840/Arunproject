@@ -1,17 +1,18 @@
-import { ComponentsData } from "@/data/ComponentsData";
-import dynamic from "next/dynamic";
-import React from "react";
+import { ComponentsData } from "@/data/ComponentsData"
+import dynamic from "next/dynamic"
+import React from "react"
 
 function Components() {
   return (
     <div className="h-full grid grid-cols-12 grid-rows-12 gap-1">
       {ComponentsData &&
-        ComponentsData.map((values) => {
+        ComponentsData.map((values, index) => {
           const Components = dynamic(
             () => import(`../../Utility/components/${values.component}`)
-          );
+          )
           return (
             <div
+              key={index}
               style={{
                 gridColumn: values.styles.gridColumn,
                 gridRow: values.styles.gridRow,
@@ -20,10 +21,10 @@ function Components() {
             >
               <Components />
             </div>
-          );
+          )
         })}
     </div>
-  );
+  )
 }
 
-export default Components;
+export default Components

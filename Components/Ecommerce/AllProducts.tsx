@@ -5,16 +5,15 @@ import Productlist from "@/Utility/Products/Productlist"
 import { CartIcon } from "@/Utility/icons/icons"
 import { smartMobilesTypes } from "@/model/Ecommerce"
 import getEcommerceService from "@/service/EcommerceService"
-import Link from "next/link"
 import React, { useState } from "react"
 import useSWR from "swr"
-function smartphones() {
-  const { loadSmartMobiles } = getEcommerceService()
+function AllProducts() {
+  const { loadAllCategoryProducts } = getEcommerceService()
   const CartProducts: any[] = EcommerceStore((state: any) => state.CartItems)
   const loadsmartmobileProducts = async (): Promise<smartMobilesTypes> => {
     let data
     try {
-      data = await loadSmartMobiles()
+      data = await loadAllCategoryProducts()
     } catch (error) {
       console.error(error)
     }
@@ -22,20 +21,22 @@ function smartphones() {
   }
 
   const {
-    data: mobiles,
+    data: AllProducts,
     error,
     isLoading,
   } = useSWR("load-all-mobiles", loadsmartmobileProducts)
 
   return (
-    <ProductWrapper isLoading={isLoading} CartProducts={CartProducts}>
-      {!isLoading &&
-        mobiles &&
-        mobiles?.products?.map((items, index) => {
-          return <Productlist key={index} items={items} placement="product" />
-        })}
-    </ProductWrapper>
+    <div className="bg-[#f3f5f7] p-5">
+      <div className="grid grid-cols-12 container mx-auto gap-2  ">
+        {!isLoading &&
+          AllProducts &&
+          AllProducts?.products?.map((items,index) => {
+            return <Productlist key={index} items={items} placement="product" />
+          })}
+      </div>
+    </div>
   )
 }
 
-export default smartphones
+export default AllProducts

@@ -28,8 +28,8 @@ function groceries() {
     <ProductWrapper isLoading={isLoading} CartProducts={CartProducts}>
       {!isLoading &&
         groceries &&
-        groceries?.products?.map((items) => {
-          return <Productlist items={items} placement="product" />
+        groceries?.products?.map((items,index) => {
+          return <Productlist  key={index} items={items} placement="product" />
         })}
     </ProductWrapper>
   )

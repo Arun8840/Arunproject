@@ -35,8 +35,8 @@ function laptops() {
       <ProductWrapper CartProducts={CartProducts} isLoading={isLoading}>
         {!isLoading &&
           mobiles &&
-          mobiles?.products?.map((items) => {
-            return <Productlist items={items} placement="product" />
+          mobiles?.products?.map((items, index) => {
+            return <Productlist key={index} items={items} placement="product" />
           })}
       </ProductWrapper>
     </>

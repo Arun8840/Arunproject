@@ -29,8 +29,8 @@ function fragrances() {
     <ProductWrapper isLoading={isLoading} CartProducts={CartProducts}>
       {!isLoading &&
         fragrances &&
-        fragrances?.products?.map((items) => {
-          return <Productlist items={items} placement="product" />
+        fragrances?.products?.map((items,index) => {
+          return <Productlist  key={index} items={items} placement="product" />
         })}
     </ProductWrapper>
   )

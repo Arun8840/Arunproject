@@ -31,7 +31,7 @@ function all() {
       {!isLoading &&
         AllProducts &&
         AllProducts?.products?.map((items) => {
-          return <Productlist items={items} placement="product" />
+          return <Productlist key={items?.id} items={items} placement="product" />
         })}
     </ProductWrapper>
   )
