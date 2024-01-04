@@ -39,7 +39,7 @@ function AboutMe() {
     return () => {
       animation1.kill()
     }
-  }, [])
+  }, [tl])
   return (
     <div
       ref={mainContainer}

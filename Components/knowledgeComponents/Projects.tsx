@@ -74,7 +74,7 @@ function Projects() {
                     {index + 1}
                   </span>
                   <div className="w-1/3 rounded-l grid place-items-center">
-                    <Image Url={values?.image} />
+                    <Image alt={values?.title} Url={values?.image} />
                   </div>
                   <div className="flex-1 p-2">
                     <h1 className="font-semibold tracking-wide text-lg pb-3">

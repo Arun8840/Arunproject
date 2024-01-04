@@ -10,7 +10,7 @@ function Analytics({ items, index }: any) {
       delay: 3,
       ease: "bounce.out",
     });
-  }, []);
+  }, [items?.value]);
   return (
     <div className=" w-full rounded-full h-2 bg-white/10">
       <div

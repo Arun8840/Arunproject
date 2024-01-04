@@ -2,7 +2,7 @@ import { url } from "inspector"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import React, { useEffect, useState } from "react"
-function ImageViewer({ Url }: any) {
+function ImageViewer({ Url,alt }: any) {
   const [testBanner, setTestBanner] = useState("")
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function ImageViewer({ Url }: any) {
       })
   }, [Url])
 
-  return <Image src={testBanner} alt="bannerImage" width={150} height={100} />
+  return <Image src={testBanner} alt={alt} width={150} height={100} />
 }
 
 export default ImageViewer
