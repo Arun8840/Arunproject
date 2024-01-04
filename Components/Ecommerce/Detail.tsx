@@ -12,6 +12,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 import useSWR from "swr"
+import ImageViewer from "../knowledgeComponents/Image"
 
 function Detail() {
   const productid = useSearchParams()
@@ -99,17 +100,17 @@ function Detail() {
         </div>
         <h1 className="font-semibold tracking-wide">Product image:</h1>
         <div className=" grid gap-1 grid-cols-4 p-2">
-          {ProductDetail?.images?.map((images: string, index: number) => {
+          {/* {ProductDetail?.images?.map((images: string, index: number) => {
             return (
               <div key={index} className="w-full max-h-[200px]">
-                <img
+                <ImageViewer
                   src={images}
                   alt="product image"
                   className="w-full h-full object-contain"
                 />
               </div>
             )
-          })}
+          })} */}
         </div>
         {/* //todo buttons */}
         <div className="flex justify-end gap-x-2 p-2">

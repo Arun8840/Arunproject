@@ -5,6 +5,7 @@ import _ScrollTrigger from "gsap/ScrollTrigger"
 import React, { useEffect, useRef } from "react"
 import bannerImage from "../images/aboutbanner.png"
 import { Content } from "next/font/google"
+import Image from "next/image"
 function AboutMe() {
   let aboutBanner: any = bannerImage.src
   const { HeaderFont, ContentFont } = useGetFonts()
@@ -58,7 +59,9 @@ function AboutMe() {
         </h1>
         <div className="container grid grid-cols-2 place-items-center  gap-10">
           <div className="w-full h-full relative">
-            <img
+            <Image
+              width={100}
+              height={200}
               src={aboutBanner}
               alt="banner logo"
               className="w-full h-full"
