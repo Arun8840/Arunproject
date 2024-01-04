@@ -1,18 +1,27 @@
 import Link from "next/link"
 import React from "react"
-import { CartIcon } from "../icons/icons"
+import { BacktoPage, CartIcon } from "../icons/icons"
+import { useRouter } from "next/navigation"
 
 function ProductWrapper({ children, CartProducts, isLoading }: any) {
-    
+  const router = useRouter()
   return (
     !isLoading && (
       <div>
-        <div className="p-2 container mx-auto flex justify-between bg-white/50 backdrop-blur-sm sticky top-2 rounded-lg">
-          <input
-            type="text"
-            className="border p-2 w-1/3 rounded"
-            placeholder="search..."
-          />
+        <div className="py-2 px-3 container mx-auto flex justify-between bg-[#101010] text-white sticky top-2 rounded-lg">
+          <div className="w-full flex items-center gap-x-2">
+            <button
+              onClick={() => router.back()}
+              className="bg-[#f3f3f3] text-gray-900 rounded p-2"
+            >
+              <BacktoPage width={20} />
+            </button>
+            <input
+              type="text"
+              className="h-full px-2 w-1/3 rounded bg-[#f3f3f3]"
+              placeholder="search..."
+            />
+          </div>
 
           <Link
             href={"/projects/Ecommerce/CartPage"}

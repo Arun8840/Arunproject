@@ -1,54 +1,102 @@
 import { ProjectDatas } from "@/data/ProjectData"
 import useGetFonts from "@/font/fonts"
 import { useRouter } from "next/navigation"
-import React from "react"
-import image from "../images/magicpattern-mesh-gradient-1704291343624.png"
+import React, { useEffect, useRef } from "react"
+import Image from "./Image"
+import gsap, { Power0, Power2 } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 function Projects() {
   const router = useRouter()
   const { HeaderFont, ContentFont } = useGetFonts()
   const handleRedirect = (path: string) => {
     path && router.push(path)
   }
+  let lists: any = useRef(null)
+  let timeLine = useRef(null)
+  let scrollContainer = useRef(null)
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    let scrollAnimation = gsap.to(lists.current.querySelectorAll("li"), {
+      opacity: 1,
+      x: 0,
+      duration: 0.5,
+      ease: Power2.easeInOut,
+      stagger: 0.4,
+      scrollTrigger: {
+        trigger: scrollContainer.current,
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    })
+    let lineAnimation = gsap.to(timeLine.current, {
+      duration: 2,
+      scaleY: 1,
+      ease: Power2.easeInOut,
+      scrollTrigger: {
+        trigger: scrollContainer.current,
+        start: "top bottom",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    })
+    return () => {
+      scrollAnimation.kill()
+      lineAnimation.kill()
+    }
+  }, [])
   return (
-    <div className={`w-full pt-[4rem] bg-[#f3f5f7] flex flex-col p-2  `}>
+    <div
+      ref={scrollContainer}
+      className={`w-full p-[4rem] bg-[#101010] flex flex-col`}
+    >
       <div className="container mx-auto">
         <h1
-          className={`text-[4rem] text-[#131727] font-extrabold ${HeaderFont.className} pb-10`}
+          className={`text-[4rem] text-white font-extrabold ${HeaderFont.className} pb-10`}
         >
           Projects
         </h1>
-        <div className="container mx-auto grid gap-1 ">
-          {ProjectDatas.map((values, index: number) => {
-            return (
-              <div
-                style={{
-                  background: `linear-gradient(86deg,${values.color})`,
-                  color: values?.fontColor,
-                }}
-                className={`grid gap-1 px-[5rem] sticky top-10 p-5 rounded-t-lg backdrop-blur-sm`}
-              >
-                <div className="flex-1">
-                  <h1 className="font-semibold tracking-wide text-3xl pb-3">
-                    <span>{index + 1}</span> .{values.title}
-                  </h1>
-                  <p
-                    className={`line-clamp-6 tracking-wide  py-1 leading-6 ${ContentFont.className}`}
-                  >
-                    {values.description}
-                  </p>
-                  <div className="flex justify-end p-5">
-                    <button
-                      onClick={() => handleRedirect(values?.path)}
-                      className="px-5 py-2 rounded text-white bg-[#131727] group-hover:bg-[#940B92]"
-                    >
-                      Open
-                    </button>
+        <div className="flex gap-x-10 justify-center">
+          {/* //todo line */}
+          <div
+            ref={timeLine}
+            className="w-[1px] bg-gray-400 hidden lg:block origin-top scale-y-0"
+          ></div>
+          <ul ref={lists} className="grid gap-5 w-[80%]">
+            {ProjectDatas.map((values, index: number) => {
+              return (
+                <li
+                  className={`flex gap-2 rounded backdrop-blur-sm bg-[#f3f3f3] relative opacity-0 translate-x-16`}
+                >
+                  {/* //todo list */}
+                  <span className="absolute font-semibold w-[40px] h-[40px] bg-white -left-[60px] top-1/3 rounded-full place-items-center hidden lg:grid">
+                    {index + 1}
+                  </span>
+                  <div className="w-1/3 rounded-l grid place-items-center">
+                    <Image Url={values?.image} />
                   </div>
-                </div>
-                <div className="w-full min-h-[80vh] bg-white rounded-3xl shadow"></div>
-              </div>
-            )
-          })}
+                  <div className="flex-1 p-2">
+                    <h1 className="font-semibold tracking-wide text-lg pb-3">
+                      {values.title}
+                    </h1>
+                    <p
+                      className={`text-gray-500 text-sm tracking-wide leading-6 ${ContentFont.className}`}
+                    >
+                      {values.description}
+                    </p>
+                    <div className="flex justify-end p-1">
+                      <button
+                        onClick={() => handleRedirect(values?.path)}
+                        className="px-3 py-1 rounded text-white bg-[#131727] group-hover:bg-[#940B92]"
+                      >
+                        Open
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
     </div>

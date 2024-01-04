@@ -18,7 +18,7 @@ function LandingPage() {
     tl.to([leftline.current, rightline.current], {
       backgroundColor: "#101010",
       flex: 1,
-      duration: 2,
+      duration: 1,
     })
     tl.to(outerCircle.current, { scale: 1, duration: 0.5, ease: "bounce.out" })
     tl.to(innerCircle.current, { scale: 1, duration: 0.7, ease: "bounce.out" })
@@ -58,7 +58,7 @@ function LandingPage() {
 
   return (
     <div
-      className={`w-full lg:h-[100vh] sm:py-[5rem] flex flex-col justify-center gap-16  bg-[#f3f5f7]`}
+      className={`w-full lg:h-[100vh] sm:py-[5rem] flex flex-col justify-center gap-16  bg-[#f3f5f7] overflow-hidden`}
     >
       <div ref={mainframe} className="container mx-auto opacity-0 hidden">
         <div className={`${HeaderFont.className} flex justify-center gap-1`}>

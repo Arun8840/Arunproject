@@ -2,6 +2,7 @@ import React from "react"
 import { LikeIcon, RatingIcon } from "../icons/icons"
 import { EcommerceStore } from "@/Store/EcommerceStore"
 import { mobileTypes } from "@/model/Ecommerce"
+import Link from "next/link"
 
 interface PropsTypes {
   items: mobileTypes
@@ -47,9 +48,9 @@ function Productlist({ items, placement }: PropsTypes) {
         <div>
           <h1 className="text-[#30475E] flex justify-between items-center">
             {items?.title}{" "}
-            <button onClick={handleLike}>
+            {/* <button onClick={handleLike}>
               <LikeIcon width={20} />
-            </button>
+            </button> */}
           </h1>
           {/* //todo rating */}
           <ul className="flex items-center gap-3">
@@ -72,12 +73,23 @@ function Productlist({ items, placement }: PropsTypes) {
             })}
           </ul>
           <p className="font-semibold text-[#F05454] text-sm py-3">
-            {items?.discountPercentage}%
+            offer- {items?.discountPercentage}%
           </p>
           <h1 className="text-[#30475E] text-sm">Details :</h1>
           <p className="text-sm text-slate-500 tracking-wider indent-8 line-clamp-4">
             {items?.description}
+            <Link
+              href={`/projects/Ecommerce/${items?.category}/${items.title}/?id=${items?.id}`}
+            >
+              <span className="text-blue-600 tracking-wide cursor-pointer">
+                ...view
+              </span>
+            </Link>
           </p>
+
+          <h1 className="text-[#F05454] font-semibold  py-2">
+            Price-${items?.price}
+          </h1>
         </div>
 
         {placement !== "product" && (
@@ -89,19 +101,26 @@ function Productlist({ items, placement }: PropsTypes) {
         )}
 
         {/* //todo pricing and action */}
-        <div className="flex items-center justify-between">
-          <h1 className="text-[#F05454] font-semibold">${items?.price}</h1>
+        <div className="grid lg:grid-cols-2 place-items-center gap-2">
           {placement === "product" ? (
-            <button
-              onClick={handleAddcartitems}
-              className="text-white text-sm rounded-full px-2 py-2 bg-[#30475E]"
-            >
-              Add cart
-            </button>
+            <>
+              <button
+                onClick={handleAddcartitems}
+                className="font-semibold text-xs w-full rounded-full px-2 py-2 bg-lime-400"
+              >
+                Buy
+              </button>
+              <button
+                onClick={handleAddcartitems}
+                className="text-white text-xs w-full rounded-full px-2 py-2 bg-[#101010]"
+              >
+                Add cart
+              </button>
+            </>
           ) : (
             <button
               onClick={handleRemoveCart}
-              className="text-white text-sm rounded-full px-2 py-2 bg-[#F05454]"
+              className="text-white text-xs rounded-full px-2 py-2 bg-[#F05454]"
             >
               Remove
             </button>

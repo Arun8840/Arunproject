@@ -7,6 +7,22 @@ const getEcommerceService = () => {
       return response?.data
     }
   }
+
+  const loadAllCategoryProducts = async () => {
+    let response = await axios.get("https://dummyjson.com/products")
+    if (response) {
+      return response?.data
+    }
+  }
+
+  const loadProduct = async (productID: any) => {
+    let response = await axios.get(
+      `https://dummyjson.com/products/${productID}`
+    )
+    if (response) {
+      return response?.data
+    }
+  }
   const loadSmartMobiles = async () => {
     let response = await axios.get(
       "https://dummyjson.com/products/category/smartphones"
@@ -48,12 +64,14 @@ const getEcommerceService = () => {
     }
   }
   return {
+    loadAllCategoryProducts,
     loadAllCategorys,
     loadSmartMobiles,
+    loadProduct,
     loadLaptops,
     loadFragrance,
     loadSkinCare,
-    loadGroceries
+    loadGroceries,
   }
 }
 

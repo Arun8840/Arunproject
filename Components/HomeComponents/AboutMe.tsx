@@ -52,7 +52,7 @@ function AboutMe() {
       ></div>
       <div className="container mx-auto z-[2] text-[#f3f5f7] mix-blend-difference">
         <h1
-          className={` text-[4rem] ${HeaderFont.className} group-hover:text-[#4e4aeb]  transition-colors duration-300`}
+          className={` text-[4rem] ${HeaderFont.className} group-hover:text-lime-400  transition-colors duration-300`}
         >
           About me <span className="group-hover:text-yellow-500">:)</span>
         </h1>
@@ -65,7 +65,7 @@ function AboutMe() {
             />
             <div
               ref={messagecontainer}
-              className="absolute top-[10%] right-[11rem] bg-yellow-500 w-fit p-2 rounded-t-lg rounded-r-lg opacity-0 scale-0"
+              className="absolute top-[10%] right-[11rem] bg-lime-300 w-fit p-2 rounded-t-lg rounded-r-lg opacity-0 scale-0"
             >
               <h1 className={`text-[#131727] ${ContentFont.className}`}>
                 Hi! Nice to see you ....

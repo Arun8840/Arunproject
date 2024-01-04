@@ -1,5 +1,6 @@
 import getEcommerceService from "@/service/EcommerceService"
 import { Poppins } from "next/font/google"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import React from "react"
 import useSWR from "swr"
@@ -49,14 +50,24 @@ function CategoryHeader() {
           "p-5 bg-gradient-to-br from-zinc-100 to-zinc-200 animate-pulse rounded"
         }`}
       >
+        <li className="text-xs flex-1 cursor-pointer capitalize tracking-wide bg-zinc-100 rounded">
+          <Link href={`/projects/Ecommerce/all`} className="w-full h-full block rounded  p-2">
+            All
+          </Link>
+        </li>
         {!isLoading &&
           firstTenItems?.map((items: string) => {
             return (
               <li
                 onClick={() => handleDirectProduct(items)}
-                className="text-xs flex-1 cursor-pointer capitalize tracking-wide bg-zinc-100 p-2 rounded"
+                className="text-xs flex-1 cursor-pointer capitalize tracking-wide bg-zinc-100 rounded"
               >
-                {items}
+                <Link
+                  href={`/projects/Ecommerce/${items}`}
+                  className="w-full h-full block rounded  p-2"
+                >
+                  {items}
+                </Link>
               </li>
             )
           })}
