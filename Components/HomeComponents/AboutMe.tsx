@@ -1,10 +1,8 @@
 import useGetFonts from "@/font/fonts"
-import Spline from "@splinetool/react-spline"
 import gsap, { Power0, Power3 } from "gsap"
 import _ScrollTrigger from "gsap/ScrollTrigger"
 import React, { useEffect, useRef } from "react"
 import bannerImage from "../images/aboutbanner.png"
-import { Content } from "next/font/google"
 import Image from "next/image"
 function AboutMe() {
   let aboutBanner: any = bannerImage.src
@@ -77,7 +75,7 @@ function AboutMe() {
           </div>
           <div className="w-full">
             <h1 className={`text-[4rem] tracking-wide ${HeaderFont.className}`}>
-              I'm Arun.
+              Im Arun.
             </h1>
             <p
               className={`capitalize tracking-wider leading-[2rem] ${ContentFont.className}`}
