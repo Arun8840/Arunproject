@@ -58,8 +58,8 @@ function AboutMe() {
         <div className="container grid grid-cols-2 place-items-center  gap-10">
           <div className="w-full h-full relative">
             <Image
-              width={100}
-              height={200}
+              width={1000}
+              height={1000}
               src={aboutBanner}
               alt="banner logo"
               className="w-full h-full"
