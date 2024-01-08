@@ -51,12 +51,12 @@ function AboutMe() {
       ></div>
       <div className="container mx-auto z-[2] text-[#f3f5f7] mix-blend-difference">
         <h1
-          className={` text-[4rem] ${HeaderFont.className} group-hover:text-lime-400  transition-colors duration-300`}
+          className={`lg:text-[4rem] p-2 ${HeaderFont.className} group-hover:text-lime-400  transition-colors duration-300`}
         >
           About me <span className="group-hover:text-yellow-500">:)</span>
         </h1>
-        <div className="container grid grid-cols-2 place-items-center  gap-10">
-          <div className="w-full h-full relative">
+        <div className="container grid lg:grid-cols-2 place-items-center  gap-10">
+          <div className="w-full h-full relative hidden lg:block">
             <Image
               width={1000}
               height={1000}
@@ -73,7 +73,7 @@ function AboutMe() {
               </h1>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full p-2">
             <h1 className={`text-[4rem] tracking-wide ${HeaderFont.className}`}>
               Im Arun.
             </h1>

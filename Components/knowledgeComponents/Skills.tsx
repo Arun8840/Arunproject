@@ -9,16 +9,16 @@ function Skills() {
     <div className={`w-full bg-[#f3f5f7] py-[3rem]`}>
       <div className="container mx-auto">
         <h1
-          className={`text-[4rem] py-5 text-[#131727] font-extrabold ${HeaderFont.className}`}
+          className={`lg:text-[4rem] py-5 px-2 text-[#131727] font-extrabold ${HeaderFont.className}`}
         >
           Frameworks and Tools
         </h1>
         <div className={`flex flex-col gap-y-5 ${ContentFont.className}`}>
           {AnalyticsData.map((values,index) => {
             return (
-              <div key={index} className="flex items-center">
+              <div key={index} className="flex items-center px-2">
                 <div className="flex gap-2 items-center">
-                  <div className="w-[50px]">{values.icon}</div>
+                  <div className="w-[50px] hidden lg:block">{values.icon}</div>
                   <h1 className="font-semibold tracking-wide px-2 text-[#131727]">
                     {values.title}
                   </h1>

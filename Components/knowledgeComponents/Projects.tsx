@@ -48,11 +48,11 @@ function Projects() {
   return (
     <div
       ref={scrollContainer}
-      className={`w-full p-[4rem] bg-[#101010] flex flex-col`}
+      className={`w-full lg:p-[4rem] bg-[#101010] flex flex-col overflow-hidden`}
     >
       <div className="container mx-auto">
         <h1
-          className={`text-[4rem] text-white font-extrabold ${HeaderFont.className} pb-10`}
+          className={`lg:text-[4rem] text-white font-extrabold ${HeaderFont.className} pb-10 p-2`}
         >
           Projects
         </h1>
@@ -73,7 +73,7 @@ function Projects() {
                   <span className="absolute font-semibold w-[40px] h-[40px] bg-white -left-[60px] top-1/3 rounded-full place-items-center hidden lg:grid">
                     {index + 1}
                   </span>
-                  <div className="w-1/3 rounded-l grid place-items-center">
+                  <div className="w-1/3 rounded-l hidden lg:grid place-items-center">
                     <Image alt={values?.title} Url={values?.image} />
                   </div>
                   <div className="flex-1 p-2">
@@ -81,7 +81,7 @@ function Projects() {
                       {values.title}
                     </h1>
                     <p
-                      className={`text-gray-500 text-sm tracking-wide leading-6 ${ContentFont.className}`}
+                      className={`text-gray-500 text-sm tracking-wide leading-6 ${ContentFont.className} line-clamp-4 lg:line-clamp-none`}
                     >
                       {values.description}
                     </p>
