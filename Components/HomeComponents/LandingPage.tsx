@@ -54,6 +54,11 @@ function LandingPage() {
       duration: 0.3,
       ease: Power4.easeInOut,
     })
+    tl.to("#menuButton", {
+      scale: 1,
+      duration: 0.6,
+      ease: "bounce.out",
+    })
   }, [])
 
   return (
