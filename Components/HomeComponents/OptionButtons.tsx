@@ -43,7 +43,7 @@ function OptionButtons() {
   let Menus: any = useRef(null)
   const [isOpen, setOpen] = useState(false)
   const handleClickOpenMenu = () => {
-    let tl = gsap.timeline({ paused: false })
+    let tl = gsap.timeline({ paused: false, yoyo: true })
     setOpen(!isOpen)
     if (!isOpen) {
       tl.to(MenuContainer.current, {
@@ -63,6 +63,7 @@ function OptionButtons() {
         opacity: 1,
         x: 0,
         stagger: 0.1,
+        yoyo: true,
         duration: 0.2,
       })
     } else {
@@ -70,6 +71,7 @@ function OptionButtons() {
         x: 60,
         opacity: 0,
         stagger: 0.1,
+        yoyo: true,
         duration: 0.2,
       })
       tl.to(MenuContainer.current, {
@@ -91,7 +93,7 @@ function OptionButtons() {
       {isOpen ? (
         <button
           onClick={handleClickOpenMenu}
-          className="p-2 fixed top-5 right-5 z-20 w-[50px] h-[50px] bg-black rounded-full text-[#f3f5f7] grid place-items-center border border-gray-600 border-opacity-30 "
+          className="p-2 fixed top-5 right-5 z-50 w-[50px] h-[50px] bg-black rounded-full text-[#f3f5f7] grid place-items-center border border-gray-600 border-opacity-30 "
         >
           {/* <ul className="p-3 bg-white border container mx-auto flex justify-evenly rounded-full">
          {headerList?.map((values) => {
@@ -117,7 +119,7 @@ function OptionButtons() {
         <ul ref={Menus} className={`h-full p-5 w-1/2 ${HeaderFont.className}`}>
           {headerList?.map((values) => {
             return (
-              <li className="text-[4rem] cursor-pointer translate-x-20 opacity-0">
+              <li className="text-[4rem] cursor-pointer translate-x-20 opacity-0 italic tracking-wider">
                 {values?.title}
               </li>
             )
