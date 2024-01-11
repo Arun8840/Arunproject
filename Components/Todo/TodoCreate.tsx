@@ -49,7 +49,7 @@ function TodoCreate() {
       >
         <input
           type="text"
-          className="border w-full p-2 rounded outline-none"
+          className={`border ${errors?.title&&"border-red-500"} w-full p-2 rounded outline-none`}
           placeholder="Title"
           {...register("title", {
             required: true,
