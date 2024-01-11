@@ -11,7 +11,7 @@ function TodoHomePage() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div
-        className={`w-full h-full bg-[#f7f8fa] grid grid-cols-12 gap-2 p-2 ${TodoFonts.className}`}
+        className={`w-full h-full bg-[#f7f8fa] grid grid-cols-12 gap-2 p-2 ${TodoFonts.className} divide-x`}
       >
         <TodoCreate />
         <TodoList />

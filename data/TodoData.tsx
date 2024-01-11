@@ -1,5 +1,6 @@
 import React from "react"
 interface todoTypes {
+  id: number | string
   title: string
   content: string
   date: string
@@ -22,65 +23,21 @@ function useGetTodoData() {
     return `${year}-${month}-${day}`
   }
   let TodoItems: todoTypes[] = [
+
     {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
+      id: Math.random(),
+      title: "Complete homework assignment for Math class.",
+      content: "Finish the exercises on algebra and submit them by 5 PM.",
       date: getRandomDate(),
       complete: false,
       time: getRandomTime(),
       priority: false,
     },
     {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: false,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: true,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: false,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: false,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: false,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
-      date: getRandomDate(),
-      complete: false,
-      time: getRandomTime(),
-      priority: true,
-    },
-    {
-      title: "Create a random todo task title",
-      content: "Create a random todo task content",
+      id: Math.random(),
+      title: "Create a meal plan for the upcoming week",
+      content:
+        "Plan meals for the week, considering a balanced and healthy diet.",
       date: getRandomDate(),
       complete: false,
       time: getRandomTime(),

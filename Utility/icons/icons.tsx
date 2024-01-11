@@ -228,7 +228,7 @@ export const CalendarIcon = (props: any) => {
       width={width}
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
         clip-rule="evenodd"
       />
@@ -247,7 +247,7 @@ export const TimeIcon = (props: any) => {
       width={width}
     >
       <path
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
         clip-rule="evenodd"
       />
@@ -266,7 +266,7 @@ export const Trash = (props: any) => {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
+      strokeWidth="2"
       stroke-linecap="round"
       stroke-linejoin="round"
       width={width}
@@ -294,6 +294,28 @@ export const Check = (props: any) => {
       strokeWidth="2"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  )
+}
+
+export const PriorityIcon = (props: any) => {
+  // todo props lists
+  const { width, className } = props
+  return (
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 24 24"
+      width={width}
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path
+        fillRule="evenodd"
+        d="M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z"
+      ></path>
     </svg>
   )
 }

@@ -1,27 +1,34 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-function Switch() {
-  const [isActive, setactive] = useState(false);
+interface PropsTypes {
+  handleAction?: (status:boolean) => void
+  varient: string
+}
+function Switch(props: PropsTypes) {
+  const { handleAction, varient = "blue" } = props
+  const [isActive, setactive] = useState(false)
   const handleActive = () => {
-    setactive(!isActive);
-  };
+    setactive(!isActive)
+    handleAction && handleAction(!isActive)
+  }
   return (
     <div
       onClick={handleActive}
-      className={`border border-[#27272a] w-[50px] h-[25px] rounded-full flex items-center cursor-pointer ${
+      style={
         isActive
-          ? "opacity-[1] bg-white transition-colors duration-200"
-          : "opacity-80"
-      } relative`}
+          ? { backgroundColor: varient }
+          : { backgroundColor: "lightgray" }
+      }
+      className={`w-[45px] h-[25px] rounded-full flex items-center cursor-pointer relative`}
     >
       {/* pointer */}
       {isActive ? (
-        <div className="w-[20px] h-[20px] rounded-full bg-slate-800 absolute left-[26px] top-[2px] transition-all duration-200"></div>
+        <div className="w-[18px] h-[18px] rounded-full bg-white absolute left-[23px] top-[4px] transition-all duration-200"></div>
       ) : (
-        <div className="w-[20px] h-[20px] rounded-full bg-white absolute left-[2px] top-[1px] transition-all duration-200 opacity-20"></div>
+        <div className="w-[18px] h-[18px] rounded-full bg-white absolute left-[3px] top-[4px] transition-all duration-200"></div>
       )}
     </div>
-  );
+  )
 }
 
-export default Switch;
+export default Switch

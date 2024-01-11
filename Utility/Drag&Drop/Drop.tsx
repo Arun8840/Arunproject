@@ -2,7 +2,7 @@ import { TodoStore } from "@/Store/TodoStore"
 import { useDrop } from "react-dnd"
 
 const DropFunction = ({ action }: any) => {
-  const AddNewasks = TodoStore((state: any) => state.AddTask)
+  const AddCompleted = TodoStore((state: any) => state.AddCompletedTask)
   let isLoading = false
   const [{ isover }, drop] = useDrop({
     accept: "todo",
@@ -12,7 +12,7 @@ const DropFunction = ({ action }: any) => {
         return
       }
       if (action === "add") {
-        AddNewasks(item)
+        AddCompleted(item)
       } else if (action === "delete") {
       }
     },
