@@ -47,7 +47,7 @@ function OptionButtons() {
     setOpen(!isOpen)
     if (!isOpen) {
       tl.to(MenuContainer.current, {
-        width: "50%",
+        width: "100%",
         height: "100%",
         opacity: 1,
         display: "block",
