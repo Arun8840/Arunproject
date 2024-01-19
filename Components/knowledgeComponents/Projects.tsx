@@ -48,7 +48,7 @@ function Projects() {
   return (
     <div
       ref={scrollContainer}
-      className={`w-full lg:p-[4rem] bg-[#101010] flex flex-col overflow-hidden`}
+      className={`w-full p-2 lg:p-[4rem] bg-[#101010] flex flex-col overflow-hidden`}
     >
       <div className="container mx-auto">
         <h1
@@ -62,7 +62,7 @@ function Projects() {
             ref={timeLine}
             className="w-[1px] bg-gray-400 hidden lg:block origin-top scale-y-0"
           ></div>
-          <ul ref={lists} className="grid gap-5 w-[80%]">
+          <ul ref={lists} className="grid gap-5 lg:w-[80%]">
             {ProjectDatas.map((values, index: number) => {
               return (
                 <li

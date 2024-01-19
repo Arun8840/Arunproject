@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from "react"
 function Skills() {
   const { HeaderFont, ContentFont } = useGetFonts()
   return (
-    <div className={`w-full bg-[#f3f5f7] py-[3rem]`}>
+    <div className={`w-full bg-[#f3f5f7] lg:py-[3rem]`}>
       <div className="container mx-auto">
         <h1
           className={`lg:text-[4rem] py-5 px-2 text-[#131727] font-extrabold ${HeaderFont.className}`}

@@ -9,7 +9,7 @@ function AboutMe() {
 
   return (
     <div
-      className={`w-full  py-[5rem] items-center bg-[#101010] overflow-hidden relative z-0 group`}
+      className={`w-full lg:min-h-[80vh] lg:py-[5rem] items-center bg-[#101010] overflow-hidden relative z-0 group`}
     >
   
       <div className="container mx-auto z-[2] text-[#f3f5f7] mix-blend-difference">
@@ -18,7 +18,7 @@ function AboutMe() {
         >
           About me <span className="group-hover:text-yellow-500">:)</span>
         </h1>
-        <div className="container min-h-[80vh] flex justify-center  items-center gap-10">
+        <div className="container flex justify-center  items-center gap-10">
           <div className="w-full lg:w-1/2 p-2">
             <h1 className={`text-[4rem] tracking-wide ${HeaderFont.className}`}>
               Im Arun.
