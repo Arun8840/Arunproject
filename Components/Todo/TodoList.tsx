@@ -22,7 +22,7 @@ function TodoList() {
       </h1>
       <ul className="flex flex-col gap-2">
         {ListItems?.map((items, index: number) => {
-          return <List items={items} index={index} isCompleted={false} />
+          return <List items={items} key={index} isCompleted={false} />
         })}
       </ul>
     </div>

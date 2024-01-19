@@ -40,7 +40,7 @@ function TodoComplete() {
           <ul className="flex flex-col gap-1">
             {ListItems?.length > 0 &&
               ListItems?.map((items, index: number) => {
-                return <List items={items} index={index} isCompleted={true} />
+                return <List items={items} key={index} isCompleted={true} />
               })}
           </ul>
         ) : (

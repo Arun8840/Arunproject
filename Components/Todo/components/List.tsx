@@ -17,10 +17,10 @@ interface propsTypes {
     time: string
     priority: boolean
   }
-  index: number
+  key: number
   isCompleted: boolean
 }
-function List({ items, index, isCompleted }: propsTypes) {
+function List({ items, key, isCompleted }: propsTypes) {
   const AddNewasks = TodoStore((state: any) => state.AddCompletedTask)
   const deleteTask = TodoStore((state: any) => state.RemoveTask)
   // ! Drag Section
@@ -45,7 +45,7 @@ function List({ items, index, isCompleted }: propsTypes) {
   return (
     <li
       ref={isCompleted ? null : drag}
-      key={index}
+      key={key}
       className={`bg-white ${
         isDragging && "opacity-0"
       } rounded flex divide-x divide-dashed divide-[#5b33d9]/50`}
@@ -71,7 +71,7 @@ function List({ items, index, isCompleted }: propsTypes) {
         <div className="w-full">
           <div className="flex justify-between items-center">
             <h1 className="tracking-wide font-semibold text-gray-600">
-              {index + 1}.{items?.title}
+              {key + 1}.{items?.title}
             </h1>
             <div className="flex items-center gap-x-3">
               <button title="Delete Task ?" onClick={handleDeleteTask}>

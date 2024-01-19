@@ -117,9 +117,9 @@ function OptionButtons() {
         className="w-[0px] h-full opacity-0 hidden  bg-lime-700 fixed top-0 right-0 z-10"
       >
         <ul ref={Menus} className={`h-full p-5 w-1/2 ${HeaderFont.className}`}>
-          {headerList?.map((values) => {
+          {headerList?.map((values,index) => {
             return (
-              <li className="text-[4rem] cursor-pointer translate-x-20 opacity-0 italic tracking-wider">
+              <li key={index} className="text-[4rem] cursor-pointer translate-x-20 opacity-0 italic tracking-wider">
                 {values?.title}
               </li>
             )
