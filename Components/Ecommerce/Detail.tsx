@@ -43,9 +43,9 @@ function Detail() {
   }
 
   return (
-    <div className="bg-[#f3f5f7] w-full h-screen overflow-y-auto p-5 rounded-lg shadow-lg flex flex-col gap-2">
+    <div className="bg-[#f3f5f7] w-full min-h-screen overflow-y-auto p-2 lg:p-5 rounded-lg shadow-lg flex flex-col gap-2">
       {!isLoading && (
-        <div className="py-2 px-3 w-[70%] mx-auto flex justify-between bg-[#101010] text-white sticky top-0 shadow-lg rounded-lg">
+        <div className="py-2 px-3 w-full lg:w-[70%] mx-auto flex justify-between bg-[#101010] text-white sticky top-0 shadow-lg rounded-lg">
           <button
             onClick={() => router.back()}
             className="bg-[#f3f3f3] text-gray-900 rounded p-2"
@@ -67,22 +67,22 @@ function Detail() {
           </Link>
         </div>
       )}
-      <div className="w-[70%] h-full bg-white mx-auto p-5">
+      <div className="lg:w-[70%] h-full bg-white mx-auto p-5">
         {/* //todo product image */}
         <div className="flex-1 p-1">
-          <div className="flex items-center gap-x-3">
-            <h1 className="font-semibold tracking-wide text-xl">
+          <div className="lg:flex items-center gap-x-3">
+            <h1 className="font-semibold tracking-wide text-xl text-center lg:text-start">
               {ProductDetail?.title}
             </h1>
-            <div className="flex text-xs gap-2 items-center bg-yellow-100 rounded-full py-1 px-3 text-yellow-700">
+            <div className="hidden lg:flex text-xs gap-2 items-center bg-yellow-100 rounded-full py-1 px-3 text-yellow-700">
               <RatingIcon width={20} className="fill-yellow-700 " />
               {ProductDetail?.rating}
             </div>
-            <div className="flex text-xs gap-2 items-center bg-red-100 rounded-full py-1 px-3 font-bold text-red-700">
+            <div className="hidden lg:flex text-xs gap-2 items-center bg-red-100 rounded-full py-1 px-3 font-bold text-red-700">
               <RocketIcon width={20} />
               {ProductDetail?.discountPercentage}%
             </div>
-            <div className="flex gap-2 items-center bg-green-100 rounded-full py-1 px-3 text-xs font-bold text-green-700">
+            <div className="hidden lg:flex gap-2 items-center bg-green-100 rounded-full py-1 px-3 text-xs font-bold text-green-700">
               <small>In-stock</small>
               {ProductDetail?.stock}
             </div>
@@ -113,19 +113,19 @@ function Detail() {
           })} */}
         </div>
         {/* //todo buttons */}
-        <div className="flex justify-end gap-x-2 p-2">
+        <div className="grid lg:grid-cols-3 gap-2 p-2">
           <button
             onClick={() => router.back()}
-            className="rounded-full px-5 py-2 bg-zinc-200"
+            className="rounded-full px-5 py-2 bg-zinc-200 sm:w-full"
           >
             Back
           </button>
-          <button className="rounded-full px-5 py-2 bg-lime-400 font-semibold">
+          <button className="rounded-full px-5 py-2 bg-lime-400 font-semibold sm:w-full">
             Buy
           </button>
           <button
             onClick={handleAddcartitems}
-            className="rounded-full px-5 py-2 bg-[#101010] text-white"
+            className="rounded-full px-5 py-2 bg-[#101010] text-white sm:w-full"
           >
             Add cart
           </button>

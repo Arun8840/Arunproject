@@ -44,7 +44,7 @@ function Navbar() {
         logo
       </h1>
 
-      <div className="w-full flex justify-center">
+      <div className="w-full hidden lg:flex justify-center">
         <input
           type="text"
           className="border border-zinc-200 w-1/2 p-2 rounded outline-none text-sm"
@@ -54,7 +54,7 @@ function Navbar() {
       <ul className="flex items-center gap-2 text-sm tracking-wider">
         <li
           onClick={handleOpenCategory}
-          className=" rounded-full px-3 py-2 cursor-pointer flex items-center gap-x-3 relative select-none"
+          className=" rounded-full px-3 py-2 cursor-pointer hidden lg:flex items-center gap-x-3 relative select-none"
         >
           Category{" "}
           <RightArrow

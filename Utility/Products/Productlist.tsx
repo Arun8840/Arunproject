@@ -34,7 +34,7 @@ function Productlist({ items, placement }: PropsTypes) {
     Addrating(items, ratingValue)
   }
   return (
-    <div className="col-span-4 row-span-2 border rounded min-h-[300px] p-1 flex gap-2 bg-white">
+    <div className="col-span-4 row-span-2 border rounded min-h-[300px] p-1 grid lg:grid-cols-2 gap-2 bg-white">
       {/* //todo image */}
       <div className="w-[250px] h-full rounded">
         <img
@@ -45,7 +45,7 @@ function Productlist({ items, placement }: PropsTypes) {
       </div>
       {/* //todo header */}
       <div className="p-1 flex-1 flex flex-col justify-between">
-        <div>
+         <div>
           <h1 className="text-[#30475E] flex justify-between items-center">
             {items?.title}{" "}
             {/* <button onClick={handleLike}>

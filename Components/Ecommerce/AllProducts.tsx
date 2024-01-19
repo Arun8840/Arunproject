@@ -24,8 +24,8 @@ function AllProducts() {
   } = useSWR("load-all-mobiles", loadsmartmobileProducts)
 
   return (
-    <div className="bg-[#f3f5f7] p-5">
-      <div className="grid grid-cols-12 container mx-auto gap-2  ">
+    <div className="bg-[#f3f5f7] lg:p-5">
+      <div className="grid lg:grid-cols-12 container mx-auto gap-2  ">
         {!isLoading &&
           AllProducts &&
           AllProducts?.products?.map((items, index) => {
