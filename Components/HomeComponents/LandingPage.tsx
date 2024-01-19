@@ -63,7 +63,7 @@ function LandingPage() {
 
   return (
     <div
-      className={`w-full lg:h-screen sm:py-[5rem] flex flex-col justify-center gap-16  bg-[#f3f5f7] overflow-hidden`}
+      className={`w-full min-h-screen  flex flex-col justify-center gap-16  bg-[#f3f5f7] overflow-hidden`}
     >
       <div ref={mainframe} className="container mx-auto opacity-0 hidden">
         <div className={`${HeaderFont.className} flex justify-center gap-1`}>
