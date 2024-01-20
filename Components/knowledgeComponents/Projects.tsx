@@ -52,7 +52,7 @@ function Projects() {
     >
       <div className="container mx-auto">
         <h1
-          className={`lg:text-[4rem] text-white font-extrabold ${HeaderFont.className} pb-10 p-2`}
+          className={`text-3xl lg:text-[4rem] text-white font-extrabold ${HeaderFont.className} pb-10 p-2`}
         >
           Projects
         </h1>

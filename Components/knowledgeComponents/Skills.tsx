@@ -9,26 +9,26 @@ function Skills() {
     <div className={`w-full bg-[#f3f5f7] lg:py-[3rem]`}>
       <div className="container mx-auto">
         <h1
-          className={`lg:text-[4rem] py-5 px-2 text-[#131727] font-extrabold ${HeaderFont.className}`}
+          className={`lg:text-[4rem] text-lg py-5 px-2 text-[#131727] font-extrabold ${HeaderFont.className}`}
         >
           Frameworks and Tools
         </h1>
-        <div className={`flex flex-col gap-y-5 ${ContentFont.className}`}>
+        <ul className={`grid sm:grid-cols-4 lg:grid-cols-10 mx-auto  gap-2 ${ContentFont.className} p-3 `}>
           {AnalyticsData.map((values,index) => {
             return (
-              <div key={index} className="flex items-center px-2">
-                <div className="flex gap-2 items-center">
-                  <div className="w-[50px] hidden lg:block">{values.icon}</div>
-                  <h1 className="font-semibold tracking-wide px-2 text-[#131727]">
+              <li key={index} className="flex justify-center items-center space-y-4 p-2 w-full h-full border bg-white rounded-lg">
+                <div className="">
+                  <div className="w-[50px] mx-auto">{values.icon}</div>
+                  <h1 className="font-semibold text-center tracking-wide p-2 text-[#131727]">
                     {values.title}
                   </h1>
                 </div>
-                <AnalyticsBars values={values?.value} />
-                <h2 className="p-1">{values.value}</h2>
-              </div>
+                {/* <AnalyticsBars values={values?.value} />
+                <h2 className="p-1">{values.value}</h2> */}
+              </li>
             )
           })}
-        </div>
+        </ul>
       </div>
     </div>
   )

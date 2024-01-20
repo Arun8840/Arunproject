@@ -16,7 +16,7 @@ function AboutMe() {
         <h1
           className={`lg:text-[4rem] p-2 ${HeaderFont.className} group-hover:text-lime-400  transition-colors duration-300`}
         >
-          About me <span className="group-hover:text-yellow-500">:)</span>
+          About<span className="group-hover:text-yellow-500">:)</span>
         </h1>
         <div className="container flex justify-center  items-center gap-10">
           <div className="w-full lg:w-1/2 p-2">
@@ -24,7 +24,7 @@ function AboutMe() {
               Im Arun.
             </h1>
             <p
-              className={`capitalize tracking-wider leading-[2rem] ${ContentFont.className}`}
+              className={`capitalize tracking-wider leading-[2rem] ${ContentFont.className} text-sm`}
             >
               I am an enthusiastic Frontend Developer with a strong penchant for
               creating elegant and responsive user interfaces. My journey in web

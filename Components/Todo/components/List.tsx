@@ -46,7 +46,7 @@ function List({ items, key, isCompleted }: propsTypes) {
     <li
       ref={isCompleted ? null : drag}
       key={key}
-      className={`bg-white ${
+      className={`bg-white shadow-lg ${
         isDragging && "opacity-0"
       } rounded flex divide-x divide-dashed divide-[#5b33d9]/50`}
     >
@@ -71,7 +71,7 @@ function List({ items, key, isCompleted }: propsTypes) {
         <div className="w-full">
           <div className="flex justify-between items-center">
             <h1 className="tracking-wide font-semibold text-gray-600">
-              {key + 1}.{items?.title}
+              {items?.title}
             </h1>
             <div className="flex items-center gap-x-3">
               <button title="Delete Task ?" onClick={handleDeleteTask}>
