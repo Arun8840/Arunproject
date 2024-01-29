@@ -56,27 +56,19 @@ function Projects() {
         >
           Projects
         </h1>
-        <div className="flex gap-x-10 justify-center">
-          {/* //todo line */}
-          <div
-            ref={timeLine}
-            className="w-[1px] bg-gray-400 hidden lg:block origin-top scale-y-0"
-          ></div>
-          <ul ref={lists} className="grid gap-5 lg:w-[80%]">
-            {ProjectDatas.map((values, index: number) => {
-              return (
-                <li
-                  key={index}
-                  className={`flex gap-2 rounded backdrop-blur-sm bg-[#f3f3f3] relative opacity-0 translate-x-16`}
-                >
-                  {/* //todo list */}
-                  <span className="absolute font-semibold w-[40px] h-[40px] bg-white -left-[60px] top-1/3 rounded-full place-items-center hidden lg:grid">
-                    {index + 1}
-                  </span>
-                  <div className="w-1/3 rounded-l hidden lg:grid place-items-center">
-                    <Image alt={values?.title} Url={values?.image} />
-                  </div>
-                  <div className="flex-1 p-2">
+
+        <ul ref={lists} className="grid lg:grid-cols-2 gap-5">
+          {ProjectDatas.map((values, index: number) => {
+            return (
+              <li
+                key={index}
+                className={`flex flex-col lg:flex-row gap-2 rounded backdrop-blur-sm bg-[#f3f3f3] relative opacity-0 translate-x-16`}
+              >
+                <div className="w-1/3 mx-auto lg:mx-0 rounded-l grid place-items-center p-2">
+                  <Image alt={values?.title} Url={values?.image} />
+                </div>
+                <div className="flex-1 flex flex-col gap-4 justify-between p-2">
+                  <div>
                     <h1 className="font-semibold tracking-wide text-lg pb-3">
                       {values.title}
                     </h1>
@@ -85,20 +77,20 @@ function Projects() {
                     >
                       {values.description}
                     </p>
-                    <div className="flex justify-end p-1">
-                      <button
-                        onClick={() => handleRedirect(values?.path)}
-                        className="px-3 py-1 rounded text-white bg-[#131727] group-hover:bg-[#940B92]"
-                      >
-                        Open
-                      </button>
-                    </div>
                   </div>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
+                  <div className="flex justify-end p-1">
+                    <button
+                      onClick={() => handleRedirect(values?.path)}
+                      className="w-full lg:w-fit px-3 py-1 rounded text-white bg-[#131727] group-hover:bg-[#940B92]"
+                    >
+                      Open
+                    </button>
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )

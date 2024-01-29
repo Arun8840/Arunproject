@@ -25,15 +25,15 @@ export const ProjectDatas: ProjectDataTypes[] = [
     color: ["#191919", "#BED754"],
     fontColor: "#FFFFFF",
   },
-  {
-    title: "Weather App",
-    image: "weather-app.png",
-    description:
-      "Develop a weather application that provides users with accurate weather information for their specified location. Show the current weather conditions including temperature, humidity, wind speed, etc.Display a 7-day weather forecast for the selected location.Allow users to search for weather information by city name or ZIP code. Use HTML, CSS, and JavaScript to build the user interface. Utilize Fetch API or Axios for fetching weather data from a weather API (like OpenWeatherMap, WeatherAPI, etc.). Utilize a weather API to retrieve weather information based on the geographic coordinates obtained from the user's search.",
-    path: "/projects/Weatherapp",
-    color: ["#008170", "#0F0F0F"],
-    fontColor: "#FFFFFF",
-  },
+  // {
+  //   title: "Weather App",
+  //   image: "weather-app.png",
+  //   description:
+  //     "Develop a weather application that provides users with accurate weather information for their specified location. Show the current weather conditions including temperature, humidity, wind speed, etc.Display a 7-day weather forecast for the selected location.Allow users to search for weather information by city name or ZIP code. Use HTML, CSS, and JavaScript to build the user interface. Utilize Fetch API or Axios for fetching weather data from a weather API (like OpenWeatherMap, WeatherAPI, etc.). Utilize a weather API to retrieve weather information based on the geographic coordinates obtained from the user's search.",
+  //   path: "/projects/Weatherapp",
+  //   color: ["#008170", "#0F0F0F"],
+  //   fontColor: "#FFFFFF",
+  // },
   {
     title: "Cloning-Social app",
     image: "copy.png",

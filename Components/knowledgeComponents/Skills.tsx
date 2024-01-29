@@ -16,7 +16,7 @@ function Skills() {
         <ul className={`grid sm:grid-cols-4 lg:grid-cols-10 mx-auto  gap-2 ${ContentFont.className} p-3 `}>
           {AnalyticsData.map((values,index) => {
             return (
-              <li key={index} className="flex justify-center items-center space-y-4 p-2 w-full h-full border bg-white rounded-lg">
+              <li key={index} className="flex justify-center items-center space-y-4 p-2 w-full h-full rounded-lg">
                 <div className="">
                   <div className="w-[50px] mx-auto">{values.icon}</div>
                   <h1 className="font-semibold text-center tracking-wide p-2 text-[#131727]">

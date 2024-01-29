@@ -1,43 +1,48 @@
-import React from "react";
+import React from "react"
 
 interface InputTypes {
-  name?: string;
-  type?: string;
-  required?: any;
-  value?: any;
-  placeholder?: string;
-  onchange?: (e: any) => void;
-  className?: string;
+  name?: string
+  type?: string
+  required?: any
+  value?: any
+  placeholder?: string
+  register?: any
+  className?: string
+  pattern?: string | any
 }
 function Input(props: InputTypes) {
   // todo props items
-  const { name, type, required, value, placeholder, onchange, className } =
-    props;
+  const {
+    name,
+    type,
+    required,
+    value,
+    placeholder,
+    className,
+    register,
+    pattern,
+  } = props
 
-  // todo input properties
-  let inputProp = {
-    placeholder: placeholder ? placeholder : "Input",
-    required: required ? required : false,
-    type: type ? type : "text",
-    name: name ? name : "",
-  };
   return (
     <div className="w-full h-full">
       <input
-        className={
-          className
-            ? className
-            : "border rounded-lg p-2 outline-none border-[#27272a] bg-inherit w-full"
-        }
-        type={inputProp.type}
+        className={className}
+        type={type}
         value={value}
-        name={inputProp.name}
-        placeholder={inputProp.placeholder}
-        required={inputProp.required}
-        onChange={onchange}
+        placeholder={placeholder}
+        {...register(name, {
+          required: {
+            value: required,
+            message: `${name} required !`,
+          },
+          pattern: {
+            value: pattern,
+            message: `invalid ${name} !`,
+          },
+        })}
       />
     </div>
-  );
+  )
 }
 
-export default Input;
+export default Input

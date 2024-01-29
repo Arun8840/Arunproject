@@ -29,7 +29,7 @@ function LandingPage() {
     })
     tl.to(innerCircle.current, { scale: 0, duration: 0.7, ease: Power4.easeIn })
     tl.to(outerCircle.current, {
-      backgroundColor: "#101010",
+      background: "linear-gradient(80deg,#49108B,#E26EE5)",
       duration: 0.2,
       ease: Power4.easeIn,
     })
@@ -90,7 +90,7 @@ function LandingPage() {
         >
           <div
             ref={innerCircle}
-            className="bg-[#101010] rounded-full scale-0 p-2 w-[30px] h-[30px]"
+            className="bg-gradient-to-bl from-purple-300 to-purple-600 rounded-full scale-0 p-2 w-[30px] h-[30px]"
           ></div>
         </div>
         <div ref={rightline} className="h-[1px] "></div>
