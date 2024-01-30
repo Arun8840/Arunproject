@@ -526,3 +526,44 @@ export const BlockIcon = (props: any) => {
     </svg>
   )
 }
+
+export const MediaIcon = (props: any) => {
+  // todo props lists
+  const { width, className } = props
+  return (
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      className={className}
+      viewBox="0 0 24 24"
+      width={width}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21.75 21.5H2.25A1.75 1.75 0 0 1 .5 19.75V4.25c0-.966.784-1.75 1.75-1.75h19.5c.966 0 1.75.784 1.75 1.75v15.5a1.75 1.75 0 0 1-1.75 1.75ZM2.25 4a.25.25 0 0 0-.25.25v15.5c0 .138.112.25.25.25h3.178L14 10.977a1.749 1.749 0 0 1 2.506-.032L22 16.44V4.25a.25.25 0 0 0-.25-.25ZM22 19.75v-1.19l-6.555-6.554a.248.248 0 0 0-.18-.073.247.247 0 0 0-.178.077L7.497 20H21.75a.25.25 0 0 0 .25-.25ZM10.5 9.25a3.25 3.25 0 1 1-6.5 0 3.25 3.25 0 0 1 6.5 0Zm-1.5 0a1.75 1.75 0 1 0-3.501.001A1.75 1.75 0 0 0 9 9.25Z"></path>
+    </svg>
+  )
+}
+
+export const ThemeIcon = (props: any) => {
+  // todo props lists
+  const { width, className } = props
+  return (
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      strokeWidth="0"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      width={width}
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"
+        clip-rule="evenodd"
+      ></path>
+    </svg>
+  )
+}

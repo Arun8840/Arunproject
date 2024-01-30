@@ -53,7 +53,7 @@ function Messages() {
                 </div>
                 <div className="flex justify-between flex-col flex-1">
                   <div className="flex w-full justify-between">
-                    <h1 className="text-white text-sm tracking-wide">
+                    <h1 className="text-white text-xs lg:text-sm tracking-wide">
                       {items?.name}
                     </h1>
                     <small className="text-slate-500">{items?.activeOn}</small>

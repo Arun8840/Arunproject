@@ -15,7 +15,7 @@ function AppHeader() {
   }
   return (
     <nav
-      className={`text-white px-2 pt-2 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className}`}
+      className={`text-white bg-[#27272a]/50 p-1 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className} rounded-lg`}
     >
       <ul className="flex  items-center gap-1 tracking-wide text-sm capitalize p-1">
         {tabItems.map((items) => {
@@ -24,7 +24,7 @@ function AppHeader() {
             <li
               onClick={() => handleChangeTab(items)}
               className={`px-2 py-1 rounded-lg cursor-pointer ${
-                setactive && "bg-pink-600 shadow-lg shadow-pink-600/30"
+                setactive && "bg-pink-600"
               }`}
             >
               {items}
