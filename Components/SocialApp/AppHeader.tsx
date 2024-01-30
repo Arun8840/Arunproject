@@ -1,25 +1,43 @@
 import { DarkIcon } from "@/Utility/icons/icons"
+import useGetFonts from "@/font/fonts"
+import { useRouter, useSearchParams } from "next/navigation"
 import React from "react"
 
 function AppHeader() {
-  
+  const { ContentFont } = useGetFonts()
+  const tab = useSearchParams()
+  const router: any = useRouter()
+  let isActiveTab = tab.get("tab")
+  let tabItems: string[] = ["Messages", "Dashboard", "Status", "Settings"]
+
+  const handleChangeTab = (tabValue: string) => {
+    router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
+  }
   return (
-    <nav className="text-white p-2 col-span-12 flex gap-2">
-      <ul className="flex items-center gap-1 tracking-wide text-sm capitalize p-1">
-        <li className="p-1 rounded-full bg-pink-600">messages</li>
-        <li className="p-1 rounded-full ">dashboard</li>
-        <li className="p-1 rounded-full ">status</li>
+    <nav
+      className={`text-white px-2 pt-2 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className}`}
+    >
+      <ul className="flex  items-center gap-1 tracking-wide text-sm capitalize p-1">
+        {tabItems.map((items) => {
+          let setactive = isActiveTab === items
+          return (
+            <li
+              onClick={() => handleChangeTab(items)}
+              className={`px-2 py-1 rounded-lg cursor-pointer ${
+                setactive && "bg-pink-600 shadow-lg shadow-pink-600/30"
+              }`}
+            >
+              {items}
+            </li>
+          )
+        })}
       </ul>
-      <input
-        type="text"
-        placeholder="search..."
-        className="border border-gray-600 border-opacity-50 rounded-full bg-inherit outline-none p-2 w-full"
-      />
+
       <div className="flex justify-end items-center gap-x-2">
-        <button className="border rounded-full border-gray-600 border-opacity-50 p-2 text-sm tracking-wide">
+        <button className="bg-[#27272a] rounded-lg px-2 py-1 text-sm tracking-wide">
           Logout
         </button>
-        <button className="border rounded-full border-gray-600 border-opacity-50 p-2">
+        <button className=" p-1">
           <DarkIcon width={20} className="text-white" />
         </button>
 

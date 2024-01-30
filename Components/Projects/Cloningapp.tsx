@@ -1,6 +1,5 @@
 "use client"
 import Button from "@/Utility/components/Button"
-
 import Input from "@/Utility/components/Input"
 import { useRouter } from "next/navigation"
 import React from "react"
@@ -15,7 +14,12 @@ function Cloningapp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormTypes>()
+  } = useForm<FormTypes>({
+    defaultValues: {
+      email: "arun@gmail.com",
+      password: "arun123!",
+    },
+  })
   const router = useRouter()
 
   // todo handle login
@@ -25,7 +29,7 @@ function Cloningapp() {
       data?.email === "arun@gmail.com" &&
       data?.password === "arun123!"
     ) {
-      router.push(`/projects/AppDashboard/?id=${data?.email}/&tab=messages`)
+      router.push(`/socialapp/?id=${data?.email}&tab=Messages`)
     }
   }
   return (

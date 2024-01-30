@@ -1,12 +1,12 @@
 import { PT_Sans, Poppins, Space_Grotesk, Work_Sans } from "next/font/google"
 const headerFont = Poppins({
-  weight: "600",
+  weight: "700",
   subsets: ["latin"],
   display: "block",
 })
 
 const contentFont = Poppins({
-  weight: "400",
+  weight: "500",
   subsets: ["latin"],
   display: "block",
 })

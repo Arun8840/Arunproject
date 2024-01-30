@@ -1,13 +1,14 @@
 "use client"
+import AppHeader from "@/Components/SocialApp/AppHeader"
 import React from "react"
-import AppHeader from "../SocialApp/AppHeader"
 
-function AppDashboard() {
+function ChatBoardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-[#09090b] w-full min-h-screen grid grid-cols-12 auto-rows-max gap-1">
       <AppHeader />
+      {children}
     </div>
   )
 }
 
-export default AppDashboard
+export default ChatBoardLayout
