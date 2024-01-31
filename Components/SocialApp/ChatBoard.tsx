@@ -56,7 +56,7 @@ function ChatBoard() {
       <div className="w-full rounded-lg flex items-center gap-1">
         <input
           type="text"
-          placeholder="text message..."
+          placeholder="Text message..."
           className="rounded-lg bg-[#27272a]/50 outline-none p-2  w-full text-white flex-1"
         />
         <button className="bg-[#27272a] text-white rounded-lg p-3">

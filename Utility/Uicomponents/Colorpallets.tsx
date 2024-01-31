@@ -10,12 +10,13 @@ interface propsTypes {
 }
 function Colorpallets(props: propsTypes) {
   let { items, handleUpdateTheme, currentThemeName, size } = props
+
   return (
     <div
       onClick={() => handleUpdateTheme && handleUpdateTheme(items)}
       className={`rounded-lg  grid place-items-center 
-        p-1 bg-[#F1EFEF]/30 hover:bg-[#eeeeee]"
-       cursor-pointer relative ${
+        p-1  hover:bg-[#eeeeee]
+       cursor-pointer relative  ${
          items?.name === currentThemeName &&
          "bg-green-500/30 border border-green-500 border-opacity-50"
        }`}

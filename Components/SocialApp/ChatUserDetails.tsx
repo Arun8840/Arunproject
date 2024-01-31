@@ -227,6 +227,7 @@ function ChatUserDetails() {
       openDefault: true,
     },
   ]
+
   return (
     <div
       className={`bg-[#27272a]/50 rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
@@ -236,7 +237,14 @@ function ChatUserDetails() {
       </h1>
 
       {/*//todo profile logo */}
-      <div className="bg-pink-600 w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative">
+      <div
+        style={{
+          backgroundColor: userDatas?.theme?.primary
+            ? userDatas?.theme?.primary
+            : "lightgray",
+        }}
+        className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative"
+      >
         <h1 className="text-white text-3xl">
           {userDatas && userDatas?.name && userDatas?.name[0]}
         </h1>
@@ -286,7 +294,7 @@ function ChatUserDetails() {
                       return (
                         <Colorpallets
                           size={50}
-                          currentThemeName={"test"}
+                          currentThemeName={userDatas?.theme?.name}
                           items={values2}
                         />
                       )

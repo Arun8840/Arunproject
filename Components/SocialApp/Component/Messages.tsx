@@ -1,4 +1,4 @@
-import { PriorityIcon } from "@/Utility/icons/icons"
+import { AddIcon, PriorityIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
 import React from "react"
@@ -23,13 +23,19 @@ function Messages() {
   return (
     <>
       <div
-        className={` rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 `}
+        className={` rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 relative`}
       >
-        <input
-          type="text"
-          placeholder="search..."
-          className="rounded bg-[#27272a] outline-none px-2 py-1  w-full text-white"
-        />
+        <div className="flex gap-2">
+          {/* //todo new user add button */}
+          <button className="bg-pink-600 rounded-lg p-2">
+            <AddIcon width={20} className="text-white" />
+          </button>
+          <input
+            type="text"
+            placeholder="search..."
+            className="rounded bg-[#27272a] outline-none px-2 py-1  w-full text-white"
+          />
+        </div>
         <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
           {userDatas.map((items) => {
             return (
@@ -39,7 +45,13 @@ function Messages() {
                 className=" p-1 flex gap-2 cursor-pointer"
               >
                 <div
-                  className={`w-[45px] h-[45px] bg-[#101010] text-pink-600 rounded-full grid place-items-center`}
+                  style={{
+                    backgroundColor: items?.theme?.primary
+                      ? items?.theme?.primary
+                      : "#db2777",
+                    color: "white",
+                  }}
+                  className={`w-[45px] h-[45px] bg-[#101010] rounded-full grid place-items-center`}
                 >
                   {items?.image ? (
                     <Image

@@ -7,6 +7,26 @@ function useGetUsersData() {
       image: "",
       activeOn: "4m",
       isPinned: true,
+      theme:{
+        name: "Dune",
+        themeName: "Frank Herbert",
+        primary: "#F9A825",
+        secondary: "#FFD54F",
+        sidebar: "#FF8F00",
+        sidebarFontColor: "#101010",
+        footer: "#FF6F00",
+        mainBackground: "#212121",
+        sugHeader: "#FFAB00",
+        header: "#FF6F00",
+        cardColor: "#424242",
+        cardheader: "#FF6F00",
+        accent: "#FF3D00",
+        success: "#00C853",
+        error: "#D50000",
+        warning: "#FFAB00",
+        cardFontColor: "#FFFFFF",
+        footerFontColor: "#000000",
+      },
       notification: false,
     },
     {
@@ -14,6 +34,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2m",
       isPinned: false,
+      theme:{},
       notification: true,
     },
     {
@@ -21,6 +42,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "6m",
       isPinned: false,
+      theme:{},
       notification: true,
     },
     {
@@ -28,6 +50,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2m",
       isPinned: true,
+      theme:{},
       notification: true,
     },
     {
@@ -35,6 +58,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "10m",
       isPinned: false,
+      theme:{},
       notification: false,
     },
     {
@@ -42,6 +66,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "3m",
       isPinned: false,
+      theme:{},
       notification: true,
     },
     {
@@ -49,6 +74,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "6m",
       isPinned: true,
+      theme:{},
       notification: true,
     },
     {
@@ -56,6 +82,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2h",
       isPinned: false,
+      theme:{},
       notification: false,
     },
     {
@@ -63,6 +90,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "20m",
       isPinned: false,
+      theme:{},
       notification: true,
     },
     {
@@ -70,6 +98,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "1h",
       isPinned: true,
+      theme:{},
       notification: true,
     },
   ]

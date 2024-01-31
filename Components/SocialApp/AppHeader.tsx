@@ -34,9 +34,9 @@ function AppHeader() {
       </ul>
 
       <div className="flex justify-end items-center gap-x-2">
-        <button className="bg-[#27272a] rounded-lg px-2 py-1 text-sm tracking-wide">
+        {/* <button className="bg-[#27272a] rounded-lg px-2 py-1 text-sm tracking-wide">
           Logout
-        </button>
+        </button> */}
         <button className=" p-1">
           <DarkIcon width={20} className="text-white" />
         </button>
