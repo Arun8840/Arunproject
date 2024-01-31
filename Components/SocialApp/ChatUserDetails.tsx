@@ -9,10 +9,13 @@ import {
   RatingIcon,
   RightArrow,
   ThemeIcon,
+  Trash,
 } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import { UsersTypes } from "@/model/SocialAppTypes"
+import getSocialAppServices from "@/service/SocialAppService"
 import React from "react"
+import { mutate } from "swr"
 
 interface accordionTypes {
   name: string
@@ -24,6 +27,7 @@ function ChatUserDetails() {
   const userDatas: UsersTypes = SocialappStore(
     (state: any) => state.UserDetails
   )
+  const { DeleteUser } = getSocialAppServices()
   const { ContentFont } = useGetFonts()
 
   let AccordionItems: accordionTypes[] = [
@@ -228,6 +232,10 @@ function ChatUserDetails() {
     },
   ]
 
+  const handleDeleteUser = async () => {
+    let response = await DeleteUser(userDatas?._id)
+    response && mutate("/api/user")
+  }
   return (
     <div
       className={`bg-[#27272a]/50 rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
@@ -242,10 +250,11 @@ function ChatUserDetails() {
           backgroundColor: userDatas?.theme?.primary
             ? userDatas?.theme?.primary
             : "lightgray",
+          color: "black",
         }}
         className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative"
       >
-        <h1 className="text-white text-3xl">
+        <h1 className="text-3xl">
           {userDatas && userDatas?.name && userDatas?.name[0]}
         </h1>
 
@@ -263,14 +272,23 @@ function ChatUserDetails() {
       </h1>
 
       {/* //todo action buttons */}
-      <div className="flex gap-2">
-        <button className="flex-1 w-fit rounded bg-[#27272a]/50 text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200 hover:text-pink-600">
+      <div className="grid grid-cols-2 gap-2">
+        <button className="w-full rounded bg-[#27272a]/50 text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200 hover:text-pink-600">
           <h1>Mute</h1>
           <MuteIcon width={20} />
         </button>
-        <button className="flex-1 w-fit rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 text-red-600">
+        <button className="w-full rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 text-red-600">
           <h1>Block</h1>
           <BlockIcon width={20} />
+        </button>
+
+        {/* //todo delete button */}
+        <button
+          onClick={handleDeleteUser}
+          className="w-full col-span-2 rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 text-red-600"
+        >
+          <h1>Remove</h1>
+          <Trash width={20} />
         </button>
       </div>
 

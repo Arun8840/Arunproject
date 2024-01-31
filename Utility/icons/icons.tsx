@@ -36,7 +36,7 @@ export const Search = ({ width }: any) => {
   )
 }
 
-export const Close = ({ width }: any) => {
+export const Close = ({ width, className }: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export const Close = ({ width }: any) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-x"
+      className={className}
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
@@ -257,11 +257,11 @@ export const TimeIcon = (props: any) => {
 
 export const Trash = (props: any) => {
   // todo props lists
-  const { width } = props
+  const { width ,className} = props
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="text-red-400"
+      className={className}
       height="24"
       viewBox="0 0 24 24"
       fill="none"

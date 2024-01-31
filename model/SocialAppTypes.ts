@@ -20,6 +20,7 @@ type ThemeTypes = {
 }
 
 export interface UsersTypes {
+  _id: string
   name: string
   image: string
   activeOn: string

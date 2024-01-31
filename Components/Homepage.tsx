@@ -7,6 +7,7 @@ import Projects from "./knowledgeComponents/Projects"
 import OptionButtons from "./HomeComponents/OptionButtons"
 
 function Homepage() {
+
   return (
     <div className={`w-full relative z-0 divide-y`}>
       <OptionButtons />
