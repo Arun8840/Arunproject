@@ -1,24 +1,24 @@
-import React from "react";
-import CardImage from "../Wrappers/card/CardImage";
-import CardContent from "../Wrappers/card/CardContent";
-import CardHeader from "../Wrappers/card/CardHeader";
-import CardSubHeader from "../Wrappers/card/CardSubHeader";
-import CardAction from "../Wrappers/card/CardAction";
+import React from "react"
+import CardImage from "../Wrappers/card/CardImage"
+import CardContent from "../Wrappers/card/CardContent"
+import CardHeader from "../Wrappers/card/CardHeader"
+import CardSubHeader from "../Wrappers/card/CardSubHeader"
+import CardAction from "../Wrappers/card/CardAction"
 
 interface CardPropsTypes {
-  className: string;
-  header: string;
-  subHeader: string;
-  cardContent: string;
-  children: any;
+  className: string
+  header: string
+  subHeader: string
+  cardContent: string
+  children: any
 }
 function Card(props: CardPropsTypes) {
-  const { className, header, subHeader, cardContent, children } = props;
+  const { className, header, subHeader, cardContent, children } = props
   let defaultstyle = {
     cardcontainer: className
       ? className
       : `bg-white mx-auto w-[90%] h-full rounded-lg`,
-  };
+  }
 
   return (
     <div
@@ -59,7 +59,7 @@ function Card(props: CardPropsTypes) {
         <button className="px-5 py-2 rounded-lg bg-zinc-800">View</button>
       </CardAction>
     </div>
-  );
+  )
 }
 
-export default Card;
+export default Card

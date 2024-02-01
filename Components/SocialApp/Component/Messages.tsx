@@ -9,6 +9,7 @@ import getSocialAppServices from "@/service/SocialAppService"
 import useSWR from "swr"
 import Drawer from "@/Utility/Uicomponents/Drawer/Drawer"
 import gsap, { Power3 } from "gsap"
+import { useSearchParams } from "next/navigation"
 
 interface UsersTypes {
   _id: string
@@ -23,8 +24,9 @@ interface UsersTypes {
 }
 function Messages() {
   const { ContentFont } = useGetFonts()
+
   // todo action
-  const selected = SocialappStore((state: any) => state.SelectUser)
+  const selected = SocialappStore((state: any) => state.loadParticularUser)
   const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
 
   // todo loading all users
@@ -36,8 +38,8 @@ function Messages() {
     revalidateOnFocus: false,
   })
 
-  const handleSelecteUser = (user: UsersTypes) => {
-    selected(user)
+  const handleSelecteUser = (user: UsersTypes, profileImageID: number) => {
+    selected(user?._id, profileImageID)
   }
 
   const handleOpenDrawer = () => {
@@ -77,44 +79,40 @@ function Messages() {
       <div
         className={` rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 relative`}
       >
-        <div className="flex gap-2">
-          {/* //todo new user add button */}
-          <button
-            onClick={handleOpenDrawer}
-            className="bg-pink-600 rounded-lg p-2"
-          >
-            <AddIcon width={20} className="text-white" />
-          </button>
+        <div className="flex gap-1">
           <input
             type="text"
             placeholder="search..."
-            className="rounded bg-[#27272a] outline-none px-2 py-1  w-full text-white"
+            className="rounded-lg bg-[#27272a] outline-none px-2 py-1  w-full text-white"
           />
+          {/* //todo new user add button */}
+          <button
+            onClick={handleOpenDrawer}
+            className="bg-[#27272a] hover:bg-pink-600 transition-colors duration-150 rounded-lg p-2"
+          >
+            <AddIcon width={20} className="text-white" />
+          </button>
         </div>
         {!isLoading && (
           <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
             {data &&
-              data?.map((items) => {
+              data?.map((items, index: number) => {
                 return (
                   <li
-                    onClick={() => handleSelecteUser(items)}
+                    onClick={() => handleSelecteUser(items, index + 1)}
                     key={items?.name}
-                    className=" p-1 flex gap-2 cursor-pointer"
+                    className=" p-1 flex gap-2 cursor-pointer bg-[#27272a] rounded-lg"
                   >
                     <div
-                      // style={{
-                      //   backgroundColor: items?.theme?.primary
-                      //     ? items?.theme?.primary
-                      //     : "#db2777",
-                      //   color: "white",
-                      // }}
-                      className={`w-[45px] h-[45px] bg-[#101010] rounded-full grid place-items-center`}
+                      className={`w-[45px] h-[45px] bg-yellow-50 rounded grid place-items-center`}
                     >
-                      {items?.profileImage ? (
+                      {!items?.profileImage ? (
                         <Image
-                          src={""}
+                          src={`https://robohash.org/${index + 1}`}
                           alt="profile image"
                           className="w-full h-full object-contain"
+                          width={500}
+                          height={500}
                         />
                       ) : (
                         <h1 className="font-bold uppercase">
@@ -136,7 +134,7 @@ function Messages() {
                         className="text-pink-600 rotate-45"
                       />
                     )} */}
-                        <small className="text-white rounded-full bg-red-500 text-sm w-[20px] h-[20px] grid place-items-center">
+                        <small className="text-white rounded bg-red-500 text-sm w-[20px] h-[20px] grid place-items-center">
                           3
                         </small>
                       </div>

@@ -2,6 +2,7 @@ import Users from "@/model/SocialSchema"
 import connectMongoDB from "../../../lib/mongodb"
 import { NextResponse } from "next/server"
 
+export const host = "http://localhost:5000"
 // todo create
 export async function POST(request) {
   const { name, email, profileImage, theme, description } = await request.json()
@@ -41,3 +42,5 @@ export async function GET() {
   const allUsers = await Users.find()
   return NextResponse.json({ allUsers })
 }
+
+

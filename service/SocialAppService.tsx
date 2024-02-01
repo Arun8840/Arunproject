@@ -8,6 +8,15 @@ const getSocialAppServices = () => {
     }
   }
 
+  const loadUser = async (userID: string) => {
+    let response = await axios.get(
+      `http://localhost:3000/api/socialapp/${userID}`
+    )
+    if (response) {
+      return response?.data?.data
+    }
+  }
+
   const CreateUser = async (userData: any) => {
     let response = await axios.post(
       "http://localhost:3000/api/socialapp",
@@ -26,10 +35,34 @@ const getSocialAppServices = () => {
       return response
     }
   }
+
+  // todo send message
+  const sendMessage = async (messageData: any) => {
+    let response = await axios.post(
+      "http://localhost:3000/api/Message",
+      messageData
+    )
+    if (response) {
+      return response
+    }
+  }
+  // todo load all message
+  const loadAllMessages = async (data: any) => {
+    let response = await axios.post(
+      "http://localhost:3000/api/Message/getallMessages",
+      data
+    )
+    if (response) {
+      return response?.data
+    }
+  }
   return {
     loadAllUser,
+    loadUser,
     CreateUser,
     DeleteUser,
+    sendMessage,
+    loadAllMessages,
   }
 }
 

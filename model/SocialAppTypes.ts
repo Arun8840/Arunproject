@@ -22,9 +22,11 @@ type ThemeTypes = {
 export interface UsersTypes {
   _id: string
   name: string
+  email: string
   image: string
   activeOn: string
   isPinned: boolean
   notification: boolean
   theme: ThemeTypes | any
+  profileImageID: number
 }

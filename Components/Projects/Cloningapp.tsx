@@ -1,9 +1,12 @@
 "use client"
+import { SocialappStore } from "@/Store/SocialappStore"
 import Button from "@/Utility/components/Button"
 import Input from "@/Utility/components/Input"
+import { UsersTypes } from "@/model/SocialAppTypes"
 import { useRouter } from "next/navigation"
 import React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
+import useSWR from "swr"
 
 interface FormTypes {
   email: string
@@ -14,24 +17,34 @@ function Cloningapp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormTypes>({
-    defaultValues: {
-      email: "arun@gmail.com",
-      password: "arun123!",
-    },
-  })
+  } = useForm<FormTypes>()
   const router = useRouter()
+  const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
 
+  // todo loading all users
+  const fetcher = async () => {
+    let res: UsersTypes[] = await loadAllUserData()
+    return res
+  }
+  const {
+    data: AllUsers,
+    error,
+    isLoading,
+  } = useSWR("/api/user", fetcher, {
+    revalidateOnFocus: false,
+  })
   // todo handle login
   const onSubmit: SubmitHandler<FormTypes> = (data) => {
+    const foundUser = AllUsers?.find((user) => user?.email === data?.email)
     if (
       data &&
-      data?.email === "arun@gmail.com" &&
+      foundUser?.email === data?.email &&
       data?.password === "arun123!"
     ) {
-      router.push(`/socialapp/?id=${data?.email}&tab=Messages`)
+      router.push(`/socialapp/?id=${foundUser?._id}&tab=Messages`)
     }
   }
+
   return (
     <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
       <div className=" p-2 rounded-lg max-w-[400px] w-full">

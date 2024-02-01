@@ -12,10 +12,11 @@ import {
   Trash,
 } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
-import { UsersTypes } from "@/model/SocialAppTypes"
 import getSocialAppServices from "@/service/SocialAppService"
-import React from "react"
-import { mutate } from "swr"
+import Image from "next/image"
+import { useSearchParams } from "next/navigation"
+import React, { useEffect } from "react"
+import useSWR, { mutate } from "swr"
 
 interface accordionTypes {
   name: string
@@ -24,10 +25,8 @@ interface accordionTypes {
   openDefault: boolean
 }
 function ChatUserDetails() {
-  const userDatas: UsersTypes = SocialappStore(
-    (state: any) => state.UserDetails
-  )
-  const { DeleteUser } = getSocialAppServices()
+  const userDatas: any = SocialappStore((state: any) => state.UserDetails)
+  const { DeleteUser, loadUser } = getSocialAppServices()
   const { ContentFont } = useGetFonts()
 
   let AccordionItems: accordionTypes[] = [
@@ -233,7 +232,7 @@ function ChatUserDetails() {
   ]
 
   const handleDeleteUser = async () => {
-    let response = await DeleteUser(userDatas?._id)
+    let response = await DeleteUser(userDatas?.User?._id)
     response && mutate("/api/user")
   }
   return (
@@ -247,16 +246,20 @@ function ChatUserDetails() {
       {/*//todo profile logo */}
       <div
         style={{
-          backgroundColor: userDatas?.theme?.primary
-            ? userDatas?.theme?.primary
+          backgroundColor: userDatas?.User?.theme?.primary
+            ? userDatas?.User?.theme?.primary
             : "lightgray",
           color: "black",
         }}
-        className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative"
+        className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative overflow-hidden"
       >
-        <h1 className="text-3xl">
-          {userDatas && userDatas?.name && userDatas?.name[0]}
-        </h1>
+        <Image
+          src={`https://robohash.org/${userDatas?.profileImageID}`}
+          alt="profile image"
+          className="w-full h-full object-contain"
+          width={200}
+          height={200}
+        />
 
         {/* pin icon */}
         {userDatas?.isPinned ? (
@@ -268,8 +271,11 @@ function ChatUserDetails() {
 
       {/* //todod user name header */}
       <h1 className="text-white text-center tracking-wider font-bold">
-        {userDatas?.name ?? "Default Name"}
+        {userDatas?.User?.name ?? "Default Name"}
       </h1>
+      <span className="text-white text-center text-xs tracking-wider">
+        {userDatas?.User?.email}
+      </span>
 
       {/* //todo action buttons */}
       <div className="grid grid-cols-2 gap-2">
@@ -294,9 +300,10 @@ function ChatUserDetails() {
 
       {/* //todo media */}
       <div className="grid gap-1">
-        {AccordionItems.map((values) => {
+        {AccordionItems.map((values, index) => {
           return (
             <Accordion
+              key={index + 1}
               header={values.name}
               openByDefault={values.openDefault}
               icon={{
@@ -311,8 +318,9 @@ function ChatUserDetails() {
                     {values.children.map((values2) => {
                       return (
                         <Colorpallets
+                          key={values2.name}
                           size={50}
-                          currentThemeName={userDatas?.theme?.name}
+                          currentThemeName={userDatas?.User?.theme}
                           items={values2}
                         />
                       )

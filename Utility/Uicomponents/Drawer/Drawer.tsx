@@ -31,6 +31,7 @@ function Drawer({ children, handleCloseDrawer }: any) {
       let response = await CreateUser(userData)
       response && mutate("/api/user")
       response && handleCloseDrawer()
+      response && reset()
     }
   }
   return (
@@ -38,7 +39,7 @@ function Drawer({ children, handleCloseDrawer }: any) {
       {children}
       <div
         id="drawerContainer"
-        className="bg-white/20 backdrop-blur-sm fixed bottom-0 left-0 right-0 h-full z-10 opacity-0 hidden items-end overflow-hidden "
+        className="bg-black/20 backdrop-blur-sm fixed bottom-0 left-0 right-0 h-full z-10 opacity-0 hidden items-end overflow-hidden "
       >
         {/* //todo form */}
         <div
