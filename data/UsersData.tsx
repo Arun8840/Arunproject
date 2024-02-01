@@ -1,13 +1,12 @@
-import { UsersTypes } from "@/model/SocialAppTypes"
 
 function useGetUsersData() {
-  let UsersData: UsersTypes[] = [
+  let UsersData: any[] = [
     {
       name: "John Doe",
       image: "",
       activeOn: "4m",
       isPinned: true,
-      theme:{
+      theme: {
         name: "Dune",
         themeName: "Frank Herbert",
         primary: "#F9A825",
@@ -34,7 +33,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2m",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -42,7 +41,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "6m",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -50,7 +49,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2m",
       isPinned: true,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -58,7 +57,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "10m",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: false,
     },
     {
@@ -66,7 +65,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "3m",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -74,7 +73,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "6m",
       isPinned: true,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -82,7 +81,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "2h",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: false,
     },
     {
@@ -90,7 +89,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "20m",
       isPinned: false,
-      theme:{},
+      theme: {},
       notification: true,
     },
     {
@@ -98,7 +97,7 @@ function useGetUsersData() {
       image: "",
       activeOn: "1h",
       isPinned: true,
-      theme:{},
+      theme: {},
       notification: true,
     },
   ]
