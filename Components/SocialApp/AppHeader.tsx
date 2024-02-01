@@ -33,7 +33,7 @@ function AppHeader() {
 
   useEffect(() => {
     loggedUser(UserID)
-  }, [])
+  }, [UserID,loggedUser])
   return (
     <nav
       className={`text-white bg-[#27272a]/50 p-1 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className} rounded-lg`}

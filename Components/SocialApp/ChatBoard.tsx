@@ -87,10 +87,11 @@ function ChatBoard() {
       <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
         {/* //todo recived message */}
 
-        {Messages?.projectMessages?.map((values: any) => {
+        {Messages?.projectMessages?.map((values: any, index: number) => {
           let isSendedMessage = values?.fromSelf
           return (
             <div
+              key={index + 1}
               className={`flex ${
                 isSendedMessage ? "justify-end" : "justify-start"
               } tracking-wider text-sm`}
