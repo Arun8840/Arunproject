@@ -1,7 +1,6 @@
 import { SocialappStore } from "@/Store/SocialappStore"
 import Input from "@/Utility/components/Input"
 import { AttachIcon, SendIcon, Trash } from "@/Utility/icons/icons"
-import { host } from "@/app/api/socialapp/route"
 import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
 import React, { useEffect, useRef } from "react"
