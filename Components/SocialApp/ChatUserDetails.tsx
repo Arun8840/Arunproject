@@ -235,6 +235,7 @@ function ChatUserDetails() {
     let response = await DeleteUser(userDatas?.User?._id)
     response && mutate("/api/user")
   }
+
   return (
     <div
       className={`bg-[#27272a]/50 rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
@@ -254,7 +255,7 @@ function ChatUserDetails() {
         className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative overflow-hidden"
       >
         <Image
-          src={`https://robohash.org/${userDatas?.profileImageID}`}
+          src={`https://robohash.org/${userDatas?.User?.profileImage}`}
           alt="profile image"
           className="w-full h-full object-contain"
           width={200}
@@ -275,6 +276,9 @@ function ChatUserDetails() {
       </h1>
       <span className="text-white text-center text-xs tracking-wider">
         {userDatas?.User?.email}
+      </span>
+      <span className="text-white text-center text-xs tracking-wider">
+        {userDatas?.User?.description}
       </span>
 
       {/* //todo action buttons */}

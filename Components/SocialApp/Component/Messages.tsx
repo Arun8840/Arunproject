@@ -1,3 +1,4 @@
+"use client"
 import { AddIcon, PriorityIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
@@ -106,9 +107,9 @@ function Messages() {
                     <div
                       className={`w-[45px] h-[45px] bg-yellow-50 rounded grid place-items-center`}
                     >
-                      {!items?.profileImage ? (
+                      {items?.profileImage ? (
                         <Image
-                          src={`https://robohash.org/${index + 1}`}
+                          src={`https://robohash.org/${items?.profileImage}`}
                           alt="profile image"
                           className="w-full h-full object-contain"
                           width={500}

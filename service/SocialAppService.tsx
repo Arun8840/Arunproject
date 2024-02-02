@@ -1,6 +1,19 @@
 import axios from "axios"
 
 const getSocialAppServices = () => {
+  // todo login
+  const loginUser = async (credentials: any) => {
+    let response = await axios.post(
+      "http://localhost:3000/api/login",
+      credentials
+    )
+    if (response?.data?.status) {
+      return response
+    } else {
+      return response
+    }
+  }
+
   const loadAllUser = async () => {
     let response = await axios.get("http://localhost:3000/api/socialapp")
     if (response) {
@@ -63,6 +76,7 @@ const getSocialAppServices = () => {
     DeleteUser,
     sendMessage,
     loadAllMessages,
+    loginUser,
   }
 }
 

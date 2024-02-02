@@ -1,6 +1,7 @@
 "use client"
 import RenderWrapper from "@/Components/SocialApp/RenderWrapper"
 import dynamic from "next/dynamic"
+import { cookies } from "next/headers"
 import { useSearchParams } from "next/navigation"
 
 export default function Home() {

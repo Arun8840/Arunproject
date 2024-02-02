@@ -4,12 +4,14 @@ import { NextResponse } from "next/server"
 
 // todo create
 export async function POST(request) {
-  const { name, email, profileImage, theme, description } = await request.json()
+  const { name, email, profileImage, theme, password, description } =
+    await request.json()
   await connectMongoDB()
 
   await Users.create({
     name,
     email,
+    password,
     profileImage,
     description,
     theme,

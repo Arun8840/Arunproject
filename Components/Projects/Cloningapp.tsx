@@ -1,12 +1,11 @@
 "use client"
-import { SocialappStore } from "@/Store/SocialappStore"
 import Button from "@/Utility/components/Button"
 import Input from "@/Utility/components/Input"
-import { UsersTypes } from "@/model/SocialAppTypes"
+import getSocialAppServices from "@/service/SocialAppService"
 import { useRouter } from "next/navigation"
 import React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import useSWR from "swr"
+import { handleLogin } from "@/app/action"
 
 interface FormTypes {
   email: string
@@ -19,32 +18,22 @@ function Cloningapp() {
     formState: { errors },
   } = useForm<FormTypes>()
   const router = useRouter()
-  const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
-
-  // todo loading all users
-  const fetcher = async () => {
-    let res: UsersTypes[] = await loadAllUserData()
-    return res
-  }
-  const {
-    data: AllUsers,
-    error,
-    isLoading,
-  } = useSWR("/api/user", fetcher, {
-    revalidateOnFocus: false,
-  })
+  const { loginUser } = getSocialAppServices()
   // todo handle login
-  const onSubmit: SubmitHandler<FormTypes> = (data) => {
-    const foundUser = AllUsers?.find((user) => user?.email === data?.email)
-    if (
-      data &&
-      foundUser?.email === data?.email &&
-      data?.password === "arun123!"
-    ) {
-      router.push(`/socialapp/?id=${foundUser?._id}&tab=Messages`)
+  const onSubmit: SubmitHandler<FormTypes> = async (data) => {
+    if (data) {
+      let response = await loginUser(data)
+      if (response?.data?.status) {
+        let value = JSON.stringify(response?.data?.userData)
+        handleLogin(value)
+        await router.push(
+          `/socialapp/?id=${response?.data?.userData?.id}&tab=Messages`
+        )
+      } else {
+        alert(response?.data?.message)
+      }
     }
   }
-
   return (
     <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
       <div className=" p-2 rounded-lg max-w-[400px] w-full">
