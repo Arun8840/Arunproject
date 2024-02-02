@@ -32,11 +32,11 @@ function ChatBoard() {
         from: CurrentUser?.User?._id,
         to: SelectedUser?.User?._id,
       }
-      socket.current.emit("send-msg", {
-        from: CurrentUser?.User?._id,
-        to: SelectedUser?.User?._id,
-        message: data?.message,
-      })
+      // socket.current.emit("send-msg", {
+      //   from: CurrentUser?.User?._id,
+      //   to: SelectedUser?.User?._id,
+      //   message: data?.message,
+      // })
 
       let response = await sendMessage(messageData)
       response && mutate(`/api/load-messages/${SelectedUser?.User?._id}`)
