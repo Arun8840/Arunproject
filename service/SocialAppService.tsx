@@ -14,6 +14,7 @@ const getSocialAppServices = () => {
     }
   }
 
+
   const loadAllUser = async () => {
     let response = await axios.get("http://localhost:3000/api/socialapp")
     if (response) {

@@ -1,4 +1,5 @@
 import React from "react"
+import { Eyeclose, Eyeopen } from "../icons/icons"
 
 interface InputTypes {
   name?: string
@@ -9,6 +10,7 @@ interface InputTypes {
   register?: any
   className?: string
   pattern?: string | any
+  handleShowPass?: () => void
 }
 function Input(props: InputTypes) {
   // todo props items
@@ -21,10 +23,11 @@ function Input(props: InputTypes) {
     className,
     register,
     pattern,
+    handleShowPass,
   } = props
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <input
         className={className}
         type={type}
@@ -41,6 +44,27 @@ function Input(props: InputTypes) {
           },
         })}
       />
+      {name === "password" && (
+        <>
+          {type === "password" ? (
+            <button
+              type="button"
+              onClick={() => handleShowPass && handleShowPass()}
+              className="absolute top-3 right-3"
+            >
+              <Eyeclose width={15} className="text-pink-600" />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => handleShowPass && handleShowPass()}
+              className="absolute top-3 right-3"
+            >
+              <Eyeopen width={15} className="text-pink-600" />
+            </button>
+          )}
+        </>
+      )}
     </div>
   )
 }
