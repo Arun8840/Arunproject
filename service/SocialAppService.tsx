@@ -2,10 +2,16 @@ import axios from "axios"
 
 const getSocialAppServices = () => {
   // todo login
+  const headers = {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    // Add any other headers as needed
+  }
   const loginUser = async (credentials: any) => {
     let response = await axios.post(
       "http://localhost:3000/api/login",
-      credentials
+      credentials,
+      { headers }
     )
     if (response?.data?.status) {
       return response
@@ -13,7 +19,6 @@ const getSocialAppServices = () => {
       return response
     }
   }
-
 
   const loadAllUser = async () => {
     let response = await axios.get("http://localhost:3000/api/socialapp")
