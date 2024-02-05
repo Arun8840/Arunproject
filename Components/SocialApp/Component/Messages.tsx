@@ -1,16 +1,14 @@
 "use client"
-import { AddIcon, PriorityIcon } from "@/Utility/icons/icons"
+import { AddIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
 import React from "react"
 import ChatBoard from "../ChatBoard"
 import ChatUserDetails from "../ChatUserDetails"
 import { SocialappStore } from "@/Store/SocialappStore"
-import getSocialAppServices from "@/service/SocialAppService"
 import useSWR from "swr"
 import Drawer from "@/Utility/Uicomponents/Drawer/Drawer"
 import gsap, { Power3 } from "gsap"
-import { useSearchParams } from "next/navigation"
 
 interface UsersTypes {
   _id: string
@@ -29,6 +27,7 @@ function Messages() {
   // todo action
   const selected = SocialappStore((state: any) => state.loadParticularUser)
   const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
+  const loggedUser = SocialappStore((state: any) => state.LoggedUser)
 
   // todo loading all users
   const fetcher = async () => {
@@ -75,6 +74,9 @@ function Messages() {
       ease: Power3.easeInOut,
     })
   }
+
+  // todo filterd user data lists
+  let Userlist = data?.filter((items) => items?._id !== loggedUser?.User?._id)
   return (
     <Drawer handleCloseDrawer={handleCloseDrawer}>
       <div
@@ -96,8 +98,8 @@ function Messages() {
         </div>
         {!isLoading && (
           <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
-            {data &&
-              data?.map((items, index: number) => {
+            {Userlist &&
+              Userlist?.map((items, index: number) => {
                 return (
                   <li
                     onClick={() => handleSelecteUser(items, index + 1)}
@@ -126,15 +128,8 @@ function Messages() {
                         <h1 className="text-white text-xs lg:text-sm tracking-wide">
                           {items?.name}
                         </h1>
-                        {/* <small className="text-slate-500">{items?.activeOn}</small> */}
                       </div>
                       <div className="flex items-center justify-end gap-2">
-                        {/* {items?.isPinned && (
-                      <PriorityIcon
-                        width={18}
-                        className="text-pink-600 rotate-45"
-                      />
-                    )} */}
                         <small className="text-white rounded bg-red-500 text-sm w-[20px] h-[20px] grid place-items-center">
                           3
                         </small>

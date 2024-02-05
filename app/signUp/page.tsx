@@ -14,6 +14,7 @@ interface FormTypes {
   profileImage: number
 }
 function signUp() {
+  const [isShowPass, setpass] = useState(false)
   const {
     register,
     handleSubmit,
@@ -30,7 +31,6 @@ function signUp() {
     if (data) {
       let newUserData = { ...data, profileImage: selectedProfile }
       let response = await CreateUser(newUserData)
-      console.log(response)
       response?.data?.status && router.push(`/projects/Cloningapp`)
     }
   }
@@ -108,8 +108,11 @@ function signUp() {
             name="password"
             className={`border ${
               errors?.password?.message ? "border-red-500" : "border-[#27272a]"
-            } rounded-lg p-2 outline-none  bg-inherit w-full`}
-            type="password"
+            } rounded-lg p-2 outline-none  bg-inherit w-full ${
+              isShowPass ? "text-white" : "text-pink-600"
+            }`}
+            type={isShowPass ? "text" : "password"}
+            handleShowPass={() => setpass(!isShowPass)}
           />
 
           <div className="pt-5 grid grid-cols-2  gap-2">

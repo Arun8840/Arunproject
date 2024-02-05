@@ -3,6 +3,7 @@ import Input from "@/Utility/components/Input"
 import { AttachIcon, SendIcon, Trash } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
+import { cookies } from "next/headers"
 import React, { useEffect, useRef } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { io } from "socket.io-client"
@@ -13,40 +14,43 @@ interface formTypes {
 }
 function ChatBoard() {
   const { ContentFont } = useGetFonts()
+  const LoggedUser = SocialappStore((state: any) => state.LoggedUser)
   const socket: any = useRef()
   const { loadAllMessages } = getSocialAppServices()
+  const { sendMessage } = getSocialAppServices()
+
+  // todo form state
   const {
     register,
     handleSubmit,
     reset,
-    setValue,
     formState: { errors },
   } = useForm<formTypes>()
-  const { sendMessage } = getSocialAppServices()
-  const CurrentUser = SocialappStore((state: any) => state.LoggedUser)
+  // const CurrentUser = SocialappStore((state: any) => state.LoggedUser)
   const SelectedUser = SocialappStore((state: any) => state.UserDetails)
+  // todo send message action
   const onSubmit: SubmitHandler<formTypes> = async (data) => {
     if (data) {
       let messageData = {
         ...data,
-        from: CurrentUser?.User?._id,
+        from: LoggedUser?.User?._id,
         to: SelectedUser?.User?._id,
       }
-      // socket.current.emit("send-msg", {
-      //   from: CurrentUser?.User?._id,
-      //   to: SelectedUser?.User?._id,
-      //   message: data?.message,
-      // })
+      socket.current.emit("send-msg", {
+        from: LoggedUser?.User?._id,
+        to: SelectedUser?.User?._id,
+        message: data?.message,
+      })
 
       let response = await sendMessage(messageData)
-      response && mutate(`/api/load-messages/${SelectedUser?.User?._id}`)
+      response && reset()
     }
   }
 
   // todo loading all users
   const fetcher = async () => {
     let MessagesData = {
-      from: CurrentUser?.User?._id,
+      from: LoggedUser?.User?._id,
       to: SelectedUser?.User?._id,
     }
     let res: any = await loadAllMessages(MessagesData)
@@ -66,17 +70,16 @@ function ChatBoard() {
     }
   )
 
-  // useEffect(() => {
-  //   if (CurrentUser) {
-  //     socket.current = io(host)
-  //     socket.current.emit("add-user", CurrentUser?.User?._id)
-  //   }
-  //   if (socket.current) {
-  //     socket.current.on("msg-recive", (msg: any) => {
-  //       console.log(msg)
-  //     })
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (LoggedUser?.User?._id) {
+      socket.current = io("http://localhost:5001")
+      socket.current.emit("add-user", LoggedUser?.User?._id)
+    }
+    if (socket.current) {
+      socket.current.on("msg-recive", (msg: any) => {
+      })
+    }
+  }, [])
 
   return (
     <div

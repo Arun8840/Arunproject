@@ -26,8 +26,9 @@ function Cloningapp() {
       let response = await loginUser(data)
       if (response?.data?.status) {
         let value = JSON.stringify(response?.data?.userData)
-        handleLogin(value)
-        await router.push(
+        await handleLogin(value)
+
+        router.push(
           `/socialapp/?id=${response?.data?.userData?.id}&tab=Messages`
         )
       } else {

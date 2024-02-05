@@ -1,9 +1,10 @@
 "use client"
+import { SocialappStore } from "@/Store/SocialappStore"
 import { DarkIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
-import React from "react"
+import React, { memo, useEffect } from "react"
 
 function AppHeader({ loggedUserData }: any) {
   const { ContentFont } = useGetFonts()
@@ -11,10 +12,18 @@ function AppHeader({ loggedUserData }: any) {
   const router: any = useRouter()
   let isActiveTab = tab.get("tab")
   let tabItems: string[] = ["Messages", "Dashboard", "Status", "Settings"]
-
+  const loadingLoggedUser = SocialappStore((state: any) => state.loadloggedUser)
   const handleChangeTab = (tabValue: string) => {
     router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
   }
+
+  const setLoggedUser = async () => {
+    await loadingLoggedUser(loggedUserData?.id)
+  }
+  useEffect(() => {
+    setLoggedUser()
+  }, [])
+
   return (
     <nav
       className={`text-white bg-[#27272a]/50 p-1 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className} rounded-lg`}
@@ -66,4 +75,4 @@ function AppHeader({ loggedUserData }: any) {
   )
 }
 
-export default AppHeader
+export default memo(AppHeader)
