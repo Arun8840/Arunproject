@@ -11,11 +11,12 @@ const io = require("socket.io")(httpServer, {
   },
 })
 
+// Enable CORS for all routes
 app.use(cors())
-
+let mongoURL: any = process.env.MONGO_URI
 const connectMongoDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect(mongoURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
@@ -34,7 +35,7 @@ const connectMongoDB = async () => {
         global.onlineUsers.set(userId, socket.id)
       })
 
-      socket.on("send-msg", (data) => {
+      socket.on("send-msg", (data:any) => {
         const sendUserSocket = global.onlineUsers.get(data.message)
         if (sendUserSocket) {
           io.to(sendUserSocket).emit("msg-receive", data.message)
