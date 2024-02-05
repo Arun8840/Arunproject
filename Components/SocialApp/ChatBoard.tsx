@@ -76,10 +76,9 @@ function ChatBoard() {
       socket.current.emit("add-user", LoggedUser?.User?._id)
     }
     if (socket.current) {
-      socket.current.on("msg-recive", (msg: any) => {
-      })
+      socket.current.on("msg-recive", (msg: any) => {})
     }
-  }, [])
+  }, [LoggedUser?.User?._id])
 
   return (
     <div

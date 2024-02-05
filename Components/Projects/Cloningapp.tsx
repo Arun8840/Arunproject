@@ -96,7 +96,7 @@ function Cloningapp() {
               className="bg-pink-600 rounded-lg py-2 hover:shadow-lg hover:shadow-pink-600/40 transition-shadow duration-200"
             />
             <span className="col-span-2 py-2 text-center text-xs">
-              Dont't have account ?
+              Dont&lsquo; have account ?
             </span>
             <Button
               onClick={() => router.push("/signUp")}

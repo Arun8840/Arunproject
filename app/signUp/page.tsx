@@ -13,27 +13,30 @@ interface FormTypes {
   theme: any
   profileImage: number
 }
-function signUp() {
-  const [isShowPass, setpass] = useState(false)
+function SignUp() {
+  const [isShowPass, setPass] = useState(false)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormTypes>()
-  const [selectedProfile, setprofile] = useState(0)
+  const [selectedProfile, setProfile] = useState(0)
   const router = useRouter()
   const { CreateUser } = getSocialAppServices()
+
   // todo handle login
-  const selectprofile = (profileID: number) => {
-    setprofile(profileID)
+  const selectProfile = (profileID: number) => {
+    setProfile(profileID)
   }
-  const onSubmit: SubmitHandler<FormTypes> = async (data) => {
+
+  const handleSignUp: SubmitHandler<FormTypes> = async (data) => {
     if (data) {
       let newUserData = { ...data, profileImage: selectedProfile }
       let response = await CreateUser(newUserData)
       response?.data?.status && router.push(`/projects/Cloningapp`)
     }
   }
+
   return (
     <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
       <div className=" p-2 rounded-lg max-w-[400px] w-full">
@@ -44,7 +47,7 @@ function signUp() {
           {Array.from({ length: 8 }).map((item, index) => {
             return (
               <li
-                onClick={() => selectprofile(index + 1)}
+                onClick={() => selectProfile(index + 1)}
                 key={index + 1}
                 className="w-[80px] h-[80px] border border-stone-600 rounded-full overflow-hidden cursor-pointer hover:bg-stone-900 transition-colors duration-150"
               >
@@ -60,7 +63,7 @@ function signUp() {
           })}
         </ul>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(handleSignUp)}
           className="w-full h-full rounded text-white"
         >
           <label htmlFor="name" className="py-3 block">
@@ -112,7 +115,7 @@ function signUp() {
               isShowPass ? "text-white" : "text-pink-600"
             }`}
             type={isShowPass ? "text" : "password"}
-            handleShowPass={() => setpass(!isShowPass)}
+            handleShowPass={() => setPass(!isShowPass)}
           />
 
           <div className="pt-5 grid grid-cols-2  gap-2">
@@ -134,4 +137,4 @@ function signUp() {
   )
 }
 
-export default signUp
+export default SignUp

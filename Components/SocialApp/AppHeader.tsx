@@ -4,7 +4,7 @@ import { DarkIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
-import React, { memo, useEffect } from "react"
+import React, { memo, useCallback, useEffect } from "react"
 
 function AppHeader({ loggedUserData }: any) {
   const { ContentFont } = useGetFonts()
@@ -13,16 +13,18 @@ function AppHeader({ loggedUserData }: any) {
   let isActiveTab = tab.get("tab")
   let tabItems: string[] = ["Messages", "Dashboard", "Status", "Settings"]
   const loadingLoggedUser = SocialappStore((state: any) => state.loadloggedUser)
+
   const handleChangeTab = (tabValue: string) => {
     router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
   }
 
-  const setLoggedUser = async () => {
+  const setLoggedUser = useCallback(async () => {
     await loadingLoggedUser(loggedUserData?.id)
-  }
+  }, [loadingLoggedUser, loggedUserData])
+
   useEffect(() => {
     setLoggedUser()
-  }, [])
+  }, [setLoggedUser])
 
   return (
     <nav
