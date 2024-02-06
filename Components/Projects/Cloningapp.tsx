@@ -17,7 +17,11 @@ function Cloningapp() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormTypes>()
+  } = useForm<FormTypes>({
+    defaultValues: {
+      password: "arun123$",
+    },
+  })
   const router = useRouter()
   const { loginUser } = getSocialAppServices()
   // todo handle login
@@ -25,12 +29,10 @@ function Cloningapp() {
     if (data) {
       let response = await loginUser(data)
       if (response?.data?.status) {
-        let value = JSON.stringify(response?.data?.userData)
+        let value = JSON.stringify(response?.data?.user)
         await handleLogin(value)
 
-        router.push(
-          `/socialapp/?id=${response?.data?.userData?.id}&tab=Messages`
-        )
+        router.push(`/socialapp/?id=${response?.data?.user?.id}&tab=Messages`)
       } else {
         alert(response?.data?.message)
       }

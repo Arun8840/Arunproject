@@ -24,23 +24,23 @@ interface UsersTypes {
 function Messages() {
   const { ContentFont } = useGetFonts()
 
-  // todo action
-  const selected = SocialappStore((state: any) => state.loadParticularUser)
-  const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
-  const loggedUser = SocialappStore((state: any) => state.LoggedUser)
+  // // todo action
+  // const selected = SocialappStore((state: any) => state.loadParticularUser)
+  // const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
+  // const loggedUser = SocialappStore((state: any) => state.LoggedUser)
 
-  // todo loading all users
-  const fetcher = async () => {
-    let res: UsersTypes[] = await loadAllUserData()
-    return res
-  }
-  const { data, error, isLoading } = useSWR("/api/user", fetcher, {
-    revalidateOnFocus: false,
-  })
+  // // todo loading all users
+  // const fetcher = async () => {
+  //   let res: UsersTypes[] = await loadAllUserData()
+  //   return res
+  // }
+  // const { data, error, isLoading } = useSWR("/api/user", fetcher, {
+  //   revalidateOnFocus: false,
+  // })
 
-  const handleSelecteUser = (user: UsersTypes, profileImageID: number) => {
-    selected(user?._id, profileImageID)
-  }
+  // const handleSelecteUser = (user: UsersTypes, profileImageID: number) => {
+  //   selected(user?._id, profileImageID)
+  // }
 
   const handleOpenDrawer = () => {
     let tl = gsap.timeline({ paused: false })
@@ -76,7 +76,8 @@ function Messages() {
   }
 
   // todo filterd user data lists
-  let Userlist = data?.filter((items) => items?._id !== loggedUser?.User?._id)
+  // let Userlist = data?.filter((items) => items?._id !== loggedUser?.User?._id)
+  // console.log(loggedUser)
   return (
     <Drawer handleCloseDrawer={handleCloseDrawer}>
       <div
@@ -96,7 +97,7 @@ function Messages() {
             <AddIcon width={20} className="text-white" />
           </button>
         </div>
-        {!isLoading && (
+        {/* {!isLoading && (
           <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
             {Userlist &&
               Userlist?.map((items, index: number) => {
@@ -139,7 +140,7 @@ function Messages() {
                 )
               })}
           </ul>
-        )}
+        )} */}
       </div>
 
       <ChatBoard />

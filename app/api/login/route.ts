@@ -1,13 +1,11 @@
 import connectMongoDB from "@/lib/mongodb"
 import Users from "@/model/SocialSchema"
 import { NextResponse } from "next/server"
-
-// todo create
-export async function POST(request: any) {
-  const { email, password } = await request.json()
+import bcrypt from "bcryptjs"
+export async function POST(req: any) {
+  const { email, password } = await req.json()
   await connectMongoDB()
-  const user = await Users.findOne({ email, password })
-
+  const user = await Users.findOne({ email })
   //   res data
   let userData = {
     name: user?.name,
@@ -19,12 +17,16 @@ export async function POST(request: any) {
     theme: user?.theme,
     profileImage: user?.profileImage,
   }
-  if (user) {
+  const encryptPassword: boolean | any = await bcrypt.compare(
+    password,
+    user?.password
+  )
+  if (user && encryptPassword) {
     return NextResponse.json(
       {
         message: `User ${email} logged Successfully !!`,
         status: true,
-        userData,
+        user: userData,
       },
       { status: 200 }
     )

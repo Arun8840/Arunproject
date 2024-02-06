@@ -12,9 +12,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@splinetool/react-spline": "^2.2.6",
-    "@splinetool/runtime": "^1.0.17",
     "axios": "^1.6.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "emoji-picker-react": "^4.7.12",
@@ -22,6 +21,7 @@
     "gsap": "^3.12.4",
     "mongoose": "^8.1.1",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
@@ -33,6 +33,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^4.17.21",
     "@types/node": "^20",
     "@types/react": "^18",

@@ -2,6 +2,7 @@
 import { SocialappStore } from "@/Store/SocialappStore"
 import { DarkIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
+import { signOut } from "next-auth/react"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
 import React, { memo, useCallback, useEffect } from "react"
@@ -54,9 +55,12 @@ function AppHeader({ loggedUserData }: any) {
       </ul>
 
       <div className="flex justify-end items-center gap-x-2">
-        {/* <button className="bg-[#27272a] rounded-lg px-2 py-1 text-sm tracking-wide">
+        <button
+          onClick={() => signOut()}
+          className="bg-[#27272a] rounded-lg px-2 py-1 text-sm tracking-wide"
+        >
           Logout
-        </button> */}
+        </button>
         <button className=" p-1">
           <DarkIcon width={20} className="text-white" />
         </button>

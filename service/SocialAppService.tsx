@@ -29,7 +29,7 @@ const getSocialAppServices = () => {
 
   const loadUser = async (userID: string) => {
     let response = await axios.get(
-      `http://localhost:3000/api/socialapp/${userID}`
+      `http://localhost:3000/api/users?id=${userID}`
     )
     if (response) {
       return response?.data?.data
@@ -38,7 +38,7 @@ const getSocialAppServices = () => {
 
   const CreateUser = async (userData: any) => {
     let response = await axios.post(
-      "http://localhost:3000/api/socialapp",
+      "http://localhost:3000/api/register",
       userData
     )
     if (response) {
