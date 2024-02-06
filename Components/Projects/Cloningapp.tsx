@@ -1,18 +1,18 @@
-"use client"
-import Button from "@/Utility/components/Button"
-import Input from "@/Utility/components/Input"
-import getSocialAppServices from "@/service/SocialAppService"
-import { useRouter } from "next/navigation"
-import React, { useState } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { handleLogin } from "@/app/action"
+"use client";
+import Button from "@/Utility/components/Button";
+import Input from "@/Utility/components/Input";
+import getSocialAppServices from "@/service/SocialAppService";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { handleLogin } from "@/app/action";
 
 interface FormTypes {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 function Cloningapp() {
-  const [isShowPass, setpass] = useState(false)
+  const [isShowPass, setpass] = useState(false);
   const {
     register,
     handleSubmit,
@@ -21,23 +21,24 @@ function Cloningapp() {
     defaultValues: {
       password: "arun123$",
     },
-  })
-  const router = useRouter()
-  const { loginUser } = getSocialAppServices()
+  });
+  const router = useRouter();
+  const { loginUser } = getSocialAppServices();
   // todo handle login
   const onSubmit: SubmitHandler<FormTypes> = async (data) => {
     if (data) {
-      let response = await loginUser(data)
+      let response = await loginUser(data);
       if (response?.data?.status) {
-        let value = JSON.stringify(response?.data?.user)
-        await handleLogin(value)
+        console.log(response?.data?.user?._id);
+        let value = JSON.stringify(response?.data?.user);
+        await handleLogin(value);
 
-        router.push(`/socialapp/?id=${response?.data?.user?.id}&tab=Messages`)
+        router.push(`/socialapp/?id=${response?.data?.user?._id}&tab=Messages`);
       } else {
-        alert(response?.data?.message)
+        alert(response?.data?.message);
       }
     }
-  }
+  };
   return (
     <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
       <div className=" p-2 rounded-lg max-w-[400px] w-full">
@@ -110,7 +111,7 @@ function Cloningapp() {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Cloningapp
+export default Cloningapp;

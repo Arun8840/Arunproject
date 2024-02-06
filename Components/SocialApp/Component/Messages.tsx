@@ -1,83 +1,75 @@
-"use client"
-import { AddIcon } from "@/Utility/icons/icons"
-import useGetFonts from "@/font/fonts"
-import Image from "next/image"
-import React from "react"
-import ChatBoard from "../ChatBoard"
-import ChatUserDetails from "../ChatUserDetails"
-import { SocialappStore } from "@/Store/SocialappStore"
-import useSWR from "swr"
-import Drawer from "@/Utility/Uicomponents/Drawer/Drawer"
-import gsap, { Power3 } from "gsap"
+"use client";
+import { AddIcon } from "@/Utility/icons/icons";
+import useGetFonts from "@/font/fonts";
+import Image from "next/image";
+import React from "react";
+import ChatBoard from "../ChatBoard";
+import ChatUserDetails from "../ChatUserDetails";
+import { SocialappStore } from "@/Store/SocialappStore";
+import useSWR from "swr";
+import Drawer from "@/Utility/Uicomponents/Drawer/Drawer";
+import gsap, { Power3 } from "gsap";
+import getSocialAppServices from "@/service/SocialAppService";
+import { useSearchParams } from "next/navigation";
 
 interface UsersTypes {
-  _id: string
-  name: string
-  email: string
-  profileImage: string
-  description: string
-  theme: string
-  createdAt: string
-  updatedAt: string
-  __v: 0
+  _id: string;
+  name: string;
+  email: string;
+  profileImage: string;
+  description: string;
+  theme: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: 0;
 }
 function Messages() {
-  const { ContentFont } = useGetFonts()
-
-  // // todo action
-  // const selected = SocialappStore((state: any) => state.loadParticularUser)
-  // const loadAllUserData = SocialappStore((state: any) => state.loadAllUsers)
-  // const loggedUser = SocialappStore((state: any) => state.LoggedUser)
-
-  // // todo loading all users
-  // const fetcher = async () => {
-  //   let res: UsersTypes[] = await loadAllUserData()
-  //   return res
-  // }
-  // const { data, error, isLoading } = useSWR("/api/user", fetcher, {
-  //   revalidateOnFocus: false,
-  // })
-
-  // const handleSelecteUser = (user: UsersTypes, profileImageID: number) => {
-  //   selected(user?._id, profileImageID)
-  // }
+  const { ContentFont } = useGetFonts();
+  const { loadUserFriends } = getSocialAppServices();
+  const router = useSearchParams();
+  const userID: string | any = router.get("id");
+  // todo loading all users
+  const fetcher = async () => {
+    let res: UsersTypes[] = await loadUserFriends(userID);
+    return res;
+  };
+  const { data, error, isLoading } = useSWR("/api/user-friends", fetcher, {
+    revalidateOnFocus: false,
+  });
 
   const handleOpenDrawer = () => {
-    let tl = gsap.timeline({ paused: false })
+    let tl = gsap.timeline({ paused: false });
 
     tl.to("#drawerContainer", {
       opacity: 1,
       display: "flex",
       duration: 0.2,
       ease: Power3.easeInOut,
-    })
+    });
 
     tl.to("#drawerForm", {
       opacity: 1,
       y: 0,
       duration: 0.2,
       ease: Power3.easeInOut,
-    })
-  }
+    });
+  };
   const handleCloseDrawer = () => {
-    let tl = gsap.timeline({ paused: false })
+    let tl = gsap.timeline({ paused: false });
     tl.to("#drawerForm", {
       opacity: 0,
       y: "100%",
       duration: 0.2,
       ease: Power3.easeInOut,
-    })
+    });
     tl.to("#drawerContainer", {
       opacity: 0,
       display: "none",
       duration: 0.2,
       ease: Power3.easeInOut,
-    })
-  }
+    });
+  };
 
-  // todo filterd user data lists
-  // let Userlist = data?.filter((items) => items?._id !== loggedUser?.User?._id)
-  // console.log(loggedUser)
   return (
     <Drawer handleCloseDrawer={handleCloseDrawer}>
       <div
@@ -97,13 +89,13 @@ function Messages() {
             <AddIcon width={20} className="text-white" />
           </button>
         </div>
-        {/* {!isLoading && (
+        {!isLoading && (
           <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
-            {Userlist &&
-              Userlist?.map((items, index: number) => {
+            {data &&
+              data?.map((items, index: number) => {
                 return (
                   <li
-                    onClick={() => handleSelecteUser(items, index + 1)}
+                    // onClick={() => handleSelecteUser(items, index + 1)}
                     key={items?.name}
                     className=" p-1 flex gap-2 cursor-pointer bg-[#27272a] rounded-lg"
                   >
@@ -137,16 +129,16 @@ function Messages() {
                       </div>
                     </div>
                   </li>
-                )
+                );
               })}
           </ul>
-        )} */}
+        )}
       </div>
 
       <ChatBoard />
       <ChatUserDetails />
     </Drawer>
-  )
+  );
 }
 
-export default Messages
+export default Messages;
