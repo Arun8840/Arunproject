@@ -28,7 +28,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/api/Message/route.js",
-    "lib/mongodb.js"
+    "lib/mongodb.ts"
   ],
   "exclude": ["node_modules"]
 }

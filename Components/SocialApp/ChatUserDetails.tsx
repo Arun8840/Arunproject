@@ -227,7 +227,7 @@ function ChatUserDetails() {
           footerFontColor: "#FFFFFF",
         },
       ],
-      openDefault: true,
+      openDefault: false,
     },
   ]
 

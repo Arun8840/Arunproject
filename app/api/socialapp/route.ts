@@ -1,9 +1,9 @@
+import connectMongoDB from "@/lib/mongodb"
 import Users from "@/model/SocialSchema"
-import connectMongoDB from "../../../lib/mongodb"
 import { NextResponse } from "next/server"
 
 // todo create
-export async function POST(request) {
+export async function POST(request: any) {
   const { name, email, profileImage, theme, password, description } =
     await request.json()
   await connectMongoDB()
@@ -27,7 +27,7 @@ export async function POST(request) {
 }
 
 // todo delete
-export async function DELETE(request) {
+export async function DELETE(request: any) {
   const id = request.nextUrl.searchParams.get("id")
   await connectMongoDB()
   await Users.findByIdAndDelete(id)
@@ -39,7 +39,6 @@ export async function DELETE(request) {
 // todo load
 export async function GET() {
   await connectMongoDB()
-
   const allUsers = await Users.find()
   return NextResponse.json({ allUsers })
 }

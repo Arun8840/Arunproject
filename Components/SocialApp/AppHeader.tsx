@@ -28,7 +28,7 @@ function AppHeader({ loggedUserData }: any) {
 
   return (
     <nav
-      className={`text-white bg-[#27272a]/50 p-1 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className} rounded-lg`}
+      className={`text-white bg-[#27272a]/50 p-1 col-span-12 flex justify-between items-center gap-2 ${ContentFont.className} rounded-full`}
     >
       <ul className="flex  items-center gap-1 tracking-wide text-sm capitalize p-1">
         {tabItems.map((items) => {
@@ -37,12 +37,15 @@ function AppHeader({ loggedUserData }: any) {
             <li
               style={
                 setactive
-                  ? { backgroundColor: loggedUserData?.theme?.primary }
+                  ? {
+                      backgroundColor: loggedUserData?.theme?.primary,
+                      color: "black",
+                    }
                   : {}
               }
               key={items}
               onClick={() => handleChangeTab(items)}
-              className={`p-2 rounded-lg cursor-pointer`}
+              className={`p-2 rounded-full cursor-pointer`}
             >
               {items}
             </li>
@@ -61,7 +64,7 @@ function AppHeader({ loggedUserData }: any) {
         <button
           title={loggedUserData?.email}
           style={{ backgroundColor: loggedUserData?.theme?.primary }}
-          className="rounded overflow-hidden w-10 h-10 text-sm tracking-wide uppercase"
+          className="rounded-full overflow-hidden w-10 h-10 text-sm tracking-wide uppercase"
         >
           {/* {data?.User?.name[0]} */}
           <Image

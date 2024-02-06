@@ -1,6 +1,6 @@
 import { SocialappStore } from "@/Store/SocialappStore"
 import Input from "@/Utility/components/Input"
-import { AttachIcon, SendIcon, Trash } from "@/Utility/icons/icons"
+import { AttachIcon, EmojiPicker, SendIcon, Trash } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
 import { cookies } from "next/headers"
@@ -116,21 +116,24 @@ function ChatBoard() {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full rounded-lg flex items-center gap-1"
+        className="w-full rounded-lg flex items-center"
       >
+        <button className="bg-[#27272a]/50 text-yellow-500 rounded-l-full p-3">
+          <EmojiPicker width={18} />
+        </button>
         <Input
           name="message"
           type="text"
           placeholder="Text your message ...."
           register={register}
-          className="rounded-lg bg-[#27272a]/50 outline-none p-2  w-full text-white flex-1"
+          className="bg-[#27272a]/50 outline-none p-2  w-full text-white flex-1 h-full"
           required={true}
         />
-        <button className="bg-[#27272a] text-white rounded-lg p-3">
-          <AttachIcon width={15} />
+        <button className="bg-[#27272a]/50 text-white p-3">
+          <AttachIcon width={18} />
         </button>
-        <button className="bg-pink-600 text-white rounded-lg p-3">
-          <SendIcon width={15} />
+        <button className="bg-[#27272a]/50 hover:bg-pink-600 transition-colors duration-200 text-white rounded-r-full p-3">
+          <SendIcon width={18} />
         </button>
       </form>
     </div>
