@@ -1,6 +1,6 @@
-import { SocialappStore } from "@/Store/SocialappStore"
-import Accordion from "@/Utility/Uicomponents/Accordion/Accordion"
-import Colorpallets from "@/Utility/Uicomponents/Colorpallets"
+import { SocialappStore } from "@/Store/SocialappStore";
+import Accordion from "@/Utility/Uicomponents/Accordion/Accordion";
+import Colorpallets from "@/Utility/Uicomponents/Colorpallets";
 import {
   BlockIcon,
   MediaIcon,
@@ -10,24 +10,24 @@ import {
   RightArrow,
   ThemeIcon,
   Trash,
-} from "@/Utility/icons/icons"
-import useGetFonts from "@/font/fonts"
-import getSocialAppServices from "@/service/SocialAppService"
-import Image from "next/image"
-import { useSearchParams } from "next/navigation"
-import React, { useEffect } from "react"
-import useSWR, { mutate } from "swr"
+} from "@/Utility/icons/icons";
+import useGetFonts from "@/font/fonts";
+import getSocialAppServices from "@/service/SocialAppService";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
+import useSWR, { mutate } from "swr";
 
 interface accordionTypes {
-  name: string
-  icon: any
-  children: any[]
-  openDefault: boolean
+  name: string;
+  icon: any;
+  children: any[];
+  openDefault: boolean;
 }
 function ChatUserDetails() {
-  const userDatas: any = SocialappStore((state: any) => state.UserDetails)
-  const { DeleteUser, loadUser } = getSocialAppServices()
-  const { ContentFont } = useGetFonts()
+  const userDatas: any = SocialappStore((state: any) => state.UserDetails);
+  const { DeleteUser, loadUser } = getSocialAppServices();
+  const { ContentFont } = useGetFonts();
 
   let AccordionItems: accordionTypes[] = [
     {
@@ -229,31 +229,23 @@ function ChatUserDetails() {
       ],
       openDefault: false,
     },
-  ]
+  ];
 
   const handleDeleteUser = async () => {
-    let response = await DeleteUser(userDatas?.User?._id)
-    response && mutate("/api/user")
-  }
+    let response = await DeleteUser(userDatas?.User?._id);
+    response && mutate("/api/user");
+  };
 
   return (
     <div
-      className={`bg-[#27272a]/50 rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
+      className={`bg-[#27272a]/50 rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
     >
-      <h1 className="text-white capitalize tracking-wide text-center">
+      {/* <h1 className="text-white capitalize tracking-wide text-center">
         Details
-      </h1>
+      </h1> */}
 
       {/*//todo profile logo */}
-      <div
-        style={{
-          backgroundColor: userDatas?.User?.theme?.primary
-            ? userDatas?.User?.theme?.primary
-            : "lightgray",
-          color: "black",
-        }}
-        className="w-[150px] h-[150px] mx-auto rounded-full grid place-items-center relative overflow-hidden"
-      >
+      <div className="w-full  mx-auto rounded grid place-items-center relative overflow-hidden">
         <Image
           src={`https://robohash.org/${userDatas?.User?.profileImage}`}
           alt="profile image"
@@ -327,16 +319,16 @@ function ChatUserDetails() {
                           currentThemeName={userDatas?.User?.theme}
                           items={values2}
                         />
-                      )
+                      );
                     })}
                   </div>
                 )}
             </Accordion>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 
-export default ChatUserDetails
+export default ChatUserDetails;

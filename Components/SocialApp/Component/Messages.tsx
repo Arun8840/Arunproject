@@ -71,73 +71,72 @@ function Messages() {
   };
 
   return (
-    <Drawer handleCloseDrawer={handleCloseDrawer}>
-      <div
-        className={` rounded-lg col-span-2 min-h-[92vh] max-h-[92vh] overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 relative`}
-      >
-        <div className="flex gap-1">
-          <input
-            type="text"
-            placeholder="search..."
-            className="rounded-lg bg-[#27272a] outline-none px-2 py-1  w-full text-white"
-          />
+    <>
+      <Drawer handleCloseDrawer={handleCloseDrawer}>
+        <div
+          className={`flex flex-col justify-between rounded col-span-2 w-full h-full overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 relative`}
+        >
+          <div className="w-full">
+            <input
+              type="text"
+              placeholder="search..."
+              className="rounded bg-[#27272a] outline-none p-2  w-full text-white"
+            />
+            {!isLoading && (
+              <ul className="grid auto-rows-max gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 max-h-[85vh] overflow-y-auto">
+                {data &&
+                  data?.map((items, index: number) => {
+                    return (
+                      <li
+                        // onClick={() => handleSelecteUser(items, index + 1)}
+                        key={items?.name}
+                        className=" p-1 flex gap-2 cursor-pointer"
+                      >
+                        <div
+                          className={`w-[45px] h-[45px] rounded grid place-items-center bg-[#27272a]`}
+                        >
+                          {items?.profileImage ? (
+                            <Image
+                              src={`https://robohash.org/${items?.profileImage}`}
+                              alt="profile image"
+                              className="w-full h-full object-contain"
+                              width={500}
+                              height={500}
+                            />
+                          ) : (
+                            <h1 className="font-bold uppercase">
+                              {items?.name[0]}
+                            </h1>
+                          )}
+                        </div>
+                        <div className="flex justify-between flex-col flex-1">
+                          <div className="flex w-full justify-between">
+                            <h1 className="text-white text-xs lg:text-sm tracking-wide">
+                              {items?.name}
+                            </h1>
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
+              </ul>
+            )}
+          </div>
+
           {/* //todo new user add button */}
           <button
             onClick={handleOpenDrawer}
-            className="bg-[#27272a] hover:bg-pink-600 transition-colors duration-150 rounded-lg p-2"
+            className="bg-[#27272a] hover:bg-pink-600 transition-colors duration-150 rounded p-2 text-sm flex justify-center items-center text-white tracking-wide w-full"
           >
+            Add friend
             <AddIcon width={20} className="text-white" />
           </button>
         </div>
-        {!isLoading && (
-          <ul className="grid gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 ">
-            {data &&
-              data?.map((items, index: number) => {
-                return (
-                  <li
-                    // onClick={() => handleSelecteUser(items, index + 1)}
-                    key={items?.name}
-                    className=" p-1 flex gap-2 cursor-pointer bg-[#27272a] rounded-lg"
-                  >
-                    <div
-                      className={`w-[45px] h-[45px] bg-yellow-50 rounded grid place-items-center`}
-                    >
-                      {items?.profileImage ? (
-                        <Image
-                          src={`https://robohash.org/${items?.profileImage}`}
-                          alt="profile image"
-                          className="w-full h-full object-contain"
-                          width={500}
-                          height={500}
-                        />
-                      ) : (
-                        <h1 className="font-bold uppercase">
-                          {items?.name[0]}
-                        </h1>
-                      )}
-                    </div>
-                    <div className="flex justify-between flex-col flex-1">
-                      <div className="flex w-full justify-between">
-                        <h1 className="text-white text-xs lg:text-sm tracking-wide">
-                          {items?.name}
-                        </h1>
-                      </div>
-                      <div className="flex items-center justify-end gap-2">
-                        <small className="text-white rounded bg-red-500 text-sm w-[20px] h-[20px] grid place-items-center">
-                          3
-                        </small>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-          </ul>
-        )}
-      </div>
+      </Drawer>
 
       <ChatBoard />
       <ChatUserDetails />
-    </Drawer>
+    </>
   );
 }
 
