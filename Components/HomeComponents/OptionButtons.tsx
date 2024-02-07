@@ -118,13 +118,13 @@ function OptionButtons() {
       >
         <ul
           ref={Menus}
-          className={`h-full p-5 w-1/2 ${HeaderFont.className} text-white`}
+          className={`h-full p-5 flex flex-col justify-center items-center text-center ${HeaderFont.className} `}
         >
           {headerList?.map((values, index) => {
             return (
               <li
                 key={index}
-                className="text-[4rem] cursor-pointer translate-x-20 opacity-0 italic tracking-wider"
+                className="text-[4rem] cursor-pointer translate-x-20 opacity-0 hover:italic tracking-wider text-white hover:text-[#9EDE73] transition-colors duration-200"
               >
                 {values?.title}
               </li>

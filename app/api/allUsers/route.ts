@@ -1,9 +1,10 @@
-import connectMongoDB from "@/lib/mongodb";
-import Users from "@/model/SocialSchema";
-import { NextResponse } from "next/server";
+import connectMongoDB from "@/lib/mongodb"
+import Users from "@/model/SocialSchema"
+import { NextResponse } from "next/server"
 export async function GET() {
-  await connectMongoDB();
-  let allUser = await Users.find();
+  await connectMongoDB()
+  let allUser = await Users.find()
+  console.log(allUser)
   return NextResponse.json(
     {
       message: "Users loaded Successfully !!",
@@ -11,5 +12,5 @@ export async function GET() {
       data: allUser,
     },
     { status: 201 }
-  );
+  )
 }

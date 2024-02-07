@@ -18,9 +18,8 @@ function AppHeader({ loggedUserData }: any) {
   const handleChangeTab = (tabValue: string) => {
     router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
   }
-
   const setLoggedUser = useCallback(async () => {
-    await loadingLoggedUser(loggedUserData?.id)
+    await loadingLoggedUser(loggedUserData?._id)
   }, [loadingLoggedUser, loggedUserData])
 
   useEffect(() => {
