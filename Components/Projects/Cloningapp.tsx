@@ -29,7 +29,6 @@ function Cloningapp() {
     if (data) {
       let response = await loginUser(data);
       if (response?.data?.status) {
-        console.log(response?.data?.user?._id);
         let value = JSON.stringify(response?.data?.user);
         await handleLogin(value);
 

@@ -6,6 +6,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    isPinned: {
+      type: Boolean,
+      default: false,
+    },
+    isMutted: {
+      type: Boolean,
+      default: false,
+    },
     email: {
       type: String,
       required: true,

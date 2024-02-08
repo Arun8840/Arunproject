@@ -1,97 +1,144 @@
+import Button from "@/Utility/components/Button"
 import Input from "@/Utility/components/Input"
-import { Close } from "@/Utility/icons/icons"
 import getSocialAppServices from "@/service/SocialAppService"
-import React from "react"
+import Image from "next/image"
+import React, { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
-interface formTypes {
+interface FormTypes {
   name: string
   email: string
-  profileImage: string
-  description: string
-  theme: boolean
+  password: string
+  theme: any
+  profileImage: number
 }
 function Drawer({ children, handleCloseDrawer }: any) {
+  const [isShowPass, setPass] = useState(false)
   const {
     register,
-    handleSubmit,
     reset,
-    setValue,
+    handleSubmit,
     formState: { errors },
-  } = useForm<formTypes>()
+  } = useForm<FormTypes>()
+  const [selectedProfile, setProfile] = useState(0)
   const { CreateUser } = getSocialAppServices()
-  const onSubmit: SubmitHandler<formTypes> = async (data) => {
+
+  // todo handle login
+  const selectProfile = (profileID: number) => {
+    setProfile(profileID)
+  }
+
+  const handleSignUp: SubmitHandler<FormTypes> = async (data) => {
     if (data) {
-      let userData = {
-        ...data,
-        theme: "",
-        profileImage: "",
-      }
-      let response = await CreateUser(userData)
-      response && mutate("/api/user")
+      let newUserData = { ...data, profileImage: selectedProfile }
+      let response = await CreateUser(newUserData)
       response && handleCloseDrawer()
       response && reset()
+      response && mutate("/api/user-friends")
     }
   }
+
   return (
     <>
       {children}
       <div
         id="drawerContainer"
-        className="bg-black/20 backdrop-blur-sm fixed bottom-0 left-0 right-0 h-full z-10 opacity-0 hidden items-end overflow-hidden "
+        className="bg-black/20 backdrop-blur-lg fixed bottom-0 left-0 right-0 h-full z-10 opacity-0 hidden justify-center items-center overflow-hidden"
       >
-        {/* //todo form */}
-        <div
-          id="drawerForm"
-          className="w-full h-1/2 bg-black translate-y-[100%]"
-        >
-          <div className="flex justify-end p-3">
-            <button onClick={handleCloseDrawer}>
-              <Close width={25} className="text-white" />
-            </button>
-          </div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="container mx-auto flex gap-2"
-          >
-            <div className="min-h-[300px] min-w-[300px] bg-white rounded-full"></div>
-            <div className=" flex flex-col gap-1 w-1/2 p-2 h-fit">
-              <Input
-                name="name"
-                type="text"
-                placeholder="name"
-                register={register}
-                className=" bg-inherit border-b p-2 w-full outline-none text-white"
-                required={true}
-              />
-              <Input
-                name="email"
-                type="text"
-                placeholder="email"
-                register={register}
-                className=" bg-inherit border-b p-2 w-full outline-none text-white"
-                required={true}
-              />
-              <Input
-                name="description"
-                type="text"
-                placeholder="description"
-                register={register}
-                className=" bg-inherit border-b p-2 w-full flex-1 h-full outline-none text-white"
-                required={true}
-              />
-              <div className="flex gap-2 justify-end p-4">
-                <button
-                  onClick={handleCloseDrawer}
-                  className="rounded-lg py-1 px-5 bg-slate-600 "
+        <div className=" p-2 rounded-lg max-w-[400px] w-full">
+          <h1 className="text-white text-3xl text-center pb-10 font-bold">
+            Create Friend
+          </h1>
+          <ul className="p-2 grid grid-cols-4 gap-2 justify-items-center">
+            {Array.from({ length: 8 }).map((item, index) => {
+              return (
+                <li
+                  onClick={() => selectProfile(index + 1)}
+                  key={index + 1}
+                  className="w-[80px] h-[80px] border border-stone-600 rounded-full overflow-hidden cursor-pointer hover:bg-stone-900 transition-colors duration-150"
                 >
-                  Cancel
-                </button>
-                <button className="rounded-lg py-1 px-5 bg-pink-600 ">
-                  Create
-                </button>
-              </div>
+                  <Image
+                    src={`https://robohash.org/${index + 1}`}
+                    alt="profile image"
+                    className="w-full h-full object-contain"
+                    width={100}
+                    height={100}
+                  />
+                </li>
+              )
+            })}
+          </ul>
+          <form
+            onSubmit={handleSubmit(handleSignUp)}
+            className="w-full h-full rounded text-white"
+          >
+            <label htmlFor="name" className="py-3 block">
+              Name :
+              <small className="capitalize tracking-wide text-red-500 px-2">
+                {errors?.name?.message}
+              </small>
+            </label>
+            <Input
+              register={register}
+              required={true}
+              name="name"
+              className={`border ${
+                errors?.name?.message ? "border-red-500" : "border-[#27272a]"
+              } rounded-lg p-2 outline-none bg-inherit w-full`}
+              type="text"
+            />
+            <label htmlFor="email" className="py-3 block">
+              Email :
+              <small className="capitalize tracking-wide text-red-500 px-2">
+                {errors?.email?.message}
+              </small>
+            </label>
+            <Input
+              register={register}
+              required={true}
+              pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
+              name="email"
+              className={`border ${
+                errors?.email?.message ? "border-red-500" : "border-[#27272a]"
+              } rounded-lg p-2 outline-none bg-inherit w-full`}
+              type="text"
+            />
+
+            <label htmlFor="password" className="py-3 block">
+              Password :{" "}
+              <small className="capitalize tracking-wide text-red-500 px-2">
+                {errors?.password?.message}
+              </small>
+            </label>
+            <Input
+              register={register}
+              required={true}
+              pattern={/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/}
+              name="password"
+              className={`border ${
+                errors?.password?.message
+                  ? "border-red-500"
+                  : "border-[#27272a]"
+              } rounded-lg p-2 outline-none  bg-inherit w-full ${
+                isShowPass ? "text-white" : "text-pink-600"
+              }`}
+              type={isShowPass ? "text" : "password"}
+              handleShowPass={() => setPass(!isShowPass)}
+            />
+
+            <div className="pt-5 grid grid-cols-2  gap-2">
+              <Button
+                onClick={() => handleCloseDrawer()}
+                type="button"
+                label="Cancel"
+                className="bg-gray-600 rounded-lg flex-1 py-2 transition-shadow duration-200"
+              />
+              <Button
+                type="submit"
+                label="Create"
+                className="bg-pink-600 rounded-lg flex-1 py-2 hover:shadow-lg hover:shadow-pink-600/40 transition-shadow duration-200"
+              />
             </div>
           </form>
         </div>

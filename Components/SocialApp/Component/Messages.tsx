@@ -1,75 +1,82 @@
-"use client";
-import { AddIcon } from "@/Utility/icons/icons";
-import useGetFonts from "@/font/fonts";
-import Image from "next/image";
-import React from "react";
-import ChatBoard from "../ChatBoard";
-import ChatUserDetails from "../ChatUserDetails";
-import { SocialappStore } from "@/Store/SocialappStore";
-import useSWR from "swr";
-import Drawer from "@/Utility/Uicomponents/Drawer/Drawer";
-import gsap, { Power3 } from "gsap";
-import getSocialAppServices from "@/service/SocialAppService";
-import { useSearchParams } from "next/navigation";
+"use client"
+import { AddIcon, MuteIcon } from "@/Utility/icons/icons"
+import useGetFonts from "@/font/fonts"
+import Image from "next/image"
+import React from "react"
+import ChatBoard from "../ChatBoard"
+import ChatUserDetails from "../ChatUserDetails"
+import { SocialappStore } from "@/Store/SocialappStore"
+import useSWR from "swr"
+import Drawer from "@/Utility/Uicomponents/Drawer/Drawer"
+import gsap, { Power3 } from "gsap"
+import getSocialAppServices from "@/service/SocialAppService"
+import { useSearchParams } from "next/navigation"
 
 interface UsersTypes {
-  _id: string;
-  name: string;
-  email: string;
-  profileImage: string;
-  description: string;
-  theme: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: 0;
+  _id: string
+  name: string
+  email: string
+  profileImage: string
+  description: string
+  theme: string
+  createdAt: string
+  updatedAt: string
+  __v: number
+  isMutted: boolean
+  isPinned: boolean
 }
 function Messages() {
-  const { ContentFont } = useGetFonts();
-  const { loadUserFriends } = getSocialAppServices();
-  const router = useSearchParams();
-  const userID: string | any = router.get("id");
+  const { ContentFont } = useGetFonts()
+  const { loadUserFriends } = getSocialAppServices()
+  const LoadFriend = SocialappStore((state: any) => state.loadParticularUser)
+  const router = useSearchParams()
+  const userID: string | any = router.get("id")
   // todo loading all users
   const fetcher = async () => {
-    let res: UsersTypes[] = await loadUserFriends(userID);
-    return res;
-  };
+    let res: UsersTypes[] = await loadUserFriends(userID)
+    return res
+  }
   const { data, error, isLoading } = useSWR("/api/user-friends", fetcher, {
     revalidateOnFocus: false,
-  });
+  })
 
   const handleOpenDrawer = () => {
-    let tl = gsap.timeline({ paused: false });
+    let tl = gsap.timeline({ paused: false })
 
     tl.to("#drawerContainer", {
       opacity: 1,
       display: "flex",
       duration: 0.2,
       ease: Power3.easeInOut,
-    });
+    })
 
     tl.to("#drawerForm", {
       opacity: 1,
       y: 0,
       duration: 0.2,
       ease: Power3.easeInOut,
-    });
-  };
+    })
+  }
   const handleCloseDrawer = () => {
-    let tl = gsap.timeline({ paused: false });
+    let tl = gsap.timeline({ paused: false })
     tl.to("#drawerForm", {
       opacity: 0,
       y: "100%",
       duration: 0.2,
       ease: Power3.easeInOut,
-    });
+    })
     tl.to("#drawerContainer", {
       opacity: 0,
       display: "none",
       duration: 0.2,
       ease: Power3.easeInOut,
-    });
-  };
+    })
+  }
 
+  // todo handle select user
+  const handleSelectFriend = async (friendId: string) => {
+    await LoadFriend(friendId)
+  }
   return (
     <>
       <Drawer handleCloseDrawer={handleCloseDrawer}>
@@ -88,9 +95,9 @@ function Messages() {
                   data?.map((items, index: number) => {
                     return (
                       <li
-                        // onClick={() => handleSelecteUser(items, index + 1)}
+                        onClick={() => handleSelectFriend(items?._id)}
                         key={items?.name}
-                        className=" p-1 flex gap-2 cursor-pointer"
+                        className=" p-1 flex gap-2 cursor-pointer hover:bg-[#27272a] transition-colors duration-150"
                       >
                         <div
                           className={`w-[45px] h-[45px] rounded grid place-items-center bg-[#27272a]`}
@@ -114,10 +121,15 @@ function Messages() {
                             <h1 className="text-white text-xs lg:text-sm tracking-wide">
                               {items?.name}
                             </h1>
+                            {items?.isMutted && (
+                              <button className="text-stone-500 text-xs lg:text-sm tracking-wide">
+                                <MuteIcon width={15} />
+                              </button>
+                            )}
                           </div>
                         </div>
                       </li>
-                    );
+                    )
                   })}
               </ul>
             )}
@@ -137,7 +149,7 @@ function Messages() {
       <ChatBoard />
       <ChatUserDetails />
     </>
-  );
+  )
 }
 
-export default Messages;
+export default Messages

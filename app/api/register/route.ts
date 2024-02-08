@@ -8,10 +8,10 @@ export async function POST(request: any) {
   let encryptedPassword = await bcrypt.hash(password, 10)
   await connectMongoDB()
   let userData = {
-    name: name,
+    name,
     email,
-    profileImage: profileImage,
-    theme: theme,
+    profileImage,
+    theme,
     password: encryptedPassword,
     description,
   }

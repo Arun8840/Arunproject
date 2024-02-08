@@ -1,28 +1,24 @@
-import { SocialappStore } from "@/Store/SocialappStore";
-import Input from "@/Utility/components/Input";
-import {
-  AttachIcon,
-  EmojiPicker,
-  SendIcon,
-  Trash,
-} from "@/Utility/icons/icons";
-import useGetFonts from "@/font/fonts";
-import getSocialAppServices from "@/service/SocialAppService";
-import { cookies } from "next/headers";
-import React, { useEffect, useRef } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { io } from "socket.io-client";
+import { SocialappStore } from "@/Store/SocialappStore"
+import useGetFriendThemes from "@/Utility/Style"
+import Input from "@/Utility/components/Input"
+import { AttachIcon, EmojiPicker, SendIcon, Trash } from "@/Utility/icons/icons"
+import useGetFonts from "@/font/fonts"
+import getSocialAppServices from "@/service/SocialAppService"
+import React, { useRef } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
 
-import useSWR, { mutate } from "swr";
+import useSWR from "swr"
 interface formTypes {
-  message: string;
+  message: string
 }
 function ChatBoard() {
-  const { ContentFont } = useGetFonts();
-  const LoggedUser = SocialappStore((state: any) => state.LoggedUser);
-  const socket: any = useRef();
-  const { loadAllMessages } = getSocialAppServices();
-  const { sendMessage } = getSocialAppServices();
+  const { ContentFont } = useGetFonts()
+  const { theme }: any = useGetFriendThemes()
+  const LoggedUser = SocialappStore((state: any) => state.LoggedUser)
+  const IsUserDetails = SocialappStore((state: any) => state.UserDetails)
+  const socket: any = useRef()
+  const { loadAllMessages } = getSocialAppServices()
+  const { sendMessage } = getSocialAppServices()
 
   // todo form state
   const {
@@ -30,9 +26,9 @@ function ChatBoard() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<formTypes>();
+  } = useForm<formTypes>()
   // const CurrentUser = SocialappStore((state: any) => state.LoggedUser)
-  const SelectedUser = SocialappStore((state: any) => state.UserDetails);
+  const SelectedUser = SocialappStore((state: any) => state.UserDetails)
   // todo send message action
   const onSubmit: SubmitHandler<formTypes> = async (data) => {
     if (data) {
@@ -40,27 +36,27 @@ function ChatBoard() {
         ...data,
         from: LoggedUser?.User?._id,
         to: SelectedUser?.User?._id,
-      };
+      }
       socket.current.emit("send-msg", {
         from: LoggedUser?.User?._id,
         to: SelectedUser?.User?._id,
         message: data?.message,
-      });
+      })
 
-      let response = await sendMessage(messageData);
-      response && reset();
+      let response = await sendMessage(messageData)
+      response && reset()
     }
-  };
+  }
 
   // todo loading all users
   const fetcher = async () => {
     let MessagesData = {
       from: LoggedUser?.User?._id,
       to: SelectedUser?.User?._id,
-    };
-    let res: any = await loadAllMessages(MessagesData);
-    return res;
-  };
+    }
+    let res: any = await loadAllMessages(MessagesData)
+    return res
+  }
   const {
     data: Messages,
     error,
@@ -73,28 +69,20 @@ function ChatBoard() {
     {
       revalidateOnFocus: false,
     }
-  );
-
-  useEffect(() => {
-    if (LoggedUser?.User?._id) {
-      socket.current = io("http://localhost:5001");
-      socket.current.emit("add-user", LoggedUser?.User?._id);
-    }
-    if (socket.current) {
-      socket.current.on("msg-recive", (msg: any) => {});
-    }
-  }, [LoggedUser?.User?._id]);
+  )
 
   return (
     <div
-      className={`rounded col-span-8 overflow-y-auto ${ContentFont.className} relative flex flex-col gap-2`}
+      className={`rounded ${
+        IsUserDetails ? "col-span-8" : "col-span-10"
+      } overflow-y-auto ${ContentFont.className} relative flex flex-col gap-2`}
     >
       {/* //todo input box */}
       <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
         {/* //todo recived message */}
 
         {Messages?.projectMessages?.map((values: any, index: number) => {
-          let isSendedMessage = values?.fromSelf;
+          let isSendedMessage = values?.fromSelf
           return (
             <div
               key={index + 1}
@@ -116,14 +104,17 @@ function ChatBoard() {
                 </h1>
               </div>
             </div>
-          );
+          )
         })}
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex gap-1 items-center"
+        className="w-3/4 mx-auto flex gap-1 items-center"
       >
-        <button className="bg-[#27272a]/50 text-yellow-500 rounded p-3">
+        <button
+          type="button"
+          className="bg-[#27272a]/50 text-yellow-500 rounded p-3"
+        >
           <EmojiPicker width={18} />
         </button>
         <Input
@@ -137,12 +128,18 @@ function ChatBoard() {
         <button className="bg-[#27272a]/50 text-white rounded p-3">
           <AttachIcon width={18} />
         </button>
-        <button className="bg-[green] hover:zbg-pink-600 transition-colors duration-200 text-white rounded p-3">
+        <button
+          style={{
+            backgroundColor:
+              theme?.primary === "#ffffff" ? "orangered" : theme?.primary,
+          }}
+          className="hover:zbg-pink-600 transition-colors duration-200 text-white rounded p-3"
+        >
           <SendIcon width={18} />
         </button>
       </form>
     </div>
-  );
+  )
 }
 
-export default ChatBoard;
+export default ChatBoard

@@ -1,33 +1,32 @@
-import { SocialappStore } from "@/Store/SocialappStore";
-import Accordion from "@/Utility/Uicomponents/Accordion/Accordion";
-import Colorpallets from "@/Utility/Uicomponents/Colorpallets";
+import { SocialappStore } from "@/Store/SocialappStore"
+import Accordion from "@/Utility/Uicomponents/Accordion/Accordion"
+import Colorpallets from "@/Utility/Uicomponents/Colorpallets"
 import {
   BlockIcon,
   MediaIcon,
   MuteIcon,
   PriorityIcon,
   RatingIcon,
-  RightArrow,
   ThemeIcon,
   Trash,
-} from "@/Utility/icons/icons";
-import useGetFonts from "@/font/fonts";
-import getSocialAppServices from "@/service/SocialAppService";
-import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
-import useSWR, { mutate } from "swr";
+  UnMuteIcon,
+} from "@/Utility/icons/icons"
+import useGetFonts from "@/font/fonts"
+import Image from "next/image"
+import React from "react"
+import { mutate } from "swr"
 
 interface accordionTypes {
-  name: string;
-  icon: any;
-  children: any[];
-  openDefault: boolean;
+  name: string
+  icon: any
+  children: any[]
+  openDefault: boolean
 }
 function ChatUserDetails() {
-  const userDatas: any = SocialappStore((state: any) => state.UserDetails);
-  const { DeleteUser, loadUser } = getSocialAppServices();
-  const { ContentFont } = useGetFonts();
+  const userDatas: any = SocialappStore((state: any) => state.UserDetails)
+  const IsMutted: any = SocialappStore((state: any) => state.isMuteFriend)
+  const DeleteFriend: any = SocialappStore((state: any) => state.deleteFriend)
+  const { ContentFont } = useGetFonts()
 
   let AccordionItems: accordionTypes[] = [
     {
@@ -229,106 +228,141 @@ function ChatUserDetails() {
       ],
       openDefault: false,
     },
-  ];
+  ]
 
   const handleDeleteUser = async () => {
-    let response = await DeleteUser(userDatas?.User?._id);
-    response && mutate("/api/user");
-  };
+    let response = await DeleteFriend(userDatas?._id)
+    response && mutate("/api/user-friends")
+  }
+
+  // todo handle mute user
+  const handleMuteFriend = async () => {
+    let friendData = {
+      id: userDatas?._id,
+      isMutted: true,
+    }
+    let response = await IsMutted(friendData)
+    response && mutate("/api/user-friends")
+  }
+
+  // todo handle Unmute user
+  const handleUnMuteFriend = async () => {
+    let friendData = {
+      id: userDatas?._id,
+      isMutted: false,
+    }
+    let response = await IsMutted(friendData)
+    response && mutate("/api/user-friends")
+  }
 
   return (
-    <div
-      className={`bg-[#27272a]/50 rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
-    >
-      {/* <h1 className="text-white capitalize tracking-wide text-center">
-        Details
-      </h1> */}
+    userDatas && (
+      <div
+        className={`bg-[#27272a]/50 rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
+      >
+        <h1 className="text-white capitalize tracking-wide text-center">
+          Details
+        </h1>
 
-      {/*//todo profile logo */}
-      <div className="w-full  mx-auto rounded grid place-items-center relative overflow-hidden">
-        <Image
-          src={`https://robohash.org/${userDatas?.User?.profileImage}`}
-          alt="profile image"
-          className="w-full h-full object-contain"
-          width={200}
-          height={200}
-        />
+        {/*//todo profile logo */}
+        <div className="w-[200px]  mx-auto rounded grid place-items-center relative overflow-hidden">
+          <Image
+            src={`https://robohash.org/${userDatas?.profileImage}`}
+            alt="profile image"
+            className="w-full h-full object-contain"
+            width={500}
+            height={500}
+          />
 
-        {/* pin icon */}
-        {userDatas?.isPinned ? (
-          <button className="bg-white rounded-full p-1 absolute top-0 right-4">
-            <PriorityIcon width={20} className="text-pink-600 rotate-45" />
-          </button>
-        ) : null}
-      </div>
+          {/* pin icon */}
+          {userDatas?.isPinned ? (
+            <button className="bg-white rounded-full p-1 absolute top-0 right-4">
+              <PriorityIcon width={20} className="text-pink-600 rotate-45" />
+            </button>
+          ) : null}
+        </div>
 
-      {/* //todod user name header */}
-      <h1 className="text-white text-center tracking-wider font-bold">
-        {userDatas?.User?.name ?? "Default Name"}
-      </h1>
-      <span className="text-white text-center text-xs tracking-wider">
-        {userDatas?.User?.email}
-      </span>
-      <span className="text-white text-center text-xs tracking-wider">
-        {userDatas?.User?.description}
-      </span>
+        {/* //todod user name header */}
+        <h1 className="text-white text-center tracking-wider font-bold capitalize">
+          {userDatas?.name ?? "Default Name"}
+        </h1>
+        <span className="text-white text-center text-xs tracking-wider">
+          {userDatas?.email}
+        </span>
+        <span className="text-white text-center text-xs tracking-wider">
+          {userDatas?.description}
+        </span>
 
-      {/* //todo action buttons */}
-      <div className="grid grid-cols-2 gap-2">
-        <button className="w-full rounded bg-[#27272a]/50 text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200 hover:text-pink-600">
-          <h1>Mute</h1>
-          <MuteIcon width={20} />
-        </button>
-        <button className="w-full rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 text-red-600">
-          <h1>Block</h1>
-          <BlockIcon width={20} />
-        </button>
-
-        {/* //todo delete button */}
-        <button
-          onClick={handleDeleteUser}
-          className="w-full col-span-2 rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 text-red-600"
-        >
-          <h1>Remove</h1>
-          <Trash width={20} />
-        </button>
-      </div>
-
-      {/* //todo media */}
-      <div className="grid gap-1">
-        {AccordionItems.map((values, index) => {
-          return (
-            <Accordion
-              key={index + 1}
-              header={values.name}
-              openByDefault={values.openDefault}
-              icon={{
-                value: true,
-                image: values.icon,
-              }}
+        {/* //todo action buttons */}
+        <div className="grid grid-cols-2 gap-2">
+          {userDatas?.isMutted ? (
+            <button
+              onClick={handleUnMuteFriend}
+              className={`w-full rounded bg-pink-600 text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200`}
             >
-              {values?.children &&
-                values?.name === "Chat Themes" &&
-                values?.children?.length > 0 && (
-                  <div className="grid grid-cols-4 gap-1 pt-5">
-                    {values.children.map((values2) => {
-                      return (
-                        <Colorpallets
-                          key={values2.name}
-                          size={50}
-                          currentThemeName={userDatas?.User?.theme}
-                          items={values2}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
-            </Accordion>
-          );
-        })}
+              <h1>UnMute</h1>
+              <UnMuteIcon width={20} />
+            </button>
+          ) : (
+            <button
+              onClick={handleMuteFriend}
+              className={`w-full rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200`}
+            >
+              <h1>Mute</h1>
+              <MuteIcon width={20} />
+            </button>
+          )}
+          <button className="w-full rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 ">
+            <h1>Block</h1>
+            <BlockIcon width={20} />
+          </button>
+
+          {/* //todo delete button */}
+          <button
+            onClick={handleDeleteUser}
+            className="w-full col-span-2 rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
+          >
+            <h1>Remove</h1>
+            <Trash width={20} />
+          </button>
+        </div>
+
+        {/* //todo media */}
+        <div className="grid gap-1">
+          {AccordionItems.map((values, index) => {
+            return (
+              <Accordion
+                key={index + 1}
+                header={values.name}
+                openByDefault={values.openDefault}
+                icon={{
+                  value: true,
+                  image: values.icon,
+                }}
+              >
+                {values?.children &&
+                  values?.name === "Chat Themes" &&
+                  values?.children?.length > 0 && (
+                    <div className="grid grid-cols-4 gap-1 pt-5">
+                      {values.children.map((values2) => {
+                        return (
+                          <Colorpallets
+                            key={values2.name}
+                            size={50}
+                            currentThemeName={userDatas?.User?.theme}
+                            items={values2}
+                          />
+                        )
+                      })}
+                    </div>
+                  )}
+              </Accordion>
+            )
+          })}
+        </div>
       </div>
-    </div>
-  );
+    )
+  )
 }
 
-export default ChatUserDetails;
+export default ChatUserDetails

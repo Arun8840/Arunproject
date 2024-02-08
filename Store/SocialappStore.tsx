@@ -3,10 +3,10 @@ import getSocialAppServices from "@/service/SocialAppService"
 import { create } from "zustand"
 
 const { UsersData } = useGetUsersData()
-const { loadAllUser, loadUser } = getSocialAppServices()
+const { loadAllUser, loadUser, DeleteUser, MuteFriend } = getSocialAppServices()
 export const SocialappStore = create((set, get: any) => ({
   UserDatas: UsersData,
-  UserDetails: {},
+  UserDetails: null,
   LoggedUser: {},
   loadAllUsers: async () => {
     let response = await loadAllUser()
@@ -29,14 +29,36 @@ export const SocialappStore = create((set, get: any) => ({
     }
   },
 
-  loadParticularUser: async (userID: string, imageID: number) => {
-    let response = await loadUser(userID)
-    let data = { ...response, profileImageID: imageID }
+  loadParticularUser: async (friendID: string) => {
+    let response = await loadUser(friendID)
     if (response) {
       set((state: any) => ({
         ...state,
-        UserDetails: data,
+        UserDetails: response,
       }))
+    }
+  },
+
+  deleteFriend: async (friendID: string) => {
+    let response = await DeleteUser(friendID)
+    if (response) {
+      set((state: any) => ({
+        ...state,
+        UserDetails: null,
+      }))
+      return response
+    }
+  },
+
+  // todo mute and unmute friends
+  isMuteFriend: async (friendData: string) => {
+    let response = await MuteFriend(friendData)
+    if (response) {
+      set((state: any) => ({
+        ...state,
+        UserDetails: response,
+      }))
+      return response
     }
   },
 }))

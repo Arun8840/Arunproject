@@ -11,14 +11,16 @@ function AboutMe() {
       className={`w-full lg:min-h-screen lg:py-[5rem] items-center bg-[#101010] overflow-hidden relative z-0 group`}
     >
       <div className="container mx-auto z-[2] text-[#f3f5f7] mix-blend-difference">
-        <h1
-          className={`lg:text-[4rem] p-2 ${HeaderFont.className} transition-colors duration-300`}
-        >
-          About me:
-        </h1>
         <div className="container grid lg:grid-cols-2 place-items-center">
           <div className="w-full  p-2">
-            <h1 className={`text-[4rem] tracking-wide ${HeaderFont.className}`}>
+            <h1
+              className={`lg:text-[4rem] ${HeaderFont.className} transition-colors duration-300`}
+            >
+              About me:
+            </h1>
+            <h1
+              className={`text-[4rem] tracking-wide ${ContentFont.className}`}
+            >
               Im Arun,
             </h1>
             <p
