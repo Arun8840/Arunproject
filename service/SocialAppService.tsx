@@ -76,7 +76,7 @@ const getSocialAppServices = () => {
       friendData
     )
     if (response) {
-      return response?.data?.data
+      return response?.data
     }
   }
 

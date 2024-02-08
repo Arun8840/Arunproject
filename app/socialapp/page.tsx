@@ -1,7 +1,7 @@
 "use client"
 import RenderWrapper from "@/Components/SocialApp/RenderWrapper"
+import Notification from "@/Utility/Uicomponents/Notifications/Notification"
 import dynamic from "next/dynamic"
-import { cookies } from "next/headers"
 import { useSearchParams } from "next/navigation"
 
 export default function Home() {
@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <>
       <RenderWrapper>
+        <Notification />
         <RenderComponent />
       </RenderWrapper>
     </>

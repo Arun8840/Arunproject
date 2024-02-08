@@ -8,6 +8,7 @@ export const SocialappStore = create((set, get: any) => ({
   UserDatas: UsersData,
   UserDetails: null,
   LoggedUser: {},
+  notificationMessage: "",
   loadAllUsers: async () => {
     let response = await loadAllUser()
     if (response) {
@@ -56,9 +57,27 @@ export const SocialappStore = create((set, get: any) => ({
     if (response) {
       set((state: any) => ({
         ...state,
-        UserDetails: response,
+        UserDetails: response?.data,
+        notificationMessage: response?.message,
       }))
-      return response
+      return response?.data
     }
+  },
+
+  // todo notification set message
+  setNotification: async (message: string) => {
+    if (message) {
+      set((state: any) => ({
+        ...state,
+        notificationMessage: message,
+      }))
+    }
+  },
+
+  clearNotification: async () => {
+    set((state: any) => ({
+      ...state,
+      notificationMessage: "",
+    }))
   },
 }))
