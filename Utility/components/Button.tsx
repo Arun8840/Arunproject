@@ -1,4 +1,5 @@
-import React from "react"
+import React, { memo } from "react"
+import { LoaderIcon } from "../icons/icons"
 interface ButtonpropTypes {
   className?: string
   label: string
@@ -16,4 +17,4 @@ function Button(props: ButtonpropTypes) {
   )
 }
 
-export default Button
+export default memo(Button)

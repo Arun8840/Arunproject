@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import React, { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { signIn, useSession } from "next-auth/react"
-import { LoaderIcon } from "@/Utility/icons/icons"
+import { LoaderIcon, MessageIcon } from "@/Utility/icons/icons"
 import { SocialappStore } from "@/Store/SocialappStore"
 import Notification from "@/Utility/Uicomponents/Notifications/Notification"
+import useGetFonts from "@/font/fonts"
 
 interface FormTypes {
   email: string
@@ -15,6 +16,7 @@ interface FormTypes {
 }
 function LoginPage() {
   const [isShowPass, setpass] = useState(false)
+  const { ContentFont, HeaderFont } = useGetFonts()
   const setNotification = SocialappStore((state: any) => state.setNotification)
   const { data, status }: any = useSession()
   const {
@@ -60,17 +62,30 @@ function LoginPage() {
     <>
       <Notification />
       <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
-        <div className=" p-2 rounded-lg max-w-[400px] w-full">
-          <h1 className="text-white text-3xl text-center pb-10 font-bold">
-            Login
+        <div className="p-3 rounded-lg shadow-2xl max-w-[450px] w-full bg-[#fff]">
+          <div className="flex justify-center">
+            <button className="rounded-lg w-fit p-4 bg-[#3c3c43] text-white">
+              <MessageIcon width={20} />
+            </button>
+          </div>
+          <h1
+            className={`text-3xl text-center py-5 font-bold text-[#42434d] ${HeaderFont.className}`}
+          >
+            Sign in to chat
           </h1>
+          <p className={`text-center text-[#7c7e8d] ${ContentFont.className}`}>
+            Welcome back! Please sign in to continue
+          </p>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="w-full h-full rounded text-white"
+            className={`w-full h-full rounded pt-10 ${ContentFont.className}`}
           >
-            <label htmlFor="email" className="py-3 block">
+            <label
+              htmlFor="email"
+              className={`py-3 block text-[#42434d] font-semibold`}
+            >
               Email :
-              <small className="capitalize tracking-wide text-red-500 px-2">
+              <small className="capitalize tracking-wide text-red-500 px-1">
                 {errors?.email?.message}
               </small>
             </label>
@@ -79,15 +94,18 @@ function LoginPage() {
               required={true}
               pattern={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
               name="email"
-              className={`border ${
-                errors?.email?.message ? "border-red-500" : "border-[#27272a]"
+              className={`border text-[#42434d] ${
+                errors?.email?.message ? "border-red-500" : "border-[#e6e6e7]"
               } rounded-lg p-2 outline-none bg-inherit w-full`}
               type="text"
             />
 
-            <label htmlFor="password" className="py-3 block">
+            <label
+              htmlFor="password"
+              className={`py-3 block text-[#42434d] font-semibold`}
+            >
               Password :{" "}
-              <small className="capitalize tracking-wide text-red-500 px-2">
+              <small className="capitalize tracking-wide text-red-500">
                 {errors?.password?.message}
               </small>
             </label>
@@ -96,13 +114,11 @@ function LoginPage() {
               required={true}
               pattern={/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/}
               name="password"
-              className={`border ${
+              className={`border text-[#42434d] ${
                 errors?.password?.message
                   ? "border-red-500"
-                  : "border-[#27272a]"
-              } rounded-lg p-2 outline-none  bg-inherit w-full ${
-                isShowPass ? "text-white" : "text-pink-600"
-              }`}
+                  : "border-[#e6e6e7]"
+              } rounded-lg p-2 outline-none  bg-inherit w-full `}
               type={isShowPass ? "text" : "password"}
               handleShowPass={() => setpass(!isShowPass)}
             />
@@ -112,12 +128,12 @@ function LoginPage() {
                 type="button"
                 label="back"
                 onClick={() => router.back()}
-                className="bg-zinc-600 rounded-lg py-2"
+                className="bg-[#e9e9ea] rounded-lg py-2"
               />
               <Button
                 type="submit"
                 label="Login"
-                className="bg-pink-600 rounded-lg py-2 hover:shadow-lg hover:shadow-pink-600/40 transition-shadow duration-200"
+                className="bg-[#3c3c43] rounded-lg py-2 hover:shadow-2xl text-white transition-shadow duration-200"
               />
               <span className="col-span-2 py-2 text-center text-xs">
                 Dont&lsquo; have account ?
@@ -125,8 +141,8 @@ function LoginPage() {
               <Button
                 onClick={() => router.push("/signUp")}
                 type="button"
-                label="Sign-Up"
-                className="bg-indigo-600 rounded-lg py-2 hover:shadow-lg hover:shadow-indigo-600/40 transition-shadow duration-200 col-span-2"
+                label="Register"
+                className="bg-[#7F27FF] text-white rounded-lg py-2 hover:shadow-lg hover:shadow-indigo-600/40 transition-shadow duration-200 col-span-2"
               />
             </div>
           </form>

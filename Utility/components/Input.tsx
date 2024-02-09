@@ -52,7 +52,7 @@ function Input(props: InputTypes) {
               onClick={() => handleShowPass && handleShowPass()}
               className="absolute top-3 right-3"
             >
-              <Eyeclose width={15} className="text-pink-600" />
+              <Eyeclose width={15} className="text-[#42434d]" />
             </button>
           ) : (
             <button
@@ -60,7 +60,7 @@ function Input(props: InputTypes) {
               onClick={() => handleShowPass && handleShowPass()}
               className="absolute top-3 right-3"
             >
-              <Eyeopen width={15} className="text-pink-600" />
+              <Eyeopen width={15} className="text-[#42434d]" />
             </button>
           )}
         </>

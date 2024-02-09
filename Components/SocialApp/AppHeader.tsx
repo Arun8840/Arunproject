@@ -106,7 +106,7 @@ function AppHeader() {
             type="button"
             onClick={handleOpenModel}
             title="Logout"
-            className="rounded text-red-600 p-2"
+            className="rounded text-red-600 p-2 hover:bg-red-600 hover:text-white transition-colors duration-150"
           >
             <LogoutIcon width={20} />
           </button>

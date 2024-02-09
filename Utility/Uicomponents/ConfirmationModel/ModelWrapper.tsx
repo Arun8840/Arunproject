@@ -9,7 +9,11 @@ interface PropsTypes {
   varient?: string
   onConfirm?: () => void
 }
-function ModelWrapper({ text, varient = "default", onConfirm }: PropsTypes) {
+function ModelWrapper({
+  text,
+  varient = "default",
+  onConfirm,
+}: PropsTypes) {
   const handleCancel = () => {
     gsap.to("#modelContainer", {
       opacity: 0,
@@ -18,23 +22,13 @@ function ModelWrapper({ text, varient = "default", onConfirm }: PropsTypes) {
       ease: Power3.easeInOut,
     })
   }
-
-  const handleConfirm = () => {
-    gsap.to("#modelContainer", {
-      opacity: 0,
-      display: "none",
-      duration: 0.5,
-      ease: Power3.easeInOut,
-    })
-    onConfirm && onConfirm()
-  }
   return (
     <section
       id="modelContainer"
       className="hidden opacity-0 place-items-center fixed top-0 left-0 right-0 bottom-0 bg-[#27272a]/50 backdrop-blur-sm z-50"
     >
       <div
-        className={`rounded-lg min-w-[400px] min-h-[150px] shadow-lg flex flex-col justify-center items-center ${
+        className={`rounded min-w-[400px] min-h-[150px] shadow-lg flex flex-col justify-center items-center ${
           varient === "default" && "bg-[#27272a] border border-stone-600"
         } ${
           varient === "danger" &&
@@ -55,7 +49,7 @@ function ModelWrapper({ text, varient = "default", onConfirm }: PropsTypes) {
               Cancel
             </button>
             <button
-              onClick={handleConfirm}
+              onClick={onConfirm}
               className={`rounded px-4 py-2 text-sm tracking-wide ${
                 varient === "default" && "bg-gree-700 text-white"
               } ${varient === "danger" && "bg-red-700 text-white"}`}
