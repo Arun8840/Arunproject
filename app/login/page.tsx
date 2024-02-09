@@ -63,7 +63,7 @@ function LoginPage() {
   return (
     <>
       <Notification />
-      <div className="bg-[#09090b] w-full min-h-screen grid place-items-center">
+      <div className="bg-[#09090b] w-full min-h-screen grid place-items-center p-3">
         <div className="p-3 rounded-lg shadow-2xl max-w-[450px] w-full bg-[#fff]">
           <div className="flex justify-center">
             <button className="rounded-lg w-fit">
@@ -78,7 +78,7 @@ function LoginPage() {
             </button>
           </div>
           <h1
-            className={`text-3xl text-center py-5 font-bold text-[#42434d] ${HeaderFont.className}`}
+            className={`text-3xl text-center py-2 lg:py-5 font-bold text-[#42434d] ${HeaderFont.className}`}
           >
             Sign in to chat
           </h1>
@@ -87,7 +87,7 @@ function LoginPage() {
           </p>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className={`w-full h-full rounded pt-10 ${ContentFont.className}`}
+            className={`w-full h-full rounded  pt-3 lg:pt-10 ${ContentFont.className}`}
           >
             <label
               htmlFor="email"
@@ -132,26 +132,26 @@ function LoginPage() {
               handleShowPass={() => setpass(!isShowPass)}
             />
 
-            <div className="pt-5 grid grid-cols-2  gap-2">
+            <div className="pt-5 grid lg:grid-cols-2  gap-2">
               <Button
                 type="button"
                 label="back"
                 onClick={() => router.back()}
-                className="bg-[#e9e9ea] rounded-lg py-2"
+                className="bg-[#e9e9ea] rounded-lg py-2 order-1 lg:order-none"
               />
               <Button
                 type="submit"
                 label="Login"
                 className="bg-[#3c3c43] rounded-lg py-2 hover:shadow-2xl text-white transition-shadow duration-200"
               />
-              <span className="col-span-2 py-2 text-center text-xs">
+              <span className="lg:col-span-2 py-2 text-center text-xs">
                 Dont&lsquo; have account ?
               </span>
               <Button
                 onClick={() => router.push("/signUp")}
                 type="button"
                 label="Register"
-                className="bg-[#7F27FF] text-white rounded-lg py-2 hover:shadow-lg hover:shadow-indigo-600/40 transition-shadow duration-200 col-span-2"
+                className="bg-[#7F27FF] text-white rounded-lg py-2 hover:shadow-lg hover:shadow-indigo-600/40 transition-shadow duration-200 lg:col-span-2"
               />
             </div>
           </form>
