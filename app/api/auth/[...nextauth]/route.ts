@@ -14,7 +14,7 @@ const handleLogin = async (userData: any) => {
   }
 }
 
-export const authOptions: any = {
+const authOptions: any = {
   pages: {
     signIn: "/login",
   },
@@ -68,6 +68,6 @@ export const authOptions: any = {
   },
 }
 
-const handler = NextAuth(authOptions)
+const handler: any = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }

@@ -45,7 +45,7 @@ function AppHeader() {
   }
   const setLoggedUser = useCallback(async () => {
     data?.user?.id && (await loadingLoggedUser(data?.user?.id))
-  }, [data])
+  }, [data, loadingLoggedUser])
 
   // !log-out
   const handleOpenModel = () => {
@@ -62,7 +62,7 @@ function AppHeader() {
 
   useEffect(() => {
     setLoggedUser()
-  }, [setLoggedUser])
+  }, [loadingLoggedUser, setLoggedUser])
 
   return (
     <>

@@ -34,10 +34,12 @@ function AboutMe() {
           </div>
           {/* //todo about image */}
           <div className="w-full h-full max-h-[700px]">
-            <img
+            <Image
               src={aboutImage}
               alt="about image"
               className="w-full h-full object-contain"
+              width={500}
+              height={500}
             />
           </div>
         </div>
