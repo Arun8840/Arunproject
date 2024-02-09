@@ -2,17 +2,10 @@ import axios from "axios"
 
 const getSocialAppServices = () => {
   // todo login
-  const headers = {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    // Add any other headers as needed
-  }
-  // todo login
   const loginUser = async (credentials: any) => {
     let response = await axios.post(
       "http://localhost:3000/api/login",
-      credentials,
-      { headers }
+      credentials
     )
     if (response?.data?.status) {
       return response

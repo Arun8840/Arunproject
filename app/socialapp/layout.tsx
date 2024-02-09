@@ -1,17 +1,21 @@
-import AppHeader from "@/Components/SocialApp/AppHeader";
-import { cookies } from "next/headers";
-import React from "react";
+"use client"
+import AppHeader from "@/Components/SocialApp/AppHeader"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
+import React from "react"
 
 function ChatBoardLayout({ children }: { children: React.ReactNode }) {
-  const encryptedSessionData: any = cookies().get("session")?.value;
-  let loggedUserData: any = JSON?.parse(encryptedSessionData);
-
+  const { status }: any = useSession()
+  const navigate = useRouter()
+  if (status === "unauthenticated") {
+    navigate.back()
+  }
   return (
     <div className="bg-[#09090b] w-full min-h-screen  flex gap-1 p-1">
-      <AppHeader loggedUserData={loggedUserData} />
+      <AppHeader />
       {children}
     </div>
-  );
+  )
 }
 
-export default ChatBoardLayout;
+export default ChatBoardLayout

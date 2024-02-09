@@ -1,8 +1,8 @@
 "use client"
 import { SocialappStore } from "@/Store/SocialappStore"
-import { DarkIcon, LogoutIcon } from "@/Utility/icons/icons"
+import { LogoutIcon } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
-import { signOut } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
 import React, { memo, useCallback, useEffect } from "react"
@@ -12,7 +12,10 @@ import {
   DashboardIcon,
   StatusIcon,
 } from "@/Utility/icons/icons"
-function AppHeader({ loggedUserData }: any) {
+import ModelWrapper from "@/Utility/Uicomponents/ConfirmationModel/ModelWrapper"
+import gsap, { Power3 } from "gsap"
+function AppHeader() {
+  const { data }: any = useSession()
   const { ContentFont } = useGetFonts()
   const tab = useSearchParams()
   const router: any = useRouter()
@@ -41,65 +44,89 @@ function AppHeader({ loggedUserData }: any) {
     router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
   }
   const setLoggedUser = useCallback(async () => {
-    await loadingLoggedUser(loggedUserData?._id)
-  }, [loadingLoggedUser, loggedUserData])
+    data?.user?.id && (await loadingLoggedUser(data?.user?.id))
+  }, [data])
+
+  // !log-out
+  const handleOpenModel = () => {
+    gsap.to("#modelContainer", {
+      opacity: 1,
+      display: "grid",
+      duration: 0.5,
+      ease: Power3.easeInOut,
+    })
+  }
+  const handleLogOut = async () => {
+    await signOut()
+  }
 
   useEffect(() => {
     setLoggedUser()
   }, [setLoggedUser])
 
   return (
-    <nav
-      className={`text-white bg-[#27272a]/50 p-1 flex flex-col justify-between rounded ${ContentFont.className}`}
-    >
-      <ul className="flex flex-col justify-center items-center gap-3 tracking-wide text-sm p-1">
-        {tabItems.map((Items, index) => {
-          let setactive = isActiveTab === Items.name
-          return (
-            <li
-              title={Items?.name}
-              style={
-                setactive
-                  ? {
-                      backgroundColor: loggedUserData?.theme?.primary,
-                      color: loggedUserData?.theme?.secondary,
-                    }
-                  : {
-                      color: "lightgray",
-                    }
-              }
-              key={index + 1}
-              onClick={() => handleChangeTab(Items?.name)}
-              className={`p-2 rounded cursor-pointer grid place-items-center`}
-            >
-              <Items.icon width={20} />
-            </li>
-          )
-        })}
-      </ul>
+    <>
+      <ModelWrapper
+        onConfirm={handleLogOut}
+        text={{ message: "Logout", label: "Logout" }}
+        varient="danger"
+      />
+      <nav
+        className={`text-white bg-[#27272a]/50 p-1 flex flex-col justify-between rounded ${ContentFont.className}`}
+      >
+        <ul className="flex flex-col justify-center items-center gap-3 tracking-wide text-sm p-1">
+          {tabItems.map((Items, index) => {
+            let setactive = isActiveTab === Items.name
+            return (
+              <li
+                title={Items?.name}
+                style={
+                  setactive
+                    ? {
+                        backgroundColor: data?.user?.theme?.primary,
+                        color: data?.user?.theme?.secondary,
+                      }
+                    : {
+                        color: "lightgray",
+                      }
+                }
+                key={index + 1}
+                onClick={() => handleChangeTab(Items?.name)}
+                className={`p-2 rounded cursor-pointer grid place-items-center`}
+              >
+                <Items.icon width={20} />
+              </li>
+            )
+          })}
+        </ul>
 
-      <div className="flex flex-col justify-center items-center gap-2">
-        {" "}
-        {/* logout button */}
-        <button title="Logout" className="rounded text-red-600 p-2">
-          <LogoutIcon width={20} />
-        </button>
-        {/* profile button */}
-        <button
-          title={loggedUserData?.email}
-          style={{ backgroundColor: loggedUserData?.theme?.primary }}
-          className="rounded overflow-hidden w-10 h-10 text-sm tracking-wide uppercase"
-        >
-          <Image
-            src={`https://robohash.org/${loggedUserData?.profileImage}`}
-            alt="profile image"
-            className="w-full h-full object-contain"
-            width={500}
-            height={500}
-          />
-        </button>
-      </div>
-    </nav>
+        <div className="flex flex-col justify-center items-center gap-2">
+          {/* logout button */}
+          <button
+            type="button"
+            onClick={handleOpenModel}
+            title="Logout"
+            className="rounded text-red-600 p-2"
+          >
+            <LogoutIcon width={20} />
+          </button>
+          {/* profile button */}
+          <button
+            title={data?.user?.email}
+            style={{ backgroundColor: data?.user?.theme?.primary }}
+            className="rounded overflow-hidden w-10 h-10 text-sm tracking-wide uppercase"
+          >
+            <Image
+              src={`https://robohash.org/${data?.user?.profileImage}`}
+              alt="profile image"
+              className="w-full h-full object-contain"
+              width={500}
+              height={500}
+            />
+          </button>
+        </div>
+      </nav>
+    </>
   )
 }
 

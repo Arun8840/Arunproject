@@ -39,7 +39,7 @@ export const ProjectDatas: ProjectDataTypes[] = [
     image: "copy.png",
     description:
       "To create a social media platform resembling popular social networking sites, providing users with functionalities for sharing posts, interacting with others, and fostering a sense of community. Enable users to create, edit, delete, and share posts (text, images, videos) with their followers or the public. Display a personalized feed showcasing posts from followed users or relevant content based on interests. Utilize a JavaScript framework like React.js for building the user interface. Use state management libraries like Redux or Context API for managing application state.",
-    path: "/projects/Cloningapp",
+    path: "/login",
     color: ["#FF6000", "#4942E4"],
     fontColor: "#FFFFFF",
   },
