@@ -66,7 +66,6 @@ export const SocialappStore = create((set, get: any) => ({
 
   // todo notification set message
   setNotification: async (message: string) => {
-    console.log(message)
     if (message) {
       set((state: any) => ({
         ...state,
