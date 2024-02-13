@@ -39,6 +39,7 @@ function AppHeader() {
     },
   ]
   const loadingLoggedUser = SocialappStore((state: any) => state.loadloggedUser)
+  const LoggedUser = SocialappStore((state: any) => state.LoggedUser)
 
   const handleChangeTab = (tabValue: string) => {
     router.push(`/socialapp/?id=${tab.get("id")}&tab=${tabValue}`)
@@ -83,8 +84,8 @@ function AppHeader() {
                 style={
                   setactive
                     ? {
-                        backgroundColor: data?.user?.theme?.primary,
-                        color: data?.user?.theme?.secondary,
+                        backgroundColor: LoggedUser.theme?.primary,
+                        color: LoggedUser.theme?.secondary,
                       }
                     : {
                         color: "lightgray",
@@ -112,12 +113,12 @@ function AppHeader() {
           </button>
           {/* profile button */}
           <button
-            title={data?.user?.email}
-            style={{ backgroundColor: data?.user?.theme?.primary }}
+            title={LoggedUser.email}
+            style={{ backgroundColor: LoggedUser.theme?.primary }}
             className="rounded overflow-hidden w-10 h-10 text-sm tracking-wide uppercase"
           >
             <Image
-              src={`https://robohash.org/${data?.user?.profileImage}`}
+              src={`https://robohash.org/${LoggedUser.profileImage}`}
               alt="profile image"
               className="w-full h-full object-contain"
               width={500}

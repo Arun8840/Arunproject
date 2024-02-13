@@ -1,19 +1,24 @@
 import { SocialappStore } from "@/Store/SocialappStore"
 import Accordion from "@/Utility/Uicomponents/Accordion/Accordion"
 import Colorpallets from "@/Utility/Uicomponents/Colorpallets"
+import Input from "@/Utility/components/Input"
 import {
   BlockIcon,
+  Close,
+  EditIcon,
   MediaIcon,
   MuteIcon,
   PriorityIcon,
   RatingIcon,
+  SaveIcon,
   ThemeIcon,
   Trash,
   UnMuteIcon,
 } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import Image from "next/image"
-import React from "react"
+import React, { useState } from "react"
+import { SubmitHandler, useForm } from "react-hook-form"
 import { mutate } from "swr"
 
 interface accordionTypes {
@@ -22,8 +27,31 @@ interface accordionTypes {
   children: any[]
   openDefault: boolean
 }
+interface FormTypes {
+  name: string
+  email: string
+  password: string
+  theme: any
+  profileImage: number
+}
 function ChatUserDetails() {
+  const UpdateUser = SocialappStore((state: any) => state?.updateFriend)
   const userDatas: any = SocialappStore((state: any) => state.UserDetails)
+  const [isEdit, setEdit] = useState({
+    status: false,
+    theme: {},
+  })
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormTypes>({
+    defaultValues: {
+      name: userDatas?.name,
+      email: userDatas?.email,
+    },
+  })
   const IsMutted: any = SocialappStore((state: any) => state.isMuteFriend)
   const DeleteFriend: any = SocialappStore((state: any) => state.deleteFriend)
   const { ContentFont } = useGetFonts()
@@ -51,119 +79,7 @@ function ChatUserDetails() {
           primary: "#F9A825",
           secondary: "#FFD54F",
           sidebar: "#FF8F00",
-          sidebarFontColor: "#101010",
-          footer: "#FF6F00",
           mainBackground: "#212121",
-          sugHeader: "#FFAB00",
-          header: "#FF6F00",
-          cardColor: "#424242",
-          cardheader: "#FF6F00",
-          accent: "#FF3D00",
-          success: "#00C853",
-          error: "#D50000",
-          warning: "#FFAB00",
-          cardFontColor: "#FFFFFF",
-          footerFontColor: "#000000",
-        },
-        {
-          name: "Foundation",
-          themeName: "Isaac Asimov",
-          primary: "#815B5B",
-          secondary: "#9E7676",
-          sidebar: "#9E7676",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#6C3428",
-          mainBackground: "#FFF8EA",
-          sugHeader: "#536DFE",
-          header: "#6C3428",
-          cardColor: "#FFFFFF",
-          cardheader: "#3F51B5",
-          accent: "#224B0C",
-          success: "#00E676",
-          error: "#FF1744",
-          warning: "#FFD600",
-          cardFontColor: "#594545",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "Neuromancer",
-          themeName: "William Gibson",
-          primary: "#4f46e5",
-          secondary: "#52616B",
-          sidebar: "#FFFFFF",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#4f46e5",
-          mainBackground: "#F6F6F6",
-          sugHeader: "#D6E6F2",
-          header: "#4f46e5",
-          cardColor: "#FFFFFF",
-          cardheader: "#769FCD",
-          accent: "#4f46e5",
-          success: "#609966",
-          error: "#E23E57",
-          warning: "#FFDE7D",
-          cardFontColor: "#1E2022",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "1984",
-          themeName: "George Orwell",
-          primary: "#B71C1C",
-          secondary: "#D32F2F",
-          sidebar: "#8B0000",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#C62828",
-          mainBackground: "#FAFAFA",
-          sugHeader: "#FF5252",
-          header: "#D32F2F",
-          cardColor: "#FFFFFF",
-          cardheader: "#D32F2F",
-          accent: "#FF1744",
-          success: "#00C853",
-          error: "#D50000",
-          warning: "#FFAB00",
-          cardFontColor: "#000000",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "Brave New World",
-          themeName: "Aldous Huxley",
-          primary: "#004D40",
-          secondary: "#00796B",
-          sidebar: "#00251A",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#00695C",
-          mainBackground: "#FAFAFA",
-          sugHeader: "#1DE9B6",
-          header: "#00796B",
-          cardColor: "#FFFFFF",
-          cardheader: "#00796B",
-          accent: "#00BFA5",
-          success: "#00E676",
-          error: "#FF1744",
-          warning: "#FFD600",
-          cardFontColor: "#000000",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "The Hitchhiker's Guide to the Galaxy",
-          themeName: "Douglas Adams",
-          primary: "#FF5722",
-          secondary: "#FF8A65",
-          sidebar: "#E64A19",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#FF5722",
-          mainBackground: "#FAFAFA",
-          sugHeader: "#FFAB00",
-          header: "#FF8A65",
-          cardColor: "#FFFFFF",
-          cardheader: "#FF8A65",
-          accent: "#FF3D00",
-          success: "#00C853",
-          error: "#D50000",
-          warning: "#FFAB00",
-          cardFontColor: "#000000",
-          footerFontColor: "#000000",
         },
         {
           name: "Snow Crash",
@@ -171,62 +87,10 @@ function ChatUserDetails() {
           primary: "#1A237E",
           secondary: "#283593",
           sidebar: "#0D47A1",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#1A237E",
           mainBackground: "#E8EAF6",
-          sugHeader: "#536DFE",
-          header: "#283593",
-          cardColor: "#FFFFFF",
-          cardheader: "#283593",
-          accent: "#651FFF",
-          success: "#00E676",
-          error: "#FF1744",
-          warning: "#FFD600",
-          cardFontColor: "#000000",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "Ender's Game",
-          themeName: "Orson Scott Card",
-          primary: "#006064",
-          secondary: "#0097A7",
-          sidebar: "#004D40",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#00695C",
-          mainBackground: "#E0F2F1",
-          sugHeader: "#1DE9B6",
-          header: "#0097A7",
-          cardColor: "#FFFFFF",
-          cardheader: "#0097A7",
-          accent: "#00BFA5",
-          success: "#00E676",
-          error: "#FF1744",
-          warning: "#FFD600",
-          cardFontColor: "#000000",
-          footerFontColor: "#FFFFFF",
-        },
-        {
-          name: "The War of the Worlds",
-          themeName: "H.G. Wells",
-          primary: "#B71C1C",
-          secondary: "#D32F2F",
-          sidebar: "#8B0000",
-          sidebarFontColor: "#FFFFFF",
-          footer: "#C62828",
-          mainBackground: "#FAFAFA",
-          sugHeader: "#FF5252",
-          header: "#D32F2F",
-          cardColor: "#FFFFFF",
-          cardheader: "#D32F2F",
-          accent: "#FF1744",
-          success: "#00C853",
-          error: "#D50000",
-          warning: "#FFAB00",
-          cardFontColor: "#000000",
-          footerFontColor: "#FFFFFF",
         },
       ],
-      openDefault: false,
+      openDefault: true,
     },
   ]
 
@@ -255,14 +119,81 @@ function ChatUserDetails() {
     response && mutate("/api/user-friends")
   }
 
+  // todo handle change friends theme
+  const handleChangeEdit = () => {
+    setEdit((prev) => ({ ...prev, status: true }))
+  }
+
+  // todo theme change handler
+  const hadnleChangeTheme = (items: any) => {
+    setEdit((prev) => ({
+      ...prev,
+      theme: {
+        ...prev?.theme,
+        themeName: items?.themeName,
+        primary: items?.primary,
+        secondary: items?.secondary,
+      },
+    }))
+  }
+  const handleSave: SubmitHandler<FormTypes> = async (data) => {
+    if (data) {
+      let saveData = {
+        ...data,
+        id: userDatas?._id,
+        theme: isEdit?.theme,
+        isPinned: userDatas?.isPinned,
+        isMutted: userDatas?.isMutted,
+        profileImage: userDatas?.profileImage,
+      }
+      setEdit((prev) => ({ ...prev, status: false }))
+      let response = await UpdateUser(saveData)
+      response && mutate("/api/user-friends")
+    }
+  }
+
+  const handleSaveClick = () => {
+    handleSubmit(handleSave)()
+  }
+
   return (
     userDatas && (
       <div
         className={`bg-[#27272a]/50 rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
       >
-        <h1 className="text-white capitalize tracking-wide text-center">
-          Details
-        </h1>
+        <div className="flex justify-between items-center px-1 text-white">
+          <h1 className="text-white capitalize tracking-wide text-center flex-1">
+            Details
+          </h1>
+          {isEdit?.status ? (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleSaveClick}
+                title="Edit User"
+                className="bg-green-700 rounded py-1 px-2 flex items-center gap-2"
+              >
+                <SaveIcon width={20} />{" "}
+                <small className="text-white">save</small>
+              </button>
+              <button
+                onClick={() => setEdit((prev) => ({ ...prev, status: false }))}
+                title="Edit User"
+                className="bg-stone-700 rounded py-1 px-2 flex items-center gap-2"
+              >
+                <Close width={20} />{" "}
+                <small className="text-white">Cancel</small>
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={handleChangeEdit}
+              title="Edit User"
+              className="bg-[#27272a] rounded p-1"
+            >
+              <EditIcon width={20} />
+            </button>
+          )}
+        </div>
 
         {/*//todo profile logo */}
         <div className="w-[200px]  mx-auto rounded grid place-items-center relative overflow-hidden">
@@ -282,21 +213,61 @@ function ChatUserDetails() {
           ) : null}
         </div>
 
-        {/* //todod user name header */}
-        <h1 className="text-white text-center tracking-wider font-bold capitalize">
-          {userDatas?.name ?? "Default Name"}
-        </h1>
-        <span className="text-white text-center text-xs tracking-wider">
-          {userDatas?.email}
-        </span>
-        <span className="text-white text-center text-xs tracking-wider">
-          {userDatas?.description}
-        </span>
+        <div>
+          {/* //todod user name header */}
+          {isEdit?.status ? (
+            <form onSubmit={handleSubmit(handleSave)}>
+              <label htmlFor="name" className="py-3 block text-white">
+                Name :
+                <small className="capitalize tracking-wide text-red-500 px-2">
+                  {errors?.name?.message}
+                </small>
+              </label>
+              <Input
+                register={register}
+                required={true}
+                name="name"
+                className={`border ${
+                  errors?.name?.message ? "border-red-500" : "border-[#27272a]"
+                } rounded-lg p-2 outline-none bg-inherit w-full text-white`}
+                type="text"
+              />
 
+              <label htmlFor="email" className="py-3 block text-white">
+                Email :
+                <small className="capitalize tracking-wide text-red-500 px-2">
+                  {errors?.email?.message}
+                </small>
+              </label>
+              <Input
+                register={register}
+                required={true}
+                name="email"
+                className={`border ${
+                  errors?.email?.message ? "border-red-500" : "border-[#27272a]"
+                } rounded-lg p-2 outline-none bg-inherit w-full text-white`}
+                type="text"
+              />
+            </form>
+          ) : (
+            <>
+              <h1 className="text-white px-2 tracking-wider font-bold capitalize">
+                {userDatas?.name ?? "Default Name"}
+              </h1>
+              <span className="text-white px-2 text-xs tracking-wider">
+                {userDatas?.email}
+              </span>
+              <span className="text-white px-2 text-xs tracking-wider">
+                {userDatas?.description}
+              </span>
+            </>
+          )}
+        </div>
         {/* //todo action buttons */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 auto-rows-max gap-2">
           {userDatas?.isMutted ? (
             <button
+              type="button"
               onClick={handleUnMuteFriend}
               className={`w-full rounded bg-pink-600 text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200`}
             >
@@ -305,6 +276,7 @@ function ChatUserDetails() {
             </button>
           ) : (
             <button
+              type="button"
               onClick={handleMuteFriend}
               className={`w-full rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200`}
             >
@@ -312,13 +284,17 @@ function ChatUserDetails() {
               <MuteIcon width={20} />
             </button>
           )}
-          <button className="w-full rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 ">
+          <button
+            type="button"
+            className="w-full rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
+          >
             <h1>Block</h1>
             <BlockIcon width={20} />
           </button>
 
           {/* //todo delete button */}
           <button
+            type="button"
             onClick={handleDeleteUser}
             className="w-full col-span-2 rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
           >
@@ -347,9 +323,10 @@ function ChatUserDetails() {
                       {values.children.map((values2) => {
                         return (
                           <Colorpallets
+                            handleUpdateTheme={hadnleChangeTheme}
                             key={values2.name}
                             size={50}
-                            currentThemeName={userDatas?.User?.theme}
+                            currentThemeName={userDatas?.theme?.themeName}
                             items={values2}
                           />
                         )

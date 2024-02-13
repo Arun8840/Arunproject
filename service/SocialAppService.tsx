@@ -63,6 +63,16 @@ const getSocialAppServices = () => {
     }
   }
 
+  const UpdateUser = async (UserData: any) => {
+    let response = await axios.put(
+      `http://localhost:3000/api/allUsers/updateUser`,
+      UserData
+    )
+    if (response) {
+      return response?.data
+    }
+  }
+
   const MuteFriend = async (friendData: any) => {
     let response = await axios.put(
       `http://localhost:3000/api/allUsers/user`,
@@ -103,6 +113,7 @@ const getSocialAppServices = () => {
     loginUser,
     loadUserFriends,
     MuteFriend,
+    UpdateUser,
   }
 }
 

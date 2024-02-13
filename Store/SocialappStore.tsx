@@ -3,7 +3,8 @@ import getSocialAppServices from "@/service/SocialAppService"
 import { create } from "zustand"
 
 const { UsersData } = useGetUsersData()
-const { loadAllUser, loadUser, DeleteUser, MuteFriend } = getSocialAppServices()
+const { loadAllUser, loadUser, DeleteUser, MuteFriend, UpdateUser } =
+  getSocialAppServices()
 export const SocialappStore = create((set, get: any) => ({
   UserDatas: UsersData,
   UserDetails: null,
@@ -46,6 +47,18 @@ export const SocialappStore = create((set, get: any) => ({
       set((state: any) => ({
         ...state,
         UserDetails: null,
+      }))
+      return response
+    }
+  },
+
+  updateFriend: async (friendData: string) => {
+    let response = await UpdateUser(friendData)
+    if (response) {
+      set((state: any) => ({
+        ...state,
+        UserDetails: response?.data,
+        notificationMessage: response?.message,
       }))
       return response
     }

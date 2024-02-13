@@ -17,7 +17,7 @@ function Colorpallets(props: propsTypes) {
       className={`rounded-lg  grid place-items-center 
         p-1  hover:bg-[#eeeeee]
        cursor-pointer relative  ${
-         items?.name === currentThemeName &&
+         items?.themeName === currentThemeName &&
          "bg-green-500/30 border border-green-500 border-opacity-50"
        }`}
     >
@@ -46,7 +46,7 @@ function Colorpallets(props: propsTypes) {
           &nbsp;
         </div>
       </div>
-      {items?.name === currentThemeName && (
+      {items?.themeName === currentThemeName && (
         <button className="bg-green-600 text-white rounded-full absolute -top-2 -right-1 p-1">
           <Check width={15} />
         </button>
