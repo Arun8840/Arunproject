@@ -73,9 +73,9 @@ function AppHeader() {
         varient="danger"
       />
       <nav
-        className={`text-white bg-[#27272a]/50 p-1 flex flex-col justify-between rounded ${ContentFont.className}`}
+        className={`text-white bg-white p-1 flex flex-col justify-between rounded ${ContentFont.className}`}
       >
-        <ul className="flex flex-col justify-center items-center gap-3 tracking-wide text-sm p-1">
+        <ul className="flex flex-col justify-center items-center gap-3 tracking-wide text-sm">
           {tabItems.map((Items, index) => {
             let setactive = isActiveTab === Items.name
             return (
@@ -84,11 +84,11 @@ function AppHeader() {
                 style={
                   setactive
                     ? {
-                        backgroundColor: LoggedUser.theme?.primary,
-                        color: LoggedUser.theme?.secondary,
+                        backgroundColor: "#009ff7",
+                        color: "white",
                       }
                     : {
-                        color: "lightgray",
+                        color: "#009ff7",
                       }
                 }
                 key={index + 1}

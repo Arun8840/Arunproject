@@ -32,7 +32,7 @@ function ModelWrapper({
           varient === "default" && "bg-[#27272a] border border-stone-600"
         } ${
           varient === "danger" &&
-          "bg-red-700/20 backdrop-blur-sm text-red-500 border border-red-700"
+          "bg-white backdrop-blur-sm text-red-500 "
         }`}
       >
         <div>

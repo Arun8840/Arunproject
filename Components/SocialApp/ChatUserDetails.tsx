@@ -159,10 +159,10 @@ function ChatUserDetails() {
   return (
     userDatas && (
       <div
-        className={`bg-[#27272a]/50 rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
+        className={`bg-white rounded col-span-2 overflow-y-auto ${ContentFont.className} p-1 flex flex-col gap-2`}
       >
-        <div className="flex justify-between items-center px-1 text-white">
-          <h1 className="text-white capitalize tracking-wide text-center flex-1">
+        <div className="flex justify-between items-center px-1 ">
+          <h1 className=" capitalize tracking-wide text-center flex-1">
             Details
           </h1>
           {isEdit?.status ? (
@@ -188,7 +188,7 @@ function ChatUserDetails() {
             <button
               onClick={handleChangeEdit}
               title="Edit User"
-              className="bg-[#27272a] rounded p-1"
+              className="bg-[#009ff7] text-white rounded p-1"
             >
               <EditIcon width={20} />
             </button>
@@ -217,7 +217,7 @@ function ChatUserDetails() {
           {/* //todod user name header */}
           {isEdit?.status ? (
             <form onSubmit={handleSubmit(handleSave)}>
-              <label htmlFor="name" className="py-3 block text-white">
+              <label htmlFor="name" className="py-3 block">
                 Name :
                 <small className="capitalize tracking-wide text-red-500 px-2">
                   {errors?.name?.message}
@@ -229,11 +229,11 @@ function ChatUserDetails() {
                 name="name"
                 className={`border ${
                   errors?.name?.message ? "border-red-500" : "border-[#27272a]"
-                } rounded-lg p-2 outline-none bg-inherit w-full text-white`}
+                } rounded-lg p-2 outline-none bg-inherit w-full `}
                 type="text"
               />
 
-              <label htmlFor="email" className="py-3 block text-white">
+              <label htmlFor="email" className="py-3 block ">
                 Email :
                 <small className="capitalize tracking-wide text-red-500 px-2">
                   {errors?.email?.message}
@@ -245,19 +245,19 @@ function ChatUserDetails() {
                 name="email"
                 className={`border ${
                   errors?.email?.message ? "border-red-500" : "border-[#27272a]"
-                } rounded-lg p-2 outline-none bg-inherit w-full text-white`}
+                } rounded-lg p-2 outline-none bg-inherit w-full `}
                 type="text"
               />
             </form>
           ) : (
             <>
-              <h1 className="text-white px-2 tracking-wider font-bold capitalize">
+              <h1 className="px-2 tracking-wider font-bold capitalize">
                 {userDatas?.name ?? "Default Name"}
               </h1>
-              <span className="text-white px-2 text-xs tracking-wider">
+              <span className="px-2 text-xs tracking-wider">
                 {userDatas?.email}
               </span>
-              <span className="text-white px-2 text-xs tracking-wider">
+              <span className="px-2 text-xs tracking-wider">
                 {userDatas?.description}
               </span>
             </>
@@ -278,25 +278,18 @@ function ChatUserDetails() {
             <button
               type="button"
               onClick={handleMuteFriend}
-              className={`w-full rounded bg-[#ff4b4b13] text-sm flex items-center justify-center p-2 gap-2 text-white  tracking-wider transition-colors duration-200`}
+              className="w-full rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
             >
               <h1>Mute</h1>
               <MuteIcon width={20} />
             </button>
           )}
-          <button
-            type="button"
-            className="w-full rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
-          >
-            <h1>Block</h1>
-            <BlockIcon width={20} />
-          </button>
-
+      
           {/* //todo delete button */}
           <button
             type="button"
             onClick={handleDeleteUser}
-            className="w-full col-span-2 rounded bg-[#ff4b4b13] hover:bg-red-600 text-red-600 hover:text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
+            className="w-full rounded bg-red-600 text-white text-sm flex items-center justify-center p-2 gap-2  tracking-wider transition-colors duration-200 "
           >
             <h1>Remove</h1>
             <Trash width={20} />

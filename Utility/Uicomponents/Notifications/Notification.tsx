@@ -43,10 +43,10 @@ function Notification() {
         ref={containerRef}
         className={`fixed tracking-wide capitalize opacity-0 top-5 right-1/2 translate-x-1/2 border rounded  min-w-[300px] p-2  shadow-lg place-items-center ${
           Success.some((keywords) => message.match(keywords)) &&
-          "bg-green-700/20 backdrop-blur-sm text-green-500 border border-green-700"
+          "bg-green-700 backdrop-blur-sm text-green-200 border border-green-700"
         } ${
           Error.some((keywords) => message.match(keywords)) &&
-          "bg-red-700/20 backdrop-blur-sm text-red-500 border border-red-700"
+          "bg-red-700 backdrop-blur-sm text-red-500 border border-red-700"
         } `}
       >
         <h1 className="text-sm">{message}</h1>

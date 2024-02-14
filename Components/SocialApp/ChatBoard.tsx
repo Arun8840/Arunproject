@@ -4,19 +4,22 @@ import Input from "@/Utility/components/Input"
 import { AttachIcon, EmojiPicker, SendIcon, Trash } from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
-import React, { useRef } from "react"
+import { useSession } from "next-auth/react"
+import Image from "next/image"
+import React, { useCallback, useRef } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
+import { io } from "socket.io-client"
 
 import useSWR from "swr"
 interface formTypes {
   message: string
 }
 function ChatBoard() {
+  // const socket = io("http://localhost:3000")
   const { ContentFont } = useGetFonts()
-  const { theme }: any = useGetFriendThemes()
-  const LoggedUser = SocialappStore((state: any) => state.LoggedUser)
+  const session: any = useSession()
   const IsUserDetails = SocialappStore((state: any) => state.UserDetails)
-  const socket: any = useRef()
+  const SelectedUser = SocialappStore((state: any) => state.UserDetails)
   const { loadAllMessages } = getSocialAppServices()
   const { sendMessage } = getSocialAppServices()
 
@@ -28,93 +31,126 @@ function ChatBoard() {
     formState: { errors },
   } = useForm<formTypes>()
   // const CurrentUser = SocialappStore((state: any) => state.LoggedUser)
-  const SelectedUser = SocialappStore((state: any) => state.UserDetails)
+
   // todo send message action
   const onSubmit: SubmitHandler<formTypes> = async (data) => {
     if (data) {
       let messageData = {
         ...data,
-        from: LoggedUser?.User?._id,
-        to: SelectedUser?.User?._id,
+        from: session?.data?.user?.id,
+        to: SelectedUser?._id,
+        profileImage: session?.data?.user?.image,
       }
-      socket.current.emit("send-msg", {
-        from: LoggedUser?.User?._id,
-        to: SelectedUser?.User?._id,
-        message: data?.message,
-      })
-
+      // socket.emit("private message", {
+      //   from: session?.data?.user?.id,
+      //   to: SelectedUser?._id,
+      //   message: data?.message,
+      // })
       let response = await sendMessage(messageData)
       response && reset()
     }
   }
 
   // todo loading all users
-  const fetcher = async () => {
+  const fetcher = useCallback(async () => {
     let MessagesData = {
-      from: LoggedUser?.User?._id,
-      to: SelectedUser?.User?._id,
+      from: session?.data?.user?.id,
+      to: SelectedUser?._id,
     }
     let res: any = await loadAllMessages(MessagesData)
     return res
-  }
+  }, [SelectedUser?._id])
+
   const {
     data: Messages,
     error,
     isLoading,
   } = useSWR(
-    SelectedUser?.User?._id
-      ? `/api/load-messages/${SelectedUser?.User?._id}`
-      : null,
+    SelectedUser?._id ? ["/load-user-messages", SelectedUser?._id] : null,
     fetcher,
     {
       revalidateOnFocus: false,
     }
   )
-
   return (
     <div
       className={`rounded ${
         IsUserDetails ? "col-span-8" : "col-span-10"
-      } overflow-y-auto ${ContentFont.className} relative flex flex-col gap-2`}
+      } overflow-y-auto ${ContentFont.className} relative flex flex-col gap-1`}
     >
       {/* //todo input box */}
-      <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
-        {/* //todo recived message */}
+      {Messages?.projectMessages?.length > 0 ? (
+        <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
+          {/* //todo recived message */}
 
-        {Messages?.projectMessages?.map((values: any, index: number) => {
-          let isSendedMessage = values?.fromSelf
-          return (
-            <div
-              key={index + 1}
-              className={`flex ${
-                isSendedMessage ? "justify-end" : "justify-start"
-              } tracking-wider text-sm`}
-            >
+          {Messages?.projectMessages?.map((values: any, index: number) => {
+            let isSendedMessage = values?.fromSelf
+            return (
               <div
-                className={`flex flex-col ${
-                  isSendedMessage ? "items-end" : "items-start"
-                } gap-2 w-1/2`}
+                key={index + 1}
+                className={`flex ${
+                  isSendedMessage ? "justify-end" : "justify-start"
+                } tracking-wider text-sm`}
               >
-                <h1
-                  className={`text-white ${
-                    isSendedMessage ? "bg-pink-600" : "bg-indigo-600"
-                  }  w-fit p-2 rounded-s-xl rounded-tr-lg`}
+                <div
+                  className={`flex flex-col ${
+                    isSendedMessage ? "items-end" : "items-start"
+                  } gap-2 w-1/2`}
                 >
-                  {values?.message}
-                </h1>
+                  <div className="flex items-start gap-2">
+                    <h1
+                      style={
+                        isSendedMessage
+                          ? {
+                              backgroundColor:
+                                session?.data?.user?.theme?.primary,
+                            }
+                          : { backgroundColor: SelectedUser?.theme?.primary }
+                      }
+                      className={`text-white w-fit p-2 rounded-s-xl rounded-tr-lg flex-1 shadow-lg`}
+                    >
+                      {values?.message}
+                    </h1>
+                    <div
+                      style={
+                        isSendedMessage
+                          ? {
+                              backgroundColor:
+                                session?.data?.user?.theme?.primary,
+                            }
+                          : { backgroundColor: SelectedUser?.theme?.primary }
+                      }
+                      className="w-[40px] h-[40px] bg-white rounded-xl overflow-hidden shadow-lg"
+                    >
+                      <Image
+                        src={`https://robohash.org/${
+                          isSendedMessage
+                            ? session?.data?.user?.image
+                            : SelectedUser?.profileImage
+                        }`}
+                        alt="profile image"
+                        className="w-full h-full object-contain"
+                        width={500}
+                        height={500}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          )
-        })}
-      </div>
+            )
+          })}
+        </div>
+      ) : (
+        <div className="border h-full grid place-items-center">
+          No messages found !!
+        </div>
+      )}
+
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-3/4 mx-auto flex gap-1 items-center"
+        className="w-full flex gap-1 items-center"
       >
-        <button
-          type="button"
-          className="bg-[#27272a]/50 text-yellow-500 rounded p-3"
-        >
+        <button type="button" className="bg-yellow-400 text-white rounded p-3">
           <EmojiPicker width={18} />
         </button>
         <Input
@@ -122,20 +158,14 @@ function ChatBoard() {
           type="text"
           placeholder="Text your message ...."
           register={register}
-          className="bg-[#27272a]/50 outline-none p-2 rounded w-full text-white flex-1 h-full"
+          className="bg-white outline-none p-2 rounded w-full  flex-1 h-full"
           required={true}
         />
-        <button className="bg-[#27272a]/50 text-white rounded p-3">
+        <button className="bg-white text-blue-500 rounded p-3">
           <AttachIcon width={18} />
         </button>
-        <button
-          style={{
-            backgroundColor:
-              theme?.primary === "#ffffff" ? "orangered" : theme?.primary,
-          }}
-          className="hover:zbg-pink-600 transition-colors duration-200 text-white rounded p-3"
-        >
-          <SendIcon width={18} />
+        <button className="bg-[#009ff7] transition-colors duration-200 text-white rounded h-full px-4 flex justify-center items-center gap-x-2">
+          <SendIcon width={15} /> <small>send</small>
         </button>
       </form>
     </div>

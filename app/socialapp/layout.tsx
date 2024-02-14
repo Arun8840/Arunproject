@@ -11,7 +11,7 @@ function ChatBoardLayout({ children }: { children: React.ReactNode }) {
     navigate.back()
   }
   return (
-    <div className="bg-[#09090b] w-full min-h-screen  flex gap-1 p-1">
+    <div className="bg-[#ebebeb] w-full min-h-screen  flex gap-1 p-1">
       <AppHeader />
       {children}
     </div>

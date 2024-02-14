@@ -16,20 +16,20 @@ function Accordion({ children, header, icon, openByDefault }: PropsTypes) {
     setOpen(!isOpen)
   }
   return (
-    <div className="bg-[#101010]  p-2 rounded">
+    <div className="bg-white border  p-2 rounded">
       {/* //todo accordion header */}
       <div
         onClick={handleOpenAccordion}
-        className="text-white flex justify-between items-center cursor-pointer select-none"
+        className=" flex justify-between items-center cursor-pointer select-none"
       >
         <h1 className="text-sm flex items-center gap-2">
-          {icon.value && <icon.image width={15} className="text-white" />}
+          {icon.value && <icon.image width={15}/>}
           {header}
         </h1>
         <button>
           <RightArrow
             width={15}
-            className={`text-white ${
+            className={`${
               isOpen ? "rotate-90" : "rotate-0"
             } transition-transform duration-200`}
           />

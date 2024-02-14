@@ -86,7 +86,7 @@ const getSocialAppServices = () => {
   // todo send message
   const sendMessage = async (messageData: any) => {
     let response = await axios.post(
-      "http://localhost:3000/api/Message",
+      "http://localhost:3000/api/message",
       messageData
     )
     if (response) {
@@ -96,7 +96,7 @@ const getSocialAppServices = () => {
   // todo load all message
   const loadAllMessages = async (data: any) => {
     let response = await axios.post(
-      "http://localhost:3000/api/Message/getallMessages",
+      "http://localhost:3000/api/message/getAllMessages",
       data
     )
     if (response) {

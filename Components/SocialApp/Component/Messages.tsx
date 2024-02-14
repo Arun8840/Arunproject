@@ -29,6 +29,7 @@ function Messages() {
   const { ContentFont } = useGetFonts()
   const { loadUserFriends } = getSocialAppServices()
   const LoadFriend = SocialappStore((state: any) => state.loadParticularUser)
+  const userDetails = SocialappStore((state: any) => state.UserDetails)
   const router = useSearchParams()
   const userID: string | any = router.get("id")
   // todo loading all users
@@ -81,26 +82,32 @@ function Messages() {
     <>
       <Drawer handleCloseDrawer={handleCloseDrawer}>
         <div
-          className={`flex flex-col justify-between rounded col-span-2 w-full h-full overflow-y-auto p-1 ${ContentFont.className} bg-[#27272a]/50 relative`}
+          className={`flex flex-col justify-between rounded col-span-2 w-full h-full overflow-y-auto p-1 ${ContentFont.className} bg-white relative`}
         >
           <div className="w-full">
             <input
               type="text"
               placeholder="search..."
-              className="rounded bg-[#27272a] outline-none p-2  w-full text-white"
+              className="rounded border outline-none p-2  w-full text-white"
             />
             {!isLoading && (
-              <ul className="grid auto-rows-max gap-1 py-2 divide-y divide-gray-600 divide-opacity-15 max-h-[85vh] overflow-y-auto">
+              <ul className="grid gap-1 auto-rows-max  py-2 max-h-[85vh] overflow-y-auto">
                 {data &&
                   data?.map((items, index: number) => {
                     return (
                       <li
                         onClick={() => handleSelectFriend(items?._id)}
                         key={items?.name}
-                        className=" p-1 flex gap-2 cursor-pointer hover:bg-[#27272a] transition-colors duration-150"
+                        className={`${
+                          items?.name === userDetails?.name &&
+                          "bg-[#009ff7] text-white rounded"
+                        } px-1 py-2 flex gap-2 cursor-pointer hover:bg-[#009ff7] transition-colors duration-150 `}
                       >
                         <div
-                          className={`w-[45px] h-[45px] rounded grid place-items-center bg-[#27272a]`}
+                          className={`w-[45px] h-[45px] grid place-items-center ${
+                            items?.name === userDetails?.name &&
+                            "bg-white rounded-full"
+                          }`}
                         >
                           {items?.profileImage ? (
                             <Image
@@ -118,11 +125,11 @@ function Messages() {
                         </div>
                         <div className="flex justify-between flex-col flex-1">
                           <div className="flex w-full justify-between">
-                            <h1 className="text-white text-xs lg:text-sm tracking-wide">
+                            <h1 className="text-xs lg:text-sm tracking-wide">
                               {items?.name}
                             </h1>
                             {items?.isMutted && (
-                              <button className="text-stone-500 text-xs lg:text-sm tracking-wide">
+                              <button className="text-white text-xs lg:text-sm tracking-wide">
                                 <MuteIcon width={15} />
                               </button>
                             )}
@@ -138,7 +145,7 @@ function Messages() {
           {/* //todo new user add button */}
           <button
             onClick={handleOpenDrawer}
-            className="bg-[#27272a] hover:bg-pink-600 transition-colors duration-150 rounded p-2 text-sm flex justify-center items-center text-white tracking-wide w-full"
+            className="bg-[#009ff7] hover:bg-sky-600 transition-colors duration-150 rounded p-2 text-sm flex justify-center items-center text-white tracking-wide w-full"
           >
             Add friend
             <AddIcon width={20} className="text-white" />
