@@ -11,6 +11,7 @@ import Drawer from "@/Utility/Uicomponents/Drawer/Drawer"
 import gsap, { Power3 } from "gsap"
 import getSocialAppServices from "@/service/SocialAppService"
 import { useSearchParams } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 interface UsersTypes {
   _id: string
@@ -27,6 +28,7 @@ interface UsersTypes {
 }
 function Messages() {
   const { ContentFont } = useGetFonts()
+  const { data }: any = useSession()
   const { loadUserFriends } = getSocialAppServices()
   const LoadFriend = SocialappStore((state: any) => state.loadParticularUser)
   const userDetails = SocialappStore((state: any) => state.UserDetails)
@@ -37,7 +39,11 @@ function Messages() {
     let res: UsersTypes[] = await loadUserFriends(userID)
     return res
   }
-  const { data, error, isLoading } = useSWR("/api/user-friends", fetcher, {
+  const {
+    data: friends,
+    error,
+    isLoading,
+  } = useSWR("/api/user-friends", fetcher, {
     revalidateOnFocus: false,
   })
 
@@ -92,16 +98,22 @@ function Messages() {
             />
             {!isLoading && (
               <ul className="grid gap-1 auto-rows-max  py-2 max-h-[85vh] overflow-y-auto">
-                {data &&
-                  data?.map((items, index: number) => {
+                {friends &&
+                  friends?.map((items, index: number) => {
                     return (
                       <li
+                        style={
+                          items?.name === userDetails?.name
+                            ? {
+                                backgroundColor: data?.user?.theme?.primary,
+                                color: "white",
+                                borderRadius: "5px",
+                              }
+                            : {}
+                        }
                         onClick={() => handleSelectFriend(items?._id)}
                         key={items?.name}
-                        className={`${
-                          items?.name === userDetails?.name &&
-                          "bg-[#009ff7] text-white rounded"
-                        } px-1 py-2 flex gap-2 cursor-pointer hover:bg-[#009ff7] transition-colors duration-150 `}
+                        className={` px-1 py-2 flex gap-2 cursor-pointer hover:bg-[#009ff7] transition-colors duration-150 `}
                       >
                         <div
                           className={`w-[45px] h-[45px] grid place-items-center ${
@@ -145,7 +157,8 @@ function Messages() {
           {/* //todo new user add button */}
           <button
             onClick={handleOpenDrawer}
-            className="bg-[#009ff7] hover:bg-sky-600 transition-colors duration-150 rounded p-2 text-sm flex justify-center items-center text-white tracking-wide w-full"
+            style={{ backgroundColor: data?.user?.theme?.primary }}
+            className="transition-colors duration-150 rounded p-2 text-sm flex justify-center items-center text-white tracking-wide w-full"
           >
             Add friend
             <AddIcon width={20} className="text-white" />

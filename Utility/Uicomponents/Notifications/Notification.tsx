@@ -47,7 +47,7 @@ function Notification() {
         } ${
           Error.some((keywords) => message.match(keywords)) &&
           "bg-red-700 backdrop-blur-sm text-red-500 border border-red-700"
-        } `}
+        } z-50`}
       >
         <h1 className="text-sm">{message}</h1>
       </div>

@@ -1,7 +1,13 @@
 import { SocialappStore } from "@/Store/SocialappStore"
 import useGetFriendThemes from "@/Utility/Style"
 import Input from "@/Utility/components/Input"
-import { AttachIcon, EmojiPicker, SendIcon, Trash } from "@/Utility/icons/icons"
+import {
+  AttachIcon,
+  EmojiPicker,
+  LoaderIcon,
+  SendIcon,
+  Trash,
+} from "@/Utility/icons/icons"
 import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
 import { useSession } from "next-auth/react"
@@ -18,6 +24,7 @@ function ChatBoard() {
   // const socket = io("http://localhost:3000")
   const { ContentFont } = useGetFonts()
   const session: any = useSession()
+  const { theme } = useGetFriendThemes()
   const IsUserDetails = SocialappStore((state: any) => state.UserDetails)
   const SelectedUser = SocialappStore((state: any) => state.UserDetails)
   const { loadAllMessages } = getSocialAppServices()
@@ -74,12 +81,16 @@ function ChatBoard() {
   )
   return (
     <div
-      className={`rounded ${
+      className={`rounded bg-white p-1 ${
         IsUserDetails ? "col-span-8" : "col-span-10"
       } overflow-y-auto ${ContentFont.className} relative flex flex-col gap-1`}
     >
       {/* //todo input box */}
-      {Messages?.projectMessages?.length > 0 ? (
+      {isLoading ? (
+        <div className="border h-full grid place-items-center">
+          <LoaderIcon />
+        </div>
+      ) : Messages?.projectMessages?.length > 0 ? (
         <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
           {/* //todo recived message */}
 
@@ -105,9 +116,11 @@ function ChatBoard() {
                               backgroundColor:
                                 session?.data?.user?.theme?.primary,
                             }
-                          : { backgroundColor: SelectedUser?.theme?.primary }
+                          : { backgroundColor: theme?.primary }
                       }
-                      className={`text-white w-fit p-2 rounded-s-xl rounded-tr-lg flex-1 shadow-lg`}
+                      className={`text-white w-fit p-2 rounded-s-xl rounded-tr-lg flex-1 shadow-lg ${
+                        isSendedMessage ? "order-1" : "order-2"
+                      }`}
                     >
                       {values?.message}
                     </h1>
@@ -118,7 +131,7 @@ function ChatBoard() {
                               backgroundColor:
                                 session?.data?.user?.theme?.primary,
                             }
-                          : { backgroundColor: SelectedUser?.theme?.primary }
+                          : { backgroundColor: theme?.primary }
                       }
                       className="w-[40px] h-[40px] bg-white rounded-xl overflow-hidden shadow-lg"
                     >
@@ -150,7 +163,10 @@ function ChatBoard() {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex gap-1 items-center"
       >
-        <button type="button" className="bg-yellow-400 text-white rounded p-3">
+        <button
+          type="button"
+          className="bg-yellow-400 text-yellow-700 rounded-full p-3"
+        >
           <EmojiPicker width={18} />
         </button>
         <Input
@@ -158,13 +174,13 @@ function ChatBoard() {
           type="text"
           placeholder="Text your message ...."
           register={register}
-          className="bg-white outline-none p-2 rounded w-full  flex-1 h-full"
+          className="bg-white outline-none p-2 rounded-full w-full  flex-1 h-full border border-stone-600/50"
           required={true}
         />
-        <button className="bg-white text-blue-500 rounded p-3">
+        <button className="bg-[#009ff7] text-white rounded-full p-3 ">
           <AttachIcon width={18} />
         </button>
-        <button className="bg-[#009ff7] transition-colors duration-200 text-white rounded h-full px-4 flex justify-center items-center gap-x-2">
+        <button className="bg-[#007965] transition-colors duration-200 text-white rounded-full h-full px-4 flex justify-center items-center gap-x-2">
           <SendIcon width={15} /> <small>send</small>
         </button>
       </form>

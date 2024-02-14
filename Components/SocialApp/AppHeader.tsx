@@ -20,6 +20,7 @@ function AppHeader() {
   const tab = useSearchParams()
   const router: any = useRouter()
   let isActiveTab = tab.get("tab")
+
   let tabItems: { name: string; icon: any }[] = [
     {
       name: "Messages",
@@ -84,11 +85,11 @@ function AppHeader() {
                 style={
                   setactive
                     ? {
-                        backgroundColor: "#009ff7",
+                        backgroundColor: LoggedUser?.theme?.primary,
                         color: "white",
                       }
                     : {
-                        color: "#009ff7",
+                        color: LoggedUser?.theme?.primary,
                       }
                 }
                 key={index + 1}
