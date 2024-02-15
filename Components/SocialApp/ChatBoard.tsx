@@ -1,34 +1,34 @@
-import { SocialappStore } from "@/Store/SocialappStore"
-import useGetFriendThemes from "@/Utility/Style"
-import Input from "@/Utility/components/Input"
+import { SocialappStore } from "@/Store/SocialappStore";
+import useGetFriendThemes from "@/Utility/Style";
+import Input from "@/Utility/components/Input";
 import {
   AttachIcon,
   EmojiPicker,
   LoaderIcon,
   SendIcon,
   Trash,
-} from "@/Utility/icons/icons"
-import useGetFonts from "@/font/fonts"
-import getSocialAppServices from "@/service/SocialAppService"
-import { useSession } from "next-auth/react"
-import Image from "next/image"
-import React, { useCallback, useEffect, useRef } from "react"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { io } from "socket.io-client"
+} from "@/Utility/icons/icons";
+import useGetFonts from "@/font/fonts";
+import getSocialAppServices from "@/service/SocialAppService";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import React, { useCallback, useEffect, useRef } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { io } from "socket.io-client";
 
-import useSWR from "swr"
+import useSWR from "swr";
 interface formTypes {
-  message: string
+  message: string;
 }
 function ChatBoard() {
-  const socket = io("http://localhost:8000")
-  const { ContentFont } = useGetFonts()
-  const session: any = useSession()
-  const { theme } = useGetFriendThemes()
-  const IsUserDetails = SocialappStore((state: any) => state.UserDetails)
-  const SelectedUser = SocialappStore((state: any) => state.UserDetails)
-  const { loadAllMessages } = getSocialAppServices()
-  const { sendMessage } = getSocialAppServices()
+  // const socket = io("http://localhost:3000")
+  const { ContentFont } = useGetFonts();
+  const session: any = useSession();
+  const { theme } = useGetFriendThemes();
+  const IsUserDetails = SocialappStore((state: any) => state.UserDetails);
+  const SelectedUser = SocialappStore((state: any) => state.UserDetails);
+  const { loadAllMessages } = getSocialAppServices();
+  const { sendMessage } = getSocialAppServices();
 
   // todo form state
   const {
@@ -36,7 +36,7 @@ function ChatBoard() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<formTypes>()
+  } = useForm<formTypes>();
   // const CurrentUser = SocialappStore((state: any) => state.LoggedUser)
 
   // todo send message action
@@ -47,35 +47,35 @@ function ChatBoard() {
         from: session?.data?.user?.id,
         to: SelectedUser?._id,
         profileImage: session?.data?.user?.image,
-      }
-      socket.on("connect", () => {
-        console.log(socket.id)
-      })
-      // socket.emit("private message", {
-      //   from: session?.data?.user?.id,
-      //   to: SelectedUser?._id,
-      //   message: data?.message,
+      };
+      // socket.on("connect", () => {
+      //   console.log(socket.id)
       // })
-      socket.emit(
-        "private message",
-        SelectedUser.email,
-        data?.message,
-        session?.data?.user?.id
-      )
-      let response = await sendMessage(messageData)
-      response && reset()
+      // // socket.emit("private message", {
+      // //   from: session?.data?.user?.id,
+      // //   to: SelectedUser?._id,
+      // //   message: data?.message,
+      // // })
+      // socket.emit(
+      //   "private message",
+      //   SelectedUser.email,
+      //   data?.message,
+      //   session?.data?.user?.id
+      // )
+      let response = await sendMessage(messageData);
+      response && reset();
     }
-  }
+  };
 
   // todo loading all users
   const fetcher = useCallback(async () => {
     let MessagesData = {
       from: session?.data?.user?.id,
       to: SelectedUser?._id,
-    }
-    let res: any = await loadAllMessages(MessagesData)
-    return res
-  }, [SelectedUser?._id])
+    };
+    let res: any = await loadAllMessages(MessagesData);
+    return res;
+  }, [SelectedUser?._id]);
 
   const {
     data: Messages,
@@ -87,14 +87,8 @@ function ChatBoard() {
     {
       revalidateOnFocus: false,
     }
-  )
+  );
 
-  useEffect(() => {
-    // Close the socket connection when the component unmounts
-    return () => {
-      socket.disconnect()
-    }
-  }, [])
   return (
     <div
       className={`rounded bg-white p-1 ${
@@ -114,7 +108,7 @@ function ChatBoard() {
             {/* //todo recived message */}
 
             {Messages?.projectMessages?.map((values: any, index: number) => {
-              let isSendedMessage = values?.fromSelf
+              let isSendedMessage = values?.fromSelf;
               return (
                 <div
                   key={index + 1}
@@ -170,7 +164,7 @@ function ChatBoard() {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         ) : (
@@ -206,7 +200,7 @@ function ChatBoard() {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default ChatBoard
+export default ChatBoard;
