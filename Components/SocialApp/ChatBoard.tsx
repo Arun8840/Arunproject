@@ -12,7 +12,7 @@ import useGetFonts from "@/font/fonts"
 import getSocialAppServices from "@/service/SocialAppService"
 import { useSession } from "next-auth/react"
 import Image from "next/image"
-import React, { useCallback, useRef } from "react"
+import React, { useCallback, useEffect, useRef } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { io } from "socket.io-client"
 
@@ -21,7 +21,7 @@ interface formTypes {
   message: string
 }
 function ChatBoard() {
-  // const socket = io("http://localhost:3000")
+  const socket = io("http://localhost:8000")
   const { ContentFont } = useGetFonts()
   const session: any = useSession()
   const { theme } = useGetFriendThemes()
@@ -48,11 +48,20 @@ function ChatBoard() {
         to: SelectedUser?._id,
         profileImage: session?.data?.user?.image,
       }
+      socket.on("connect", () => {
+        console.log(socket.id)
+      })
       // socket.emit("private message", {
       //   from: session?.data?.user?.id,
       //   to: SelectedUser?._id,
       //   message: data?.message,
       // })
+      socket.emit(
+        "private message",
+        SelectedUser.email,
+        data?.message,
+        session?.data?.user?.id
+      )
       let response = await sendMessage(messageData)
       response && reset()
     }
@@ -79,85 +88,97 @@ function ChatBoard() {
       revalidateOnFocus: false,
     }
   )
+
+  useEffect(() => {
+    // Close the socket connection when the component unmounts
+    return () => {
+      socket.disconnect()
+    }
+  }, [])
   return (
     <div
       className={`rounded bg-white p-1 ${
         IsUserDetails ? "col-span-8" : "col-span-10"
-      } overflow-y-auto ${ContentFont.className} relative flex flex-col gap-1`}
+      } overflow-y-auto ${
+        ContentFont.className
+      } relative flex flex-col justify-between gap-1`}
     >
-      {/* //todo input box */}
-      {isLoading ? (
-        <div className="border h-full grid place-items-center">
-          <LoaderIcon />
-        </div>
-      ) : Messages?.projectMessages?.length > 0 ? (
-        <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-end">
-          {/* //todo recived message */}
+      <div className="h-full max-h-[92vh] overflow-y-auto">
+        {/* //todo input box */}
+        {isLoading ? (
+          <div className="min-h-[90vh] h-full grid place-items-center">
+            <LoaderIcon />
+          </div>
+        ) : Messages?.projectMessages?.length > 0 ? (
+          <div className="p-2 w-full flex-1 rounded-lg flex flex-col gap-2 justify-start">
+            {/* //todo recived message */}
 
-          {Messages?.projectMessages?.map((values: any, index: number) => {
-            let isSendedMessage = values?.fromSelf
-            return (
-              <div
-                key={index + 1}
-                className={`flex ${
-                  isSendedMessage ? "justify-end" : "justify-start"
-                } tracking-wider text-sm`}
-              >
+            {Messages?.projectMessages?.map((values: any, index: number) => {
+              let isSendedMessage = values?.fromSelf
+              return (
                 <div
-                  className={`flex flex-col ${
-                    isSendedMessage ? "items-end" : "items-start"
-                  } gap-2 w-1/2`}
+                  key={index + 1}
+                  className={`flex ${
+                    isSendedMessage ? "justify-end" : "justify-start"
+                  } tracking-wider text-sm`}
                 >
-                  <div className="flex items-start gap-2">
-                    <h1
-                      style={
-                        isSendedMessage
-                          ? {
-                              backgroundColor:
-                                session?.data?.user?.theme?.primary,
-                            }
-                          : { backgroundColor: theme?.primary }
-                      }
-                      className={`text-white w-fit p-2 rounded-s-xl rounded-tr-lg flex-1 shadow-lg ${
-                        isSendedMessage ? "order-1" : "order-2"
-                      }`}
-                    >
-                      {values?.message}
-                    </h1>
-                    <div
-                      style={
-                        isSendedMessage
-                          ? {
-                              backgroundColor:
-                                session?.data?.user?.theme?.primary,
-                            }
-                          : { backgroundColor: theme?.primary }
-                      }
-                      className="w-[40px] h-[40px] bg-white rounded-xl overflow-hidden shadow-lg"
-                    >
-                      <Image
-                        src={`https://robohash.org/${
+                  <div
+                    className={`flex flex-col ${
+                      isSendedMessage ? "items-end" : "items-start"
+                    } gap-2 w-1/2`}
+                  >
+                    <div className="flex items-start gap-2">
+                      <h1
+                        style={
                           isSendedMessage
-                            ? session?.data?.user?.image
-                            : SelectedUser?.profileImage
+                            ? {
+                                backgroundColor:
+                                  session?.data?.user?.theme?.primary,
+                              }
+                            : { backgroundColor: theme?.primary }
+                        }
+                        className={`text-white w-fit p-2 rounded-s-xl rounded-tr-lg flex-1 shadow-lg ${
+                          !isSendedMessage && "order-1"
                         }`}
-                        alt="profile image"
-                        className="w-full h-full object-contain"
-                        width={500}
-                        height={500}
-                      />
+                      >
+                        {values?.message}
+                      </h1>
+                      {/* //todo profile image */}
+                      <div
+                        style={
+                          isSendedMessage
+                            ? {
+                                backgroundColor:
+                                  session?.data?.user?.theme?.primary,
+                              }
+                            : { backgroundColor: theme?.primary }
+                        }
+                        className="w-[40px] h-[40px] bg-white rounded-xl overflow-hidden shadow-lg"
+                      >
+                        <Image
+                          src={`https://robohash.org/${
+                            isSendedMessage
+                              ? session?.data?.user?.image
+                              : SelectedUser?.profileImage
+                          }`}
+                          alt="profile image"
+                          className="w-full h-full object-contain"
+                          width={500}
+                          height={500}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          })}
-        </div>
-      ) : (
-        <div className="border h-full grid place-items-center">
-          No messages found !!
-        </div>
-      )}
+              )
+            })}
+          </div>
+        ) : (
+          <div className="w-full min-h-[90vh] grid place-items-center">
+            No messages found !!
+          </div>
+        )}
+      </div>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
