@@ -1,6 +1,7 @@
 import { TodoStore } from "@/Store/TodoStore"
 import Switch from "@/Utility/components/Switch"
 import { CalendarIcon } from "@/Utility/icons/icons"
+import todoAppServices from "@/service/TodoService"
 import React from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 
@@ -13,6 +14,7 @@ interface formTypes {
 }
 function TodoCreate() {
   const AddnewTask = TodoStore((state: any) => state.AddTask)
+  const {create_Todo}=todoAppServices()
   const {
     register,
     handleSubmit,
@@ -22,23 +24,31 @@ function TodoCreate() {
   } = useForm<formTypes>()
   const currentDate = new Date()
   const onSubmit: SubmitHandler<formTypes> = async (data) => {
+    // if (data) {
+    //   let taskData = {
+    //     ...data,
+    //     complete: false,
+    //     date: `${currentDate?.getFullYear()}/${currentDate?.getMonth()}/${currentDate?.getDate()}`,
+    //   }
+    //   AddnewTask(taskData)
+    //   reset({
+    //     title: "",
+    //     content: "",
+    //     date: "",
+    //     priority: false,
+    //   })
+    // }
     if (data) {
-      let taskData = {
-        ...data,
-        complete: false,
-        date: `${currentDate?.getFullYear()}/${currentDate?.getMonth()}/${currentDate?.getDate()}`,
+      let createData={
+        title:data?.date,
+        description:data?.content,
+        isPriority:data?.priority
       }
-      AddnewTask(taskData)
-      reset({
-        title: "",
-        content: "",
-        date: "",
-        priority: false,
-      })
+      let response=await create_Todo(createData)
     }
   }
   return (
-    <div className="col-span-2 p-1 flex flex-col gap-1 bg-white rounded">
+    <div className="col-span-2 p-1 flex flex-col gap-1 bg-white/50 backdrop-blur-sm rounded-lg">
       <div className="tracking-wider text-[#5b33d9] bg-[#f6f8fa] font-semibold p-2 rounded flex items-center justify-between">
         <h1>Today</h1>
         <CalendarIcon width={20} />

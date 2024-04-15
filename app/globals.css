@@ -21,4 +21,8 @@
   ::-webkit-scrollbar-thumb:hover {
     background-color: #555;
   }
-  
+  #todoMainBackground{
+    background: "";
+    background-position: center;
+    background-size: cover;
+  }

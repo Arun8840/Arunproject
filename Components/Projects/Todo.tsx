@@ -5,7 +5,7 @@ import OptionButtons from "../HomeComponents/OptionButtons"
 
 function Todo() {
   return (
-    <div className="h-screen ">
+    <div id="todoMainBackground" className="h-screen bg-black">
       <TodoHomePage />
     </div>
   )

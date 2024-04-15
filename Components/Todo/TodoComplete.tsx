@@ -23,9 +23,9 @@ function TodoComplete() {
     (listValue) => listValue?.complete === true
   )
   return (
-    <div className="col-span-5 rounded flex flex-col gap-1 px-1">
-      <div className="tracking-wider font-bold text-white bg-[#37dbb7] p-3 rounded flex items-center gap-2">
-        <button className="bg-white text-[#37dbb7] rounded-full w-[20px] h-[20px] grid place-items-center">
+    <div className="bg-white/50 backdrop-blur-sm col-span-6 rounded-lg max-h-[99vh] flex flex-col gap-1 p-1">
+      <div className="tracking-wider font-bold text-white bg-[#005B41] p-3 rounded flex items-center gap-2">
+        <button className="text-[#37dbb7] bg-white rounded-full w-[20px] h-[20px] grid place-items-center">
           <Check width={18} className="inline" />
         </button>
         <h1> Tasks Completed</h1>
@@ -34,7 +34,7 @@ function TodoComplete() {
         ref={drop}
         className={`${
           ListItems?.length === 0 && "border border-dashed"
-        } min-h-[92vh] max-h-[90vh] overflow-y-auto pr-2`}
+        } overflow-y-auto p-2 bg-white/80 backdrop-blur-lg`}
       >
         {ListItems?.length > 0 ? (
           <ul className="flex flex-col gap-1">
@@ -44,7 +44,7 @@ function TodoComplete() {
               })}
           </ul>
         ) : (
-          <div className="bg-white w-full h-full grid place-items-center">
+          <div className=" w-full h-full grid place-items-center">
             <h1 className="tracking-wider text-center">
               Drag and drop <br /> completed task here !!
             </h1>

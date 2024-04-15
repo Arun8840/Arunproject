@@ -1,9 +1,22 @@
 import useGetTodoData from "@/data/TodoData"
+import { TodoTypes } from "@/model/TodoSchema"
+import todoAppServices from "@/service/TodoService"
 import { create } from "zustand"
 
 const { TodoItems } = useGetTodoData()
 export const TodoStore = create((set, get: any) => ({
   TodocreatedData: TodoItems,
+
+
+  // todo load all todo tasks
+  load_all_tasks:async (response:TodoTypes)=>{
+if (response) {
+  set((state:any)=>({
+    ...state,
+    TodocreatedData:response
+  }))
+}
+  },
   AddCompletedTask: (newTask: any) => {
     set((state: any) => ({
       ...state,

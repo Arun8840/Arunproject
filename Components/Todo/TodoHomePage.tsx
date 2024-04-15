@@ -5,16 +5,52 @@ import TodoComplete from "./TodoComplete"
 import useGetFonts from "@/font/fonts"
 import { DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
-import { BacktoPage } from "@/Utility/icons/icons"
+import { AddIcon, BacktoPage } from "@/Utility/icons/icons"
 import { useRouter } from "next/navigation"
+import gsap, { Power3 } from "gsap"
+import CreateDrawer from "@/Utility/Uicomponents/Drawer/CreateDrawer"
 
 function TodoHomePage() {
   const { TodoFonts } = useGetFonts()
   const router = useRouter()
+
+  const handleOpenDrawer = () => {
+    let tl = gsap.timeline({ paused: false })
+
+    tl.to("#test", {
+      opacity: 1,
+      display: "flex",
+      duration: 0.2,
+      ease: Power3.easeInOut,
+    })
+
+    // tl.to("#drawerForm", {
+    //   opacity: 1,
+    //   y: 0,
+    //   duration: 0.2,
+    //   ease: Power3.easeInOut,
+    // })
+  }
+  const handleCloseDrawer = () => {
+    let tl = gsap.timeline({ paused: false })
+    // tl.to("#drawerForm", {
+    //   opacity: 0,
+    //   y: "100%",
+    //   duration: 0.2,
+    //   ease: Power3.easeInOut,
+    // })
+    tl.to("#test", {
+      opacity: 0,
+      display: "none",
+      duration: 0.2,
+      ease: Power3.easeInOut,
+    })
+  }
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="flex gap-1 p-2 w-full h-full bg-[#f7f8fa]">
-        <div className="bg-white w-[50px]">
+     <CreateDrawer handleClose={handleCloseDrawer}>
+     <div className="flex gap-1 p-1 w-full h-full bg-gradient-to-br from-[#D20062] via-[#C4E4FF] to-[#D6589F]">
+        <div className="bg-white/50 backdrop-blur-sm rounded-lg w-[50px]">
           <ul className="p-1">
             <li className="rounded-lg bg-[#5b33d9] text-white">
               <button
@@ -27,13 +63,17 @@ function TodoHomePage() {
           </ul>
         </div>
         <div
-          className={`w-full h-full bg-[#f7f8fa] grid grid-cols-12 gap-2 ${TodoFonts.className} divide-x`}
+          className={`w-full h-full grid grid-cols-12 gap-2 ${TodoFonts.className} divide-x`}
         >
-          <TodoCreate />
+          {/* <TodoCreate /> */}
           <TodoList />
           <TodoComplete />
         </div>
+
+        {/* create new task button */}
+        <button onClick={handleOpenDrawer} title="Create task" className="bg-[#232323] text-white rounded-full p-3 fixed right-10 bottom-10"><AddIcon width={20}/></button>
       </div>
+     </CreateDrawer>
     </DndProvider>
   )
 }
