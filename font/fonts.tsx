@@ -1,12 +1,12 @@
-import { PT_Sans, Poppins, Space_Grotesk, Work_Sans } from "next/font/google"
+import { Barlow_Condensed, Hind, Oswald, PT_Sans, Poppins, Space_Grotesk, Titillium_Web, Work_Sans } from "next/font/google"
 const headerFont = Poppins({
-  weight: "700",
+  weight: "500",
   subsets: ["latin"],
   display: "block",
 })
 
 const contentFont = Poppins({
-  weight: "500",
+  weight: "400",
   subsets: ["latin"],
   display: "block",
 })
@@ -16,6 +16,9 @@ const todoFont = Work_Sans({
   subsets: ["latin"],
   display: "block",
 })
+
+
+
 function useGetFonts() {
   let HeaderFont = headerFont
   let ContentFont = contentFont

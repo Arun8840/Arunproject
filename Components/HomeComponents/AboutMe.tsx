@@ -1,49 +1,56 @@
 import useGetFonts from "@/font/fonts"
 import _ScrollTrigger from "gsap/ScrollTrigger"
-import React from "react"
-import bannerImage from "../images/5e5344373373094088f94ebe_how-to.gif"
+import React, { useEffect, useRef } from "react"
+import bannerImage from "../images/aboutBanner.jpeg"
 import Image from "next/image"
+import gsap, { Expo } from "gsap"
 function AboutMe() {
-  const { HeaderFont, ContentFont } = useGetFonts()
+  const { HeaderNameNormal, HeaderName } = useGetFonts()
   const aboutImage: any = bannerImage.src
+  let aboutbanner=useRef(null)
+  useEffect(()=>{
+    let timeLine1=gsap.timeline({paused:true})
+
+    timeLine1.to(aboutbanner?.current,{
+      
+      opacity:1,
+      duration:1,
+      ease:Expo.easeInOut
+    })
+
+   
+  },[])
   return (
     <div
-      className={`w-full lg:min-h-screen lg:py-[5rem] items-center bg-[#101010] overflow-hidden relative z-0 group`}
+      className={`w-full lg:min-h-screen bg-black overflow-hidden relative group flex flex-col`}
     >
-      <div className="container mx-auto z-[2] text-[#f3f5f7] mix-blend-difference">
-        <div className="container grid lg:grid-cols-2 place-items-center">
-          <div className="w-full  p-2">
-            <h1
-              className={`lg:text-[4rem] ${HeaderFont.className} transition-colors duration-300`}
-            >
-              About me:
-            </h1>
-            <h1
-              className={`text-[4rem] tracking-wide ${ContentFont.className}`}
-            >
-              Im Arun,
-            </h1>
-            <p
-              className={`capitalize tracking-wider leading-[2rem] ${ContentFont.className}`}
-            >
-              I am an enthusiastic Frontend Developer with a strong penchant for
-              creating elegant and responsive user interfaces. My journey in web
-              development began ZettaStack, which has sharpened my skills and
-              passion for creating exceptional web applications.
-            </p>
-          </div>
-          {/* //todo about image */}
-          <div className="w-full h-full max-h-[700px]">
-            <Image
-              src={aboutImage}
-              alt="about image"
-              className="w-full h-full object-contain"
-              width={500}
-              height={500}
-            />
-          </div>
-        </div>
-      </div>
+      
+       <div className="grid lg:grid-cols-2 gap-5 h-full">
+         {/* //todo about image */}
+         <div ref={aboutbanner} className="w-[80%] h-full overflow-hidden">
+           <img src={aboutImage} alt="about banner" className="w-full max-h-[700px] object-cover rounded-r-lg" />
+           </div>
+
+
+           <div className="w-full  p-2">
+           <h1
+               className={`lg:text-[8rem] text-[#2C7865] tracking-wider ${HeaderName.className}`}
+             >
+               ABOUT ME
+             </h1>
+             <p
+               className={`capitalize tracking-wider text-[#2C7865] leading-[2rem] ${HeaderNameNormal?.className}`}
+             >
+               I am an enthusiastic Frontend Developer with a strong penchant for
+               creating elegant and responsive user interfaces. My journey in web
+               development began ZettaStack, which has sharpened my skills and
+               passion for creating exceptional web applications.
+             </p>
+             <h1 className={`${HeaderName?.className} tracking-wide text-[#2C7865] py-4`}>EXPERIENCE</h1>
+             <p className={`capitalize tracking-wider leading-[2rem] text-[#2C7865] ${HeaderNameNormal?.className}`}>During my two years at Zettastack System Pvt Ltd in Tidel Coimbatore, I honed my skills as a frontend developer, collaborating with cross-functional teams to deliver responsive web solutions. I focused on designing intuitive user interfaces and leveraging modern technologies such as HTML5, CSS3,Tailwind CSS,JavaScript frameworks. By optimizing performance and continuously learning, I contributed to the success of various projects while staying updated with industry trends.</p>
+           </div>
+       </div>
+        
     </div>
   )
 }

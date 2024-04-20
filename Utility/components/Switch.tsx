@@ -17,7 +17,7 @@ function Switch(props: PropsTypes) {
       style={
         isActive
           ? { backgroundColor: varient }
-          : { backgroundColor: "lightgray" }
+          : { backgroundColor: "#555843" }
       }
       className={`w-[45px] h-[25px] rounded-full flex items-center cursor-pointer relative`}
     >

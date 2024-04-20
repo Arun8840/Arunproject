@@ -4,6 +4,9 @@
 
 
 /* Webkit-based browsers */
+.scroll::-webkit-scrollbar {
+  display: none; /* Width of the scrollbar */
+}
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
