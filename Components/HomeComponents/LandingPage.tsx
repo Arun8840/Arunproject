@@ -9,6 +9,7 @@ import { DarkIcon, MuteIcon, SettingsIcon, UnMuteIcon } from '@/Utility/icons/ic
 import useGetSkills from '@/data/SkillsData'
 import { ProjectDatas } from '@/data/ProjectData'
 import Link from 'next/link'
+import Image from 'next/image'
 function LandingPage() {
   let profileBanner: any = profilePic.src
   let animatedHeart: any = heart.src
@@ -25,9 +26,9 @@ function LandingPage() {
       {/* //todo header */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl p-3 lg:col-span-5 lg:row-span-3 flex flex-wrap gap-1 '>
         <div className='hidden lg:block w-1/4 h-full'>
-          <img src={profile_logo} alt="logo" className='w-full h-full object-contain' />
+          <Image width={500} height={500} src={profile_logo} alt="logo" className='w-full h-full object-contain' />
         </div>
-        <div className='flex-1 divide-y divide-stone-700 divide-opacity-35'> <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>Hi i'm arun_</h1>
+        <div className='flex-1 divide-y divide-stone-700 divide-opacity-35'> <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>Hi i&apos;m arun_</h1>
           <p className={`text-[#696969] ${ContentFont?.className} capitalize tracking-wider py-2`}>frondend developer, <br /> currently working at zettastack systems PVT. I design and code beautifully simple things, and I love what I do.</p></div>
       </div>
       {/* demo image1 */}
@@ -38,23 +39,23 @@ function LandingPage() {
       </ul>
       {/* demo image2 */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl lg:col-span-2 lg:row-span-3 w-full h-full'>
-        <img src={Banner_Image2} alt="profile" className='w-full h-full rounded-2xl object-cover' />
+        <Image width={500} height={500} src={Banner_Image2} alt="profile" className='w-full h-full rounded-2xl object-cover' />
       </div>
       {/* //todo menu */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl p-2 lg:col-span-3 lg:row-span-3 flex items-center justify-center gap-3 '>
         <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>hello world !!</h1>
         <div className='size-20'>
-          <img src={animatedHeart} alt="profile" className='w-full h-full rounded-2xl object-cover' />
+          <Image width={500} height={500} src={animatedHeart} alt="profile" className='w-full h-full rounded-2xl object-cover' />
         </div>
       </div>
 
       {/* //todo profile image */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl lg:col-span-2 lg:row-span-4'>
-        <img src={profileBanner} alt="profile" className='w-full h-full rounded-2xl object-cover' />
+        <Image width={500} height={500} src={profileBanner} alt="profile" className='w-full h-full rounded-2xl object-cover' />
       </div>
       {/* about */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl p-2 lg:col-span-4 lg:row-span-4 '>
-        <div className='divide-y divide-stone-700 divide-opacity-35'> <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i'm about?</h1>
+        <div className='divide-y divide-stone-700 divide-opacity-35'> <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i&apos;m about?</h1>
         <p className={`text-[#696969] ${ContentFont?.className} capitalize tracking-wider px-1 py-3`}> My journey in web
           development began ZettaStack, which has sharpened my skills and
           passion for creating exceptional web applications.</p></div>
@@ -65,15 +66,15 @@ function LandingPage() {
       </div>
 
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl lg:col-span-3 lg:row-span-4 '>
-      <img src={Banner_Image3} alt="profile" className='w-full h-full rounded-2xl object-cover' />
+      <Image width={500} height={500} src={Banner_Image3} alt="profile" className='w-full h-full rounded-2xl object-cover' />
       </div>
     
       {/* //todo projects */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl p-2 lg:col-span-3 lg:row-span-9 divide-y divide-stone-700 divide-opacity-35'>
         <h1 className={`text-white text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>projects</h1>
         <div className='pt-2'>
-          <ul className='flex flex-col gap-2'>{ProjectDatas && ProjectDatas?.length > 0 && ProjectDatas?.map((proItems) => {
-            return <li className='border border-stone-700/50 rounded-xl p-2'>
+          <ul className='flex flex-col gap-2'>{ProjectDatas && ProjectDatas?.length > 0 && ProjectDatas?.map((proItems,index:number) => {
+            return <li key={index} className='border border-stone-700/50 rounded-xl p-2'>
               <div className='flex-1 flex justify-between'><h1 className={`text-white ${ContentFont?.className} capitalize tracking-wider`}>{proItems?.title}</h1> <Link href={proItems?.path}><button className='text-sm bg-[#1E5128] rounded-lg py-1 px-2 text-white'>View</button> </Link>
                 </div>
                 <p className={`text-[#696969] ${ContentFont?.className} capitalize tracking-wider line-clamp-2 text-sm pt-2`}>{proItems?.description}</p>
@@ -84,7 +85,7 @@ function LandingPage() {
 
       {/* contact */}
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl p-2 lg:col-span-5 lg:row-span-3 flex flex-col justify-between'>
-        <p className={`text-[#696969] ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>Ready to enhance your website's user experience? Contact me today to discuss your front-end development needs.</p>
+        <p className={`text-[#696969] ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>Ready to enhance your website&apos;s user experience? Contact me today to discuss your front-end development needs.</p>
 
         <div className={`flex flex-col lg:flex-row items-center gap-3 ${ContentFont?.className} pt-4`}>
           <input type="text" className='border border-stone-700/50 text-[#4E9F3D] rounded-xl bg-transparent p-3 flex-1 w-full lg:w-fit' placeholder='Your Email address' />
@@ -108,8 +109,8 @@ function LandingPage() {
         </div>
       </div>
       <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm  rounded-2xl lg:col-span-9 lg:row-span-2 '>
-        <div className='overflow-x-auto  grid grid-cols-3 lg:flex gap-2 scroll p-2 h-full'>  {SkillItems?.length > 0 && SkillItems?.map((items) => {
-          return <div className='rounded-xl p-3 min-w-24 grid place-items-center'>
+        <div className='overflow-x-auto  grid grid-cols-3 lg:flex gap-2 scroll p-2 h-full'>  {SkillItems?.length > 0 && SkillItems?.map((items,index:number) => {
+          return <div key={index} className='rounded-xl p-3 min-w-24 grid place-items-center'>
             {items?.icon}
           </div>
         })}</div>
