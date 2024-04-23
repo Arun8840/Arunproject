@@ -1,6 +1,6 @@
 import { Barlow_Condensed, Hind, Oswald, PT_Sans, Poppins, Space_Grotesk, Titillium_Web, Work_Sans } from "next/font/google"
 const headerFont = Poppins({
-  weight: "500",
+  weight: "600",
   subsets: ["latin"],
   display: "block",
 })
