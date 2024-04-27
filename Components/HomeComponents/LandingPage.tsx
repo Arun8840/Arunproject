@@ -21,105 +21,104 @@ function LandingPage() {
 
   // get tools and skills data
   const { SkillItems } = useGetSkills()
+
+  const handleDarkmode=()=>{
+    debugger
+    console.log("hello")
+  }
   return (
-    <section className='bg-[#111111]  min-h-screen  grid lg:grid-cols-12 gap-2 auto-rows-max p-3'>
+    <section className='bg-[#101010]  min-h-screen  grid lg:grid-cols-12 auto-rows-max gap-5  p-3'>
       {/* //todo header */}
-      <div className='bg-[#4a9173] text-[#f7fd9c] backdrop-blur-sm   p-3 lg:col-span-5 flex flex-wrap gap-1  rounded'>
-        <div className='hidden lg:block w-1/4 h-full'>
-          <Image width={500} height={500} src={profile_logo} alt="logo" className='w-full h-full object-contain' />
+      <div className='bg-[#f8fe9d] w-full h-full backdrop-blur-sm   p-3 lg:col-span-6 flex items-center justify-center flex-wrap gap-5  rounded-3xl'>
+        <div className='hidden lg:block w-1/5 h-full'>
+          <Image width={200} height={200} src={Banner_Image3} alt="profile" className='object-contain' />
         </div>
         <div className='flex-1 divide-y divide-stone-700 divide-opacity-35'> <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>Hi i&apos;m arun_</h1>
           <p className={`${ContentFont?.className} capitalize tracking-wider py-2 text-sm leading-7`}>frondend developer, <br /> currently working at zettastack systems PVT. I design and code beautifully simple things, and I love what I do.</p></div>
       </div>
-      {/* demo image1 */}
-      <ul className='bg-[#ada3fa]   p-2 lg:col-span-2  grid grid-cols-3 lg:grid-cols-2 place-items-center gap-1 rounded'>
-        <li className='bg-white rounded-lg p-2 w-full h-full grid place-items-center cursor-pointer'><DarkIcon width={20} className="text-[#ada3fa] textplg" /></li>
-        <li className='bg-white rounded-lg p-2 w-full h-full grid place-items-center cursor-pointer'><UnMuteIcon width={20} className="text-[#ada3fa] text-lg" /></li>
-        <li className='bg-white rounded-lg p-2 w-full h-full grid place-items-center cursor-pointer'><SettingsIcon width={20} className="text-[#ada3fa]" /></li>
-      </ul>
-      {/* demo image2 */}
-      <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm   lg:col-span-2 w-full h-full rounded'>
-        <Image width={500} height={500} src={Banner_Image2} alt="profile" className='w-full h-full  object-cover' />
-      </div>
-      {/* //todo menu */}
-      <div className='bg-[#f6d6ef] text-[#594546]  p-2 lg:col-span-3 flex items-center justify-center gap-3 rounded'>
-        <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}>hello world !!</h1>
-        <div className='size-20'>
-          <Image width={500} height={500} src={animatedHeart} alt="profile" className='w-full h-full  object-cover' />
-        </div>
-      </div>
 
-      {/* //todo profile image */}
-      <div className='bg-[#1d1d1c]/70 border border-stone-700/20  backdrop-blur-sm   lg:col-span-2 rounded'>
-        <Image width={500} height={500} src={profileBanner} alt="profile" className='w-full h-full  object-cover' />
-      </div>
+
       {/* //todo about */}
-      <div className='bg-white   p-2 lg:col-span-4 text-[#020200]   rounded'>
+      <div className='bg-[#4842fe]  p-3 lg:col-span-4 text-white   rounded-3xl'>
         <div className='divide-y divide-stone-700 divide-opacity-35'> <h1 className={` text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i&apos;m about?</h1>
-        <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-3 text-sm leading-7`}> My journey in web
-          development began ZettaStack, which has sharpened my skills and
-          passion for creating exceptional web applications.</p></div>
-       
-          <h1 className={` text-lg ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i do best</h1>
-        <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>I am an enthusiastic Frontend Developer with a strong penchant for
-          creating elegant and responsive user interfaces. </p>
-      </div>
+          <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-3 text-sm leading-7`}> My journey in web
+            development began ZettaStack, which has sharpened my skills and
+            passion for creating exceptional web applications.</p></div>
 
-      <div className='bg-[#f8fe9d]  lg:col-span-3  rounded'>
-      <Image width={500} height={500} src={Banner_Image3} alt="profile" className='w-full h-full  object-contain' />
+
       </div>
     
+      {/* //todo settings icons */}
+      <ul className='bg-[#d1fe06] text-[#d1fe06] w-fit mx-auto lg:w-full h-full  p-2 lg:col-span-2  grid place-items-center gap-1 rounded-3xl'>
+        <li onClick={handleDarkmode} className='p-5 grid place-items-center cursor-pointer bg-[#232323] rounded-full'><DarkIcon width={20} /></li>
+      </ul>
+
       {/* //todo projects */}
-      <div className='bg-[#ada3fa] text-[#151736]  lg:col-span-3 rounded'>
-        <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-2 text-[#f8fe9d]`}>projects</h1>
+      <div className='bg-[#f77749] text-[white]  lg:col-span-5 rounded-3xl p-3'>
+        <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-2 `}>projects</h1>
         <div >
-          <ul className='divide-y divide-gray-300 divide-opacity-50'>{ProjectDatas && ProjectDatas?.length > 0 && ProjectDatas?.map((proItems,index:number) => {
-            return <li key={index} className='p-2 bg-[#f8fe9d]'>
+          <ul className='divide-y divide-gray-300 divide-opacity-50'>{ProjectDatas && ProjectDatas?.length > 0 && ProjectDatas?.map((proItems, index: number) => {
+            return <li key={index} className='p-2 '>
               <div className='flex-1'><h1 className={` ${HeaderFont?.className} capitalize tracking-wider `}>{proItems?.title}</h1>
-                </div>
-                <p className={`${ContentFont?.className} capitalize tracking-wider line-clamp-2 text-sm px-2  leading-7`}>{proItems?.description}</p>
-                <div className='flex justify-end'>
+              </div>
+              <p className={`${ContentFont?.className} capitalize tracking-wider line-clamp-2 text-sm px-2  leading-7`}>{proItems?.description}</p>
+              <div className='flex justify-end'>
                 <Link href={proItems?.path}><button className='text-sm hover:bg-[#020200]  py-2 px-5 text-[#151736]'>Open</button> </Link>
-                </div>
+              </div>
             </li>
           })}</ul>
         </div>
       </div>
+      <div className='bg-[white] grid place-items-center  lg:col-span-3  rounded-3xl overflow-hidden'>
 
-      {/* contact */}
-      <div className='bg-[#fb7b7c]  p-2 lg:col-span-6 flex flex-col justify-between rounded'>
-        <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>Ready to enhance your website&apos;s user experience? Contact me today to discuss your front-end development needs.</p>
-
-        <div className={`flex flex-col lg:flex-row items-center gap-3 ${ContentFont?.className} pt-4`}>
-          <input type="text" className='border border-stone-700/50 outline-none -xl bg-transparent p-3 flex-1 w-full lg:w-fit placeholder:text-black' placeholder='Your Email address' />
-          <button className='bg-[#151736] -xl text-white transition-colors duration-200 p-3 w-full lg:w-fit'>Get in touch !</button>
-        </div>
+        <Image width={400} height={400} src={profileBanner} alt="profile" className='w-full h-full  object-cover' />
       </div>
 
-      {/* //todo experience and publications */}
-      <div className='bg-[#4a9173]  p-2 lg:col-span-6 grid lg:grid-cols-3 auto-rows-max gap-3 rounded'>
+      <div className='lg:col-span-4  flex flex-col justify-between gap-3'> 
+       <div className='bg-[#00d860]  p-3 col-span-4 grid lg:grid-cols-3 auto-rows-max gap-3 rounded-3xl'>
         <div className={`text-center  flex flex-col justify-between `}>
-          <h1 className='text-[3rem] text-[#f8fe9d] font-semibold font-mono'>2+</h1>
-          <p className={`text-[#f8fe9d] ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>years of experience</p>
+          <h1 className='text-[3rem]  font-semibold font-mono'>2+</h1>
+          <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>years of experience</p>
         </div>
         <div className='text-center  flex flex-col justify-between'>
-          <h1 className='text-[3rem] text-[#f8fe9d]  font-semibold font-mono'>2</h1>
-          <p className={`text-[#f8fe9d] ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>projects completed</p>
+          <h1 className='text-[3rem]   font-semibold font-mono'>2</h1>
+          <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>projects completed</p>
         </div>
         <div className='text-center  flex flex-col justify-between'>
-          <h1 className='text-[3rem] text-[#f8fe9d]  font-semibold font-mono'>0</h1>
-          <p className={`text-[#f8fe9d] ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>publication</p>
+          <h1 className='text-[3rem]   font-semibold font-mono'>0</h1>
+          <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>publication</p>
         </div>
       </div>
-      <div className='lg:col-span-12 rounded'>
-        <div className='overflow-x-auto  grid grid-cols-3 lg:flex gap-2 scroll p-2 h-full'>  {SkillItems?.length > 0 && SkillItems?.map((items,index:number) => {
-          return <div key={index} className='bg-[#1d1d1c]/70  p-3 size-20 grid place-items-center'>
+        <div className='grid grid-cols-4 place-items-center bg-[#bffffb] rounded-3xl flex-1 p-3'>  {SkillItems?.length > 0 && SkillItems?.map((items, index: number) => {
+          return <div key={index} className=' rounded-3xl  p-3 size-20 grid place-items-center'>
             {items?.icon}
           </div>
         })}</div>
 
 
       </div>
+
+      {/* //todo sample content */}
+      <div className='bg-[#eb3656] p-3 lg:col-span-6 text-white   rounded-3xl'>
+
+
+        <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i do best</h1>
+        <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>I am an enthusiastic Frontend Developer with a strong penchant for
+          creating elegant and responsive user interfaces. </p>
+      </div>
+
+      {/* contact */}
+      <div className='bg-[#98d0ff]  p-3 lg:col-span-6 flex flex-col justify-between rounded-3xl'>
+        <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>Ready to enhance your website&apos;s user experience? Contact me today to discuss your front-end development needs.</p>
+
+        <div className={`flex flex-col lg:flex-row items-center gap-3 ${ContentFont?.className} pt-4`}>
+          <input type="text" className='bg-white outline-none rounded-2xl bg-transparent p-3 flex-1 w-full lg:w-fit placeholder:text-black' placeholder='Your Email address' />
+          <button className='bg-[white] rounded-2xl  transition-colors duration-200 p-3 w-full lg:w-fit'>Get in touch !</button>
+        </div>
+      </div>
+
+
+
     </section>
   )
 }
