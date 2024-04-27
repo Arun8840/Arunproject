@@ -5,7 +5,7 @@ import banner2 from "../../Components/images/bannerimage2.jpeg"
 import banner3 from "../../Components/images/5e5344373373094088f94ebe_how-to.gif"
 import heart from "../../Components/images/wired-flat-20-love-heart.gif"
 import logo from "../../Components/images/young-man.png"
-import { DarkIcon, MuteIcon, SettingsIcon, UnMuteIcon } from '@/Utility/icons/icons'
+import { DarkIcon, MuteIcon, RightArrow, SettingsIcon, UnMuteIcon } from '@/Utility/icons/icons'
 import useGetSkills from '@/data/SkillsData'
 import { ProjectDatas } from '@/data/ProjectData'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ function LandingPage() {
       </ul>
 
       {/* //todo projects */}
-      <div className='bg-[#f77749] text-[white]  lg:col-span-5 rounded-3xl p-3'>
+      <div className='bg-[#DCFFB7] text-[black]  lg:col-span-5 rounded-3xl p-3'>
         <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-2 `}>projects</h1>
         <div >
           <ul className='divide-y divide-gray-300 divide-opacity-50'>{ProjectDatas && ProjectDatas?.length > 0 && ProjectDatas?.map((proItems, index: number) => {
@@ -63,7 +63,7 @@ function LandingPage() {
               </div>
               <p className={`${ContentFont?.className} capitalize tracking-wider line-clamp-2 text-sm px-2  leading-7`}>{proItems?.description}</p>
               <div className='flex justify-end'>
-                <Link href={proItems?.path}><button className='text-sm hover:bg-[#020200]  py-2 px-5 text-[#151736]'>Open</button> </Link>
+                <Link href={proItems?.path}><button className='text-sm bg-black  p-2 rounded-full text-white'><RightArrow width={20} /></button> </Link>
               </div>
             </li>
           })}</ul>
@@ -75,7 +75,7 @@ function LandingPage() {
       </div>
 
       <div className='lg:col-span-4  flex flex-col justify-between gap-3'> 
-       <div className='bg-[#00d860]  p-3 col-span-4 grid lg:grid-cols-3 auto-rows-max gap-3 rounded-3xl'>
+       <div className='bg-[#f8fe9d]  p-3 col-span-4 grid lg:grid-cols-3 auto-rows-max gap-3 rounded-3xl'>
         <div className={`text-center  flex flex-col justify-between `}>
           <h1 className='text-[3rem]  font-semibold font-mono'>2+</h1>
           <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>years of experience</p>
@@ -89,7 +89,7 @@ function LandingPage() {
           <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2`}>publication</p>
         </div>
       </div>
-        <div className='grid grid-cols-4 place-items-center bg-[#bffffb] rounded-3xl flex-1 p-3'>  {SkillItems?.length > 0 && SkillItems?.map((items, index: number) => {
+        <div className='grid grid-cols-4 place-items-center bg-[white] rounded-3xl flex-1 p-3'>  {SkillItems?.length > 0 && SkillItems?.map((items, index: number) => {
           return <div key={index} className=' rounded-3xl  p-3 size-20 grid place-items-center'>
             {items?.icon}
           </div>
@@ -99,16 +99,17 @@ function LandingPage() {
       </div>
 
       {/* //todo sample content */}
-      <div className='bg-[#eb3656] p-3 lg:col-span-6 text-white   rounded-3xl'>
+      <div className='bg-[#FF8400] p-3 lg:col-span-6 text-white   rounded-3xl'>
 
 
-        <h1 className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i do best</h1>
+        <h1 className={`text-[1.5rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>what i do best</h1>
         <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>I am an enthusiastic Frontend Developer with a strong penchant for
           creating elegant and responsive user interfaces. </p>
       </div>
 
       {/* contact */}
-      <div className='bg-[#98d0ff]  p-3 lg:col-span-6 flex flex-col justify-between rounded-3xl'>
+      <div className='bg-[#D67BFF]  p-3 lg:col-span-6 flex flex-col justify-between rounded-3xl'>
+      <h1 className={`text-[1.5rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}>Contact</h1>
         <p className={` ${ContentFont?.className} capitalize tracking-wider px-1 py-2 text-sm leading-7`}>Ready to enhance your website&apos;s user experience? Contact me today to discuss your front-end development needs.</p>
 
         <div className={`flex flex-col lg:flex-row items-center gap-3 ${ContentFont?.className} pt-4`}>
