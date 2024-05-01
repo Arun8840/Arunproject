@@ -210,7 +210,7 @@ function LandingPage() {
                           <div className="flex justify-end pt-3">
                             <Link href={proItems?.path}>
                               <button className="text-sm tracking-wider font-semibold flex items-center gap-2">
-                                Open
+                                Explore
                                 <RightArrow width={15} />
                               </button>{" "}
                             </Link>
