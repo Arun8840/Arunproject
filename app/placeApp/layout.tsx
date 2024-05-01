@@ -10,7 +10,8 @@ interface MenuTypes {
   icon: any
 }
 
-function layout({ children }: { children: React.ReactNode }) {
+function Layout({ children }: { children: React.ReactNode }) {
+  // Renamed to start with an uppercase letter
   let SplashScreen = useRef(null)
   let MainScreen = useRef(null)
   let SplashIcon = useRef(null)
@@ -79,6 +80,7 @@ function layout({ children }: { children: React.ReactNode }) {
             {menu?.map((items, index: number) => {
               return (
                 <li
+                  key={index}
                   title={items?.title}
                   className="rounded-xl flex justify-center items-center auto-rows-max p-3 bg-[#ecebeb]"
                 >
@@ -97,4 +99,4 @@ function layout({ children }: { children: React.ReactNode }) {
   )
 }
 
-export default layout
+export default Layout // Exported with uppercase first letter
