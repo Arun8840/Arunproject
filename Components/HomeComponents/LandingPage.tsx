@@ -8,7 +8,8 @@ import useGetSkills from "@/data/SkillsData"
 import { ProjectDatas } from "@/data/ProjectData"
 import Link from "next/link"
 import Image from "next/image"
-import gsap, { Expo } from "gsap"
+import gsap, { Expo, Power2 } from "gsap"
+import TextPlugin from "gsap/TextPlugin"
 function LandingPage() {
   const splashScreen = useRef(null)
   const gridScreen = useRef(null)
@@ -33,6 +34,7 @@ function LandingPage() {
   // get tools and skills data
   const { SkillItems } = useGetSkills()
   // todo gsap plugins
+  gsap.registerPlugin(TextPlugin)
   useEffect(() => {
     let timeLine = gsap.timeline({ paused: false })
     document.documentElement.classList.add("dark")
@@ -46,7 +48,13 @@ function LandingPage() {
         stagger: 0.2,
       }
     )
-
+    timeLine.to(circle4?.current, {
+      duration: 1,
+      text: "Let's Explore",
+      fontWeight: "bold",
+      color: "white",
+      ease: "none",
+    })
     timeLine.to(
       [circle4?.current, circle3?.current, circle2?.current, circle1?.current],
       {
@@ -105,9 +113,7 @@ function LandingPage() {
             ref={circle4}
             className={`text-white text-center font-semibold tracking-wider grid place-items-center ${HeaderFont?.className}`}
           >
-            Hello World
-            <br />
-            {`<> Happy Coding </>`}
+            Hello !!
           </h1>
         </div>
       </div>
