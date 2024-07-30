@@ -1,4 +1,4 @@
-import HomePage from "@/Components/FindPlaceApp/HomePage"
+import HomePage from "@/Components/MusicApp/HomePage"
 import React, { useRef } from "react"
 
 function page() {

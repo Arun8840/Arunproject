@@ -11,14 +11,6 @@ import Image from "next/image"
 import gsap, { Expo, Power2 } from "gsap"
 import TextPlugin from "gsap/TextPlugin"
 function LandingPage() {
-  const splashScreen = useRef(null)
-  const gridScreen = useRef(null)
-  // circles
-  const circle1 = useRef(null)
-  const circle2 = useRef(null)
-  const circle3 = useRef(null)
-  const circle4 = useRef(null)
-  const text = useRef(null)
   let profileBanner: any = profilePic.src
   let Banner_Image3: any = banner3.src
   // todo getfonts
@@ -36,89 +28,12 @@ function LandingPage() {
   // todo gsap plugins
   gsap.registerPlugin(TextPlugin)
   useEffect(() => {
-    let timeLine = gsap.timeline({ paused: false })
     document.documentElement.classList.add("dark")
-
-    timeLine.to(
-      [circle1?.current, circle2?.current, circle3?.current, circle4?.current],
-      {
-        scale: 2,
-        ease: Expo.easeOut,
-        duration: 1,
-        stagger: 0.2,
-      }
-    )
-    timeLine.to(circle4?.current, {
-      duration: 1,
-      text: "Let's Explore",
-      fontWeight: "bold",
-      color: "white",
-      ease: "none",
-    })
-    timeLine.to(
-      [circle4?.current, circle3?.current, circle2?.current, circle1?.current],
-      {
-        delay: 0.8,
-        scale: 0,
-        ease: Expo.easeIn,
-        duration: 0.5,
-        stagger: 0.2,
-        onComplete: () => {
-          gsap.to(splashScreen?.current, {
-            backgroundColor: "#101010",
-            opacity: 0,
-            display: "none",
-            duration: 0.5,
-            onComplete: () => {
-              gsap.to(gridScreen?.current, {
-                opacity: 1,
-                display: "block",
-                duration: 0.8,
-              })
-            },
-          })
-        },
-      }
-    )
-
-    return () => {
-      timeLine.kill()
-    }
   }, [])
   return (
     <>
-      {/* //todo initial splash screen */}
-      <div
-        ref={splashScreen}
-        className="w-full min-h-screen bg-[#4842fe] relative grid place-items-center overflow-hidden"
-      >
-        {/* //todo circle 1 */}
-        <div
-          ref={circle1}
-          className="size-[700px] scale-0 bg-[#10a958] rounded-full absolute"
-        ></div>
-        <div
-          ref={circle2}
-          className="size-[500px] scale-0 bg-[#ffc700] rounded-full absolute"
-        ></div>
-        <div
-          ref={circle3}
-          className="size-[400px] scale-0 bg-[#f24d1d] rounded-full absolute"
-        ></div>
-        <div
-          ref={circle4}
-          className="size-[300px] scale-0 bg-[#101010] rounded-full absolute grid place-items-center"
-        >
-          <h1
-            ref={circle4}
-            className={`text-white text-center font-semibold tracking-wider grid place-items-center ${HeaderFont?.className}`}
-          >
-            Hello !!
-          </h1>
-        </div>
-      </div>
-      <div ref={gridScreen} className="w-full h-full bg-black hidden opacity-0">
-        <section className="bg-[#fff] dark:bg-[#101010] transition-colors duration-300  min-h-screen  grid lg:grid-cols-12 auto-rows-max gap-5  p-3">
+      <div className="w-full h-full bg-black">
+        <section className="bg-[#fff] dark:bg-[#101010] transition-colors duration-300  min-h-screen  grid lg:grid-cols-12 auto-rows-max gap-2 p-3">
           <>
             {/* //todo header */}
             <div className="bg-white border dark:border-none dark:bg-[#f8fe9d] w-full h-full backdrop-blur-sm   p-3 lg:col-span-6 flex items-center justify-center flex-wrap gap-5  rounded-3xl">
@@ -136,7 +51,7 @@ function LandingPage() {
                 <h1
                   className={`text-[2rem] ${HeaderFont?.className} capitalize tracking-wider`}
                 >
-                  Hi i&apos;m arun_
+                  Hi im arun
                 </h1>
                 <p
                   className={`${ContentFont?.className} capitalize tracking-wider py-2 text-sm leading-7 text-gray-600 dark:text-black`}
@@ -149,7 +64,7 @@ function LandingPage() {
             </div>
 
             {/* //todo about */}
-            <div className="bg-white border dark:border-none text-black  dark:text-white dark:bg-[#4842fe]  p-3 lg:col-span-4    rounded-3xl">
+            <div className="bg-white border dark:border-none text-black  dark:text-white dark:bg-[#5c54f9]  p-3 lg:col-span-4    rounded-3xl">
               <div className="divide-y divide-stone-700 divide-opacity-35">
                 {" "}
                 <h1

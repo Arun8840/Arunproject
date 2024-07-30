@@ -74,26 +74,22 @@ function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       <div ref={MainScreen} className=" hidden opacity-0 gap-2">
-        {/* //todo sidebar */}
-        <aside className="border rounded-xl">
-          <ul className="grid gap-2 auto-rows-max p-1">
-            {menu?.map((items, index: number) => {
-              return (
-                <li
-                  key={index}
-                  title={items?.title}
-                  className="rounded-xl flex justify-center items-center auto-rows-max p-3 bg-[#ecebeb]"
-                >
-                  <Link href={`/placeApp?&tab=${items?.path}`}>
-                    {items.icon && <items.icon width={20} />}
-                  </Link>
-                </li>
-              )
-            })}
+        <aside className="p-2">
+          <ul className="grid gap-2">
+            <li>
+              <button className="border rounded-lg p-2">
+                <HomeIcon width={20} />
+              </button>
+            </li>
+            <li>
+              <button className="border rounded-lg p-2">
+                <LikeIcon width={20} />
+              </button>
+            </li>
           </ul>
         </aside>
         {/* //todo main */}
-        <main className="flex-1  max-h-screen overflow-y-auto">{children}</main>
+        {/* <main className="flex-1  max-h-screen overflow-y-auto">{children}</main> */}
       </div>
     </div>
   )
