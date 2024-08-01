@@ -12,12 +12,12 @@ function ProjectPage() {
       {/* //todo projects */}
       <div className="container mx-auto">
         <h1
-          className={`dark:text-white  text-[5rem] ${HeaderFont?.className} capitalize tracking-wider py-4 `}
+          className={`dark:text-white text-center lg:text-start text-3xl lg:text-[5rem] ${HeaderFont?.className} capitalize tracking-wider py-4 `}
         >
           <SparklesText text="Projects" />
         </h1>
         <div>
-          <ul className="grid grid-cols-2 gap-5">
+          <ul className="grid lg:grid-cols-2 gap-5">
             {ProjectDatas &&
               ProjectDatas?.length > 0 &&
               ProjectDatas?.map((proItems, index: number) => {
@@ -28,7 +28,7 @@ function ProjectPage() {
                   >
                     <div className="flex-1">
                       <h1
-                        className={` ${ContentFont?.className} capitalize tracking-wider text-[2rem]`}
+                        className={` ${ContentFont?.className} capitalize tracking-widertext-3xl lg:text-[2rem]`}
                       >
                         {proItems?.title}
                       </h1>

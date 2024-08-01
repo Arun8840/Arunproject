@@ -16,11 +16,11 @@ function Knoledge() {
   const { SkillItems } = useGetSkills()
   return (
     <>
-      <div className="w-full min-h-screen container mx-auto grid place-items-center">
+      <div className="w-full min-h-screen container mx-auto grid place-items-center px-5">
         <section className=" transition-colors duration-300  grid lg:grid-cols-12  auto-rows-max gap-5">
           <>
             {/* //todo header */}
-            <div className="   bg-[#f8fe9d] w-full h-full backdrop-blur-sm   p-3 lg:col-span-5 flex items-center justify-center flex-wrap gap-5  rounded-3xl">
+            <div className="   bg-[#f8fe9d] w-full h-full backdrop-blur-sm   p-3 col-span-12 lg:col-span-5 flex items-center justify-center flex-wrap gap-5  rounded-3xl">
               <div className="hidden lg:block w-1/5">
                 <Image
                   width={200}
@@ -42,7 +42,7 @@ function Knoledge() {
             </div>
 
             {/* //todo about */}
-            <div className="   text-white  dark:text-white bg-[#5c54f9]  p-3 lg:col-span-7    rounded-3xl">
+            <div className="   text-white  dark:text-white bg-[#5c54f9]  p-3 col-span-12 lg:col-span-7    rounded-3xl">
               <div className="divide-y divide-stone-700 divide-opacity-35">
                 {" "}
                 <h1
@@ -61,7 +61,7 @@ function Knoledge() {
             </div>
 
             {/* //todo experience */}
-            <div className="    bg-[#f8fe9d]  p-3 lg:col-span-6 auto-rows-max gap-3 rounded-3xl flex items-center">
+            <div className="    bg-[#f8fe9d]  p-3 col-span-12 lg:col-span-6 auto-rows-max gap-3 rounded-3xl flex items-center">
               <div className={`text-center  flex flex-col justify-between `}>
                 <h1 className="text-[3rem]  font-semibold font-mono">2+</h1>
                 <p
@@ -89,7 +89,7 @@ function Knoledge() {
             </div>
 
             {/* //todo sample content */}
-            <div className="   bg-[#FF8400] p-3 lg:col-span-6 text-white   rounded-3xl">
+            <div className="   bg-[#FF8400] p-3 col-span-12 lg:col-span-6 text-white   rounded-3xl">
               <h1
                 className={`text-[1.5rem] ${HeaderFont?.className} capitalize tracking-wider p-1`}
               >
