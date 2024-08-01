@@ -9,7 +9,7 @@ function ContactPage() {
       {/* contact */}
       <div className="landingPage  dark:bg-[#D67BFF]  p-5  flex flex-col justify-between rounded-3xl container mx-auto lg:min-h-[500px]">
         <p
-          className={` ${HeaderFont?.className} capitalize tracking-wider px-1 py-2 text-3xl lg:text-[4rem]`}
+          className={` ${HeaderFont?.className} capitalize tracking-wider px-1 py-2  lg:text-[4rem] `}
         >
           Wanna create <br /> something awesome <br /> together?
         </p>

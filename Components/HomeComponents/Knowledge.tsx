@@ -3,9 +3,6 @@ import React from "react"
 import banner3 from "../../Components/images/5e5344373373094088f94ebe_how-to.gif"
 import useGetSkills from "@/data/SkillsData"
 import Image from "next/image"
-import { ProjectDatas } from "@/data/ProjectData"
-import Link from "next/link"
-import { RightArrow } from "@/Utility/icons/icons"
 
 function Knoledge() {
   let Banner_Image3: any = banner3.src
