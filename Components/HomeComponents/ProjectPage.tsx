@@ -12,9 +12,9 @@ function ProjectPage() {
       {/* //todo projects */}
       <div className="container mx-auto">
         <h1
-          className={`dark:text-white text-center lg:text-start text-3xl lg:text-[5rem] ${HeaderFont?.className} capitalize tracking-wider py-4 `}
+          className={`dark:text-white text-center lg:text-start text-[2rem] lg:text-[5rem] ${HeaderFont?.className} capitalize tracking-wider py-4 `}
         >
-          <SparklesText text="Projects" />
+          Projects
         </h1>
         <div>
           <ul className="grid lg:grid-cols-2 gap-5">
