@@ -9,7 +9,7 @@ import {
   Work_Sans,
 } from "next/font/google"
 const headerFont = Poppins({
-  weight: "400",
+  weight: "600",
   subsets: ["latin"],
   display: "block",
 })
