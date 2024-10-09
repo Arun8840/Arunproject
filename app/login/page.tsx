@@ -9,14 +9,11 @@ import { LoaderIcon, MessageIcon } from "@/Utility/icons/icons"
 import { SocialappStore } from "@/Store/SocialappStore"
 import Notification from "@/Utility/Uicomponents/Notifications/Notification"
 import useGetFonts from "@/font/fonts"
-import loginBanner from "../../Components/images/geometric-shapes-background-flat-design_23-2148373329.jpg"
-import Image from "next/image"
 interface FormTypes {
   email: string
   password: string
 }
 function LoginPage() {
-  const loginImage: any = loginBanner.src
   const [isShowPass, setpass] = useState(false)
   const { ContentFont, HeaderFont } = useGetFonts()
   const setNotification = SocialappStore((state: any) => state.setNotification)
@@ -65,13 +62,7 @@ function LoginPage() {
       <Notification />
       <div className="bg-white w-full min-h-screen grid place-items-center   gap-1 p-3">
         <div className="grid lg:grid-cols-2 gap-2">
-          <div className="hidden lg:block bg-white max-w-[400px]">
-            <img
-              src={loginImage}
-              alt="banner image"
-              className="object-cover w-full h-full"
-            />
-          </div>
+          <div className="hidden lg:block bg-white max-w-[400px]"></div>
           <div className="grid place-items-center p-3 bg-white w-full">
             <div className="min-w-[400px]">
               <h1
