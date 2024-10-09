@@ -1,5 +1,6 @@
 import {
   Barlow_Condensed,
+  Bebas_Neue,
   Hind,
   Oswald,
   PT_Sans,
@@ -25,12 +26,17 @@ const todoFont = Work_Sans({
   subsets: ["latin"],
   display: "block",
 })
+const bannerHeader = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin-ext"],
+  display: "block",
+})
 
 function useGetFonts() {
   let HeaderFont = headerFont
   let ContentFont = contentFont
   let TodoFonts = todoFont
-  return { HeaderFont, ContentFont, TodoFonts }
+  return { HeaderFont, ContentFont, TodoFonts, bannerHeader }
 }
 
 export default useGetFonts

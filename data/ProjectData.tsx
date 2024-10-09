@@ -9,15 +9,15 @@ interface ProjectDataTypes {
   fontColor: string
 }
 export const ProjectDatas: ProjectDataTypes[] = [
-  // {
-  //   title: "Ecommerce",
-  //   image: "shopping-cart.png",
-  //   description:
-  //     "To create a comprehensive e-commerce platform specializing in technology products, providing a seamless shopping experience for users. Utilize React.js for building a dynamic and interactive user interface. Employ Redux for state management and ensure responsive design with CSS (or CSS-in-JS libraries) and media queries.Provide a user-friendly interface that encourages engagement and increases conversion rates.",
-  //   path: "/projects/Ecommerce",
-  //   color: ["#8e0e10", "#525CEB"],
-  //   fontColor: "white",
-  // },
+  {
+    title: "Ecommerce",
+    image: "shopping-cart.png",
+    description:
+      "To create a comprehensive e-commerce platform specializing in technology products, providing a seamless shopping experience for users. Utilize React.js for building a dynamic and interactive user interface. Employ Redux for state management and ensure responsive design with CSS (or CSS-in-JS libraries) and media queries.Provide a user-friendly interface that encourages engagement and increases conversion rates.",
+    path: "/projects/Ecommerce",
+    color: ["#8e0e10", "#525CEB"],
+    fontColor: "white",
+  },
 
   {
     title: "Todo",
@@ -37,15 +37,15 @@ export const ProjectDatas: ProjectDataTypes[] = [
     color: ["#FF6000", "#4942E4"],
     fontColor: "#FFFFFF",
   },
-  // {
-  //   title: "Music app",
-  //   image: LocationIcon,
-  //   description:
-  //     "To create a social media platform resembling popular social networking sites, providing users with functionalities for sharing posts, interacting with others, and fostering a sense of community. Enable users to create, edit, delete, and share posts (text, images, videos) with their followers or the public. Display a personalized feed showcasing posts from followed users or relevant content based on interests. Utilize a JavaScript framework like React.js for building the user interface. Use state management libraries like Redux or Context API for managing application state.",
-  //   path: "/music?&tab=Home",
-  //   color: ["#FF6000", "#4942E4"],
-  //   fontColor: "#FFFFFF",
-  // },
+  {
+    title: "Music app",
+    image: LocationIcon,
+    description:
+      "To create a social media platform resembling popular social networking sites, providing users with functionalities for sharing posts, interacting with others, and fostering a sense of community. Enable users to create, edit, delete, and share posts (text, images, videos) with their followers or the public. Display a personalized feed showcasing posts from followed users or relevant content based on interests. Utilize a JavaScript framework like React.js for building the user interface. Use state management libraries like Redux or Context API for managing application state.",
+    path: "/music?&tab=Home",
+    color: ["#FF6000", "#4942E4"],
+    fontColor: "#FFFFFF",
+  },
   {
     title: "Expense Tracker",
     image: "weather-app.png",
