@@ -1,3 +1,4 @@
+"use client"
 import gsap from "gsap"
 import { Spicy_Rice, Spline_Sans_Mono } from "next/font/google"
 import React from "react"
