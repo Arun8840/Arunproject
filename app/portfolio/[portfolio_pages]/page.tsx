@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 import { useParams } from "next/navigation"
 import React from "react"
 
-function Page() {
+function page() {
   const params = useParams()
   const renderdPage = params?.portfolio_pages
 
@@ -24,4 +24,4 @@ function Page() {
   )
 }
 
-export default Page
+export default page
