@@ -202,7 +202,7 @@ function useGetSkills() {
               gradientUnits="userSpaceOnUse"
             >
               <stop stop-color="#FD0606" />
-              <stop offset="1" stop-color="#0E39D0" stop-opacity="0.96" />
+              <stop offset="1" stop-color="#0E39D0" stopOpacity="0.96" />
             </linearGradient>
             <clipPath id="clip0_5_28">
               <rect width="12" height="12" fill="white" />
