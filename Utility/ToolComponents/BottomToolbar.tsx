@@ -10,7 +10,6 @@ gsap.registerPlugin(useGSAP)
 function BottomToolbar() {
   const { NavMenus } = useGetMenus()
   const [isDark, setDark] = useState(false)
-  const container_ref: any = useRef(null)
   const currentPath: any = usePathname()
 
   const handleChange_Darkmode = () => {
@@ -19,7 +18,7 @@ function BottomToolbar() {
 
   useGSAP(() => {
     gsap.fromTo(
-      container_ref?.current,
+      "#container_ref",
       {
         y: 80,
         opacity: 0,
@@ -34,7 +33,7 @@ function BottomToolbar() {
   })
   return (
     <div
-      ref={container_ref}
+      id="container_ref"
       className="bg-black/20 p-2 rounded-lg shadow-lg fixed bottom-10 flex items-center gap-2 left-[45%]"
     >
       {NavMenus?.length > 0 &&

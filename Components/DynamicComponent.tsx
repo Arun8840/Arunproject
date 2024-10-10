@@ -15,6 +15,7 @@ function DynamicComponent() {
           <h1>Loading...</h1>
         </div>
       ),
+      ssr: false,
     }
   )
   return (
