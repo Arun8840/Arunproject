@@ -10,7 +10,7 @@ function useGetSkillDetails() {
       name: "Spline",
       icon: (
         <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_5_28)">
+          <g clipPath="url(#clip0_5_28)">
             <path
               fillRule="evenodd"
               clipRule="evenodd"
@@ -27,8 +27,8 @@ function useGetSkillDetails() {
               y2="10"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#FD0606" />
-              <stop offset="1" stop-color="#0E39D0" stopOpacity="0.96" />
+              <stop stopColor="#FD0606" />
+              <stop offset="1" stopColor="#0E39D0" stopOpacity="0.96" />
             </linearGradient>
             <clipPath id="clip0_5_28">
               <rect width="12" height="12" fill="white" />
@@ -43,7 +43,7 @@ function useGetSkillDetails() {
       name: "Aninx",
       icon: (
         <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_5_30)">
+          <g clipPath="url(#clip0_5_30)">
             <path
               d="M9 0H3C2.60218 0 2.22064 0.158035 1.93934 0.43934C1.65804 0.720644 1.5 1.10218 1.5 1.5V10.5C1.5 10.8978 1.65804 11.2794 1.93934 11.5607C2.22064 11.842 2.60218 12 3 12H9C9.39782 12 9.77936 11.842 10.0607 11.5607C10.342 11.2794 10.5 10.8978 10.5 10.5V1.5C10.5 1.10218 10.342 0.720644 10.0607 0.43934C9.77936 0.158035 9.39782 0 9 0ZM4.5 4.41225C4.49999 4.3459 4.51758 4.28074 4.55097 4.22341C4.58437 4.16607 4.63238 4.11863 4.69011 4.08592C4.74783 4.05321 4.8132 4.03639 4.87955 4.0372C4.94589 4.038 5.01084 4.0564 5.06775 4.0905L7.71375 5.67825C7.76937 5.71154 7.8154 5.75869 7.84737 5.81508C7.87933 5.87147 7.89613 5.93518 7.89613 6C7.89613 6.06482 7.87933 6.12853 7.84737 6.18492C7.8154 6.24131 7.76937 6.28846 7.71375 6.32175L5.06775 7.9095C5.01078 7.94364 4.94577 7.96203 4.87936 7.9628C4.81295 7.96358 4.74753 7.9467 4.68978 7.9139C4.63204 7.88109 4.58404 7.83354 4.55069 7.77611C4.51735 7.71867 4.49985 7.65341 4.5 7.587V4.41225Z"
               fill="#8F43EE"
@@ -67,7 +67,7 @@ function useGetSkillDetails() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_6_9)">
+          <g clipPath="url(#clip0_6_9)">
             <mask
               id="mask0_6_9"
               maskUnits="userSpaceOnUse"

@@ -1,13 +1,8 @@
+"use client"
 import useGetSkills from "@/data/SkillsData"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import {
-  Inter,
-  Mandali,
-  Manrope,
-  Spline_Sans_Mono,
-  Ubuntu,
-} from "next/font/google"
+import { Inter, Manrope } from "next/font/google"
 import React from "react"
 
 const Spline_Font_bold = Inter({
