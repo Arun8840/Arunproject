@@ -139,7 +139,7 @@ function About() {
               className={` p-2 ${Spline_Font_normal?.className} tracking-wide leading-7`}
             >
               A few years back, I came across Creative Coding, and was obsessed
-              with it. Since then, I've done a lot of creative coding work,
+              with it. Since then, I ve done a lot of creative coding work,
               learnt about shaders, and also taught myself frontend development.
             </p>
           </div>
