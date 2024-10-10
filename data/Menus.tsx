@@ -32,9 +32,9 @@ function useGetMenus() {
           className="size-5"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       ),
@@ -50,9 +50,9 @@ function useGetMenus() {
           className="size-5"
         >
           <path
-            fill-rule="evenodd"
+            fillRule="evenodd"
             d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
-            clip-rule="evenodd"
+            clipRule="evenodd"
           />
         </svg>
       ),

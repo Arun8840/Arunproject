@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 interface SkillTypes {
-  name: string;
-  icon: any;
-  details?: string;
+  name: string
+  icon: any
+  details?: string
 }
 function useGetSkillDetails() {
   let SkillDetails: SkillTypes[] = [
@@ -12,8 +12,8 @@ function useGetSkillDetails() {
         <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#clip0_5_28)">
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M11.646 2.22975C11.7504 2.27142 11.8399 2.34342 11.903 2.43647C11.9661 2.52951 11.9999 2.63933 12 2.75175V9.24825C11.9999 9.36067 11.9661 9.47049 11.903 9.56353C11.8399 9.65658 11.7504 9.72858 11.646 9.77025L6.2085 11.9453C6.07441 11.9989 5.92484 11.9989 5.79075 11.9453L0.35325 9.77025C0.248977 9.72846 0.159604 9.65641 0.0966454 9.56338C0.0336867 9.47034 2.61449e-05 9.36059 0 9.24825L0 2.75175C2.61449e-05 2.63942 0.0336867 2.52966 0.0966454 2.43663C0.159604 2.34359 0.248977 2.27154 0.35325 2.22975L5.58225 0.138001L5.58525 0.137251L5.79075 0.0547505C5.92506 0.000925044 6.07494 0.000925044 6.20925 0.0547505L6.41475 0.137251L6.41775 0.138001L11.646 2.22975ZM10.6155 2.625L6 4.4715L1.3845 2.625L0.75 2.87925V3.17925L5.625 5.12925V11.0708L6 11.2208L6.375 11.0708V5.13L11.25 3.18V2.88L10.6155 2.625Z"
               fill="url(#paint0_linear_5_28)"
             />
@@ -112,9 +112,9 @@ function useGetSkillDetails() {
       details:
         "I'm a dedicated designer with a strong passion for creating visually appealing and user-friendly designs. Figma has played a crucial role in my design journey, allowing me to collaborate seamlessly with teams and clients while bringing my creative concepts to life. I am continually exploring new design trends and techniques to deliver the best possible design solutions.",
     },
-  ];
+  ]
 
-  return { SkillDetails };
+  return { SkillDetails }
 }
 
-export default useGetSkillDetails;
+export default useGetSkillDetails
