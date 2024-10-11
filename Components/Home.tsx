@@ -4,6 +4,8 @@ import { Spicy_Rice, Spline_Sans_Mono } from "next/font/google"
 import React from "react"
 import { useGSAP } from "@gsap/react"
 import TextPlugin from "gsap/TextPlugin"
+import useSWR from "swr"
+import getSocialAppServices from "@/service/SocialAppService"
 const Spicy_Font = Spicy_Rice({
   weight: "400",
   style: "normal",
@@ -20,6 +22,7 @@ const Poppins_Font = Spline_Sans_Mono({
 // todo gsap plugins
 gsap.registerPlugin(TextPlugin, useGSAP)
 function Homepage() {
+  const { loadAllUser } = getSocialAppServices()
   const tl = gsap.timeline()
   useGSAP(() => {
     tl.fromTo(
@@ -63,6 +66,15 @@ function Homepage() {
       )
   })
 
+  const fetcher = async () => {
+    let data = await loadAllUser()
+    if (data) {
+      return data
+    }
+  }
+  const { data, error, isLoading } = useSWR("/api/user", fetcher)
+
+  console.log(data)
   return (
     <div
       id="main_container"
