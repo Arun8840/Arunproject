@@ -17,6 +17,7 @@ function Page() {
       ),
     }
   )
+
   return (
     <>
       <Dynamic_Component />

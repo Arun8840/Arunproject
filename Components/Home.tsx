@@ -5,7 +5,9 @@ import React from "react"
 import { useGSAP } from "@gsap/react"
 import TextPlugin from "gsap/TextPlugin"
 import useSWR from "swr"
-import getSocialAppServices from "@/service/SocialAppService"
+import { fetchAndSet_Pagecontent } from "@/Store/features/pageSlice"
+import { useAppDispatch } from "@/Store/hooks"
+import { useParams } from "next/navigation"
 const Spicy_Font = Spicy_Rice({
   weight: "400",
   style: "normal",
@@ -22,59 +24,82 @@ const Poppins_Font = Spline_Sans_Mono({
 // todo gsap plugins
 gsap.registerPlugin(TextPlugin, useGSAP)
 function Homepage() {
-  const { loadAllUser } = getSocialAppServices()
   const tl = gsap.timeline()
-  useGSAP(() => {
-    tl.fromTo(
-      "#main_container",
-      {
-        background: "black",
-      },
-      {
-        backgroundImage:
-          "linear-gradient(180deg, rgba(255,255,255,1) 3%, rgba(235,158,98,1) 34.6%, rgba(177,10,10,1) 63.7%, rgba(0,0,0,1) 102%)",
-        duration: 3,
-        // ease: "expo.inOut",
-      }
-    )
-      .fromTo(
-        ["#header_text", "#content_text"],
-        {
-          opacity: 0,
-          y: 10,
-        },
-        {
-          y: 0,
-          stagger: 0.4,
-          opacity: 1,
-          duration: 1,
-        }
-      )
-      .fromTo(
-        "#chip_text",
-        {
-          opacity: 0,
-          y: 10,
-        },
-        {
-          y: 0,
-          stagger: 0.4,
-          opacity: 1,
-          duration: 0.8,
-          ease: "bounce.out",
-        }
-      )
-  })
-
+  const dispatch = useAppDispatch()
+  const params = useParams()
+  const current_page = params?.portfolio_pages
   const fetcher = async () => {
-    let data = await loadAllUser()
-    if (data) {
-      return data
+    try {
+      const res = await dispatch(fetchAndSet_Pagecontent())
+      return res
+    } catch (error: any) {
+      throw new Error(error)
     }
   }
-  const { data, error, isLoading } = useSWR("/api/user", fetcher)
 
-  console.log(data)
+  const { data, isLoading, error } = useSWR(
+    "api/portfolio/load-home-page",
+    fetcher,
+    {
+      revalidateOnFocus: false, // Disable revalidation on focus
+    }
+  )
+
+  let filterdPage = data?.payload?.find((pageItems: any) =>
+    current_page?.includes(pageItems?.pageName)
+  )
+
+  useGSAP(
+    () => {
+      if (!isLoading) {
+        tl.fromTo(
+          "#main_container",
+          {
+            background: "black",
+          },
+          {
+            backgroundImage: filterdPage?.theme?.background,
+            duration: 3,
+            // ease: "expo.inOut",
+          }
+        )
+          .fromTo(
+            ["#header_text", "#content_text"],
+            {
+              opacity: 0,
+              y: 10,
+            },
+            {
+              y: 0,
+              stagger: 0.4,
+              opacity: 1,
+              duration: 1,
+            }
+          )
+          .fromTo(
+            "#chip_text",
+            {
+              opacity: 0,
+              y: 10,
+            },
+            {
+              y: 0,
+              stagger: 0.4,
+              opacity: 1,
+              duration: 0.8,
+              ease: "bounce.out",
+            }
+          )
+      }
+    },
+    { dependencies: [isLoading] }
+  )
+
+  let values = filterdPage?.contents[0]
+  let element = {
+    title: values?.header?.split(" ").join("<br/>"),
+    para: values?.subContent,
+  }
   return (
     <div
       id="main_container"
@@ -85,9 +110,8 @@ function Homepage() {
           <h1
             id="header_text"
             className={`text-white text-center tracking-wide text-5xl lg:text-8xl  ${Spicy_Font?.className}`}
-          >
-            Arun <br /> Prakash
-          </h1>
+            dangerouslySetInnerHTML={{ __html: element?.title }}
+          />
           <div className="hidden sm:flex">
             <small
               id="chip_text"
@@ -137,10 +161,9 @@ function Homepage() {
 
         <p
           id="content_text"
-          className={`text-center text-white tracking-wide ${Poppins_Font?.className} p-4 lg:p-10`}
+          className={`text-center text-white tracking-wide ${Poppins_Font?.className} p-4 w-[80%] mx-auto`}
         >
-          Building seamless, responsive, and interactive web experiences with
-          modern front-end technologies.
+          {element?.para}
         </p>
       </div>
     </div>

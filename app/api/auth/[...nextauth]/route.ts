@@ -1,17 +1,8 @@
-import getSocialAppServices from "@/service/SocialAppService"
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const handleLogin = async (userData: any) => {
-  const { loginUser } = getSocialAppServices()
-  let response = await loginUser(userData)
-  try {
-    if (response) {
-      return response?.data?.user
-    }
-  } catch (error) {
-    console.log(error)
-  }
+  return null
 }
 
 const authOptions: any = {

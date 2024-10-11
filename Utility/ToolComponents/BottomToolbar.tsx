@@ -1,19 +1,22 @@
 "use client"
+import { change_darkmode } from "@/Store/features/pageSlice"
 import useGetMenus from "@/data/Menus"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 
 gsap.registerPlugin(useGSAP)
 function BottomToolbar() {
   const { NavMenus } = useGetMenus()
   const [isDark, setDark] = useState(false)
   const currentPath: any = usePathname()
-
+  const dispatch = useDispatch()
   const handleChange_Darkmode = () => {
     setDark(!isDark)
+    dispatch(change_darkmode(!isDark))
   }
 
   useGSAP(() => {
