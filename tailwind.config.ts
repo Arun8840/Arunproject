@@ -8,21 +8,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: {
-        top: "0px -2px 2px rgba(253,250,250,0.925)",
-        customdragshadow: "0px 0px 10px #666666",
-        customshortshadow: "0px 0px 3px cadetblue",
-        dropbox_shadow:
-          "inset 1px 1px 8px #c1d6f5, inset -1px -1px 8px #c1d6f5",
-        VPC_droping_shadow:
-          "inset 1px 1px 8px green, inset -1px -1px 8px green",
-        boxshadow: "0px 0px 5px #e3e3e3",
-        sidebarShadow: "2px 0px 10px #e3e3e3",
-        sideModelShadow: "-1px 0px 14px #787878",
-        deleteModelShadow: "inset 0 0 0 400px #eeeeee",
-        deleteModelHoverShadow: "inset 0 0 0 400px #00000000",
-        paymenuCard_shadow: "-7px 7px 0px #222831, -12px 13px 0px #454545",
-      },
       gridTemplateColumns: {
         // Simple 16 column grid
         24: "repeat(24, minmax(0, 1fr))",

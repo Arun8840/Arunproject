@@ -42,7 +42,7 @@ const pageSlice = createSlice({
         state.isLoading = "Loading..." // Indicate loading state
       })
       .addCase(fetchAndSet_Pagecontent.fulfilled, (state, action) => {
-        state.isLoading = action.payload // Store loaded components
+        state.isLoading = false
       })
       .addCase(fetchAndSet_Pagecontent.rejected, (state, action) => {
         state.isLoading = `Error: ${action.payload}` // Handle errors

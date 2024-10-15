@@ -8,6 +8,11 @@ import useSWR from "swr"
 import { fetchAndSet_Pagecontent } from "@/Store/features/pageSlice"
 import { useAppDispatch } from "@/Store/hooks"
 import { useParams } from "next/navigation"
+import { MdStars } from "react-icons/md"
+import { IoSparklesSharp } from "react-icons/io5"
+import { FaCode } from "react-icons/fa"
+import useGetSkills from "@/data/SkillsData"
+
 const Spicy_Font = Spicy_Rice({
   weight: "400",
   style: "normal",
@@ -27,6 +32,7 @@ function Homepage() {
   const tl = gsap.timeline()
   const dispatch = useAppDispatch()
   const params = useParams()
+  const { SkillItems } = useGetSkills()
   const current_page = params?.portfolio_pages
   const fetcher = async () => {
     try {
@@ -55,14 +61,18 @@ function Homepage() {
         tl.fromTo(
           "#main_container",
           {
-            background: "black",
+            opacity: 0,
           },
           {
-            backgroundImage: filterdPage?.theme?.background,
-            duration: 3,
-            // ease: "expo.inOut",
+            opacity: 1,
+            duration: 2,
           }
         )
+          .to("#circle", {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+          })
           .fromTo(
             ["#header_text", "#content_text"],
             {
@@ -77,17 +87,29 @@ function Homepage() {
             }
           )
           .fromTo(
-            "#chip_text",
+            "#chip",
             {
-              opacity: 0,
-              y: 10,
+              rotate: "-50deg",
+              scale: 0,
             },
             {
-              y: 0,
-              stagger: 0.4,
-              opacity: 1,
-              duration: 0.8,
+              rotate: 0,
+              transformOrigin: "left bottom",
+              scale: 1,
               ease: "bounce.out",
+              duration: 1.2,
+            }
+          )
+
+          .fromTo(
+            "#skill_container >*",
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              stagger: 0.2,
+              duration: 0.2,
             }
           )
       }
@@ -100,71 +122,46 @@ function Homepage() {
     title: values?.header?.split(" ").join("<br/>"),
     para: values?.subContent,
   }
+
   return (
     <div
       id="main_container"
-      className={`w-full min-h-screen grid place-items-center relative`}
+      className={`w-full min-h-screen grid place-items-center relative bg-[url('../public/blue_background.jpg')] bg-center bg-cover opacity-0`}
     >
-      <div className="w-1/2">
+      <div className="w-[90%] lg:w-1/2">
         <div className="relative">
           <h1
             id="header_text"
             className={`text-white text-center tracking-wide text-5xl lg:text-8xl  ${Spicy_Font?.className}`}
             dangerouslySetInnerHTML={{ __html: element?.title }}
           />
-          <div className="hidden sm:flex">
-            <small
-              id="chip_text"
-              className={`text-white bg-indigo-500 rounded-full w-fit mx-auto p-2 text-center tracking-wide  ${Poppins_Font?.className} lg:absolute top-[8px] right-[12rem] flex items-center gap-2`}
-            >
-              Designer
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M20.599 1.5c-.376 0-.743.111-1.055.32l-5.08 3.385a18.747 18.747 0 0 0-3.471 2.987 10.04 10.04 0 0 1 4.815 4.815 18.748 18.748 0 0 0 2.987-3.472l3.386-5.079A1.902 1.902 0 0 0 20.599 1.5Zm-8.3 14.025a18.76 18.76 0 0 0 1.896-1.207 8.026 8.026 0 0 0-4.513-4.513A18.75 18.75 0 0 0 8.475 11.7l-.278.5a5.26 5.26 0 0 1 3.601 3.602l.502-.278ZM6.75 13.5A3.75 3.75 0 0 0 3 17.25a1.5 1.5 0 0 1-1.601 1.497.75.75 0 0 0-.7 1.123 5.25 5.25 0 0 0 9.8-2.62 3.75 3.75 0 0 0-3.75-3.75Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </small>
-            <small
-              id="chip_text"
-              className={`text-lime-200 bg-[#185519] rounded-full w-fit mx-auto p-2 text-center tracking-wide  ${Poppins_Font?.className} lg:absolute top-[60px] left-[10.5rem]`}
-            >
-              <span className="px-1">{"</>"}</span>
-              Developer
-            </small>
-            <small
-              id="chip_text"
-              className={`bg-[#D2FF72] rounded-full w-fit mx-auto p-2 text-center tracking-wide  ${Poppins_Font?.className} lg:absolute bottom-0 right-[4.5rem] flex items-center gap-2`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Creative Coder
-            </small>
-          </div>
+          <small
+            className="hidden lg:flex items-center bg-black/30 backdrop-blur-sm  rounded-full text-white p-2 text-center absolute top-0 right-[12rem] gap-1 rotate-[-50deg]"
+            id="chip"
+          >
+            <IoSparklesSharp color="#FFDC7F" size={18} /> Developer
+          </small>
         </div>
 
         <p
           id="content_text"
-          className={`text-center text-white tracking-wide ${Poppins_Font?.className} p-4 w-[80%] mx-auto`}
+          className={`text-center text-white tracking-wide ${Poppins_Font?.className} p-4 lg:w-[80%] mx-auto`}
         >
           {element?.para}
         </p>
+
+        <ul
+          id="skill_container"
+          className="flex flex-wrap gap-2 items-center justify-center p-5"
+        >
+          {SkillItems?.map((items, index) => {
+            return (
+              <li key={`${items?.name}${index}`} className="size-6">
+                {items?.icon}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   )

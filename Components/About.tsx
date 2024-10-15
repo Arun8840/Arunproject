@@ -41,13 +41,13 @@ function About() {
     )
   })
   return (
-    <section className="p-2 min-h-screen bg-[##1b1b1b]">
+    <section className="p-2 min-h-screen bg-[url('../public/blue_background.jpg')] bg-fixed bg-cover ">
       <div
         id="About_container"
         className="p-5 grid lg:grid-cols-12 container mx-auto  gap-5"
       >
         {/* //todo image section */}
-        <div className=" col-span-12 lg:col-span-4 w-full min-h-[300px] rounded-[3rem] bg-gradient-to-br from-[#2e0bf4]  to-[#48ada4]  shadow-lg p-3 grid place-items-center text-white">
+        <div className=" col-span-12 lg:col-span-4 w-full rounded-[3rem] bg-gradient-to-br from-[#2e0bf4]  to-[#48ada4]  shadow-lg p-3 grid place-items-center text-white">
           <h1
             className={`text-[2.5rem] p-2 capitalize  ${Spline_Font_bold?.className}`}
           >
