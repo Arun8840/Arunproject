@@ -1,144 +1,159 @@
 "use client"
-import useGetSkills from "@/data/SkillsData"
+
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { Inter, Manrope } from "next/font/google"
-import React from "react"
+import { Outfit } from "next/font/google"
+import Link from "next/link"
+import React, { useRef } from "react"
+import bannerImage from "../public/aboutMe_banner.png"
+import Image from "next/image"
+const HeaderFont = Outfit({
+  weight: "600",
+  style: "normal",
+  subsets: ["latin"],
+  display: "block",
+})
+const conentFont = Outfit({
+  weight: "300",
+  style: "normal",
+  subsets: ["latin"],
+  display: "block",
+})
 
-const Spline_Font_bold = Inter({
-  weight: "700",
-  style: "normal",
-  subsets: ["latin"],
-  display: "block",
-})
-const Spline_Font_normal = Manrope({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-  display: "block",
-})
 gsap.registerPlugin(useGSAP)
 function About() {
-  const { SkillItems } = useGetSkills()
+  let banner: any = bannerImage?.src
+  let headerStyle = `text-white text-4xl p-2 tracking-wider font-semibold ${HeaderFont?.className}`
 
+  let contentStyle = `text-white leading-6 tracking-wide text-stone-200 ${conentFont?.className}`
+  let listContainer: any = useRef(null)
+  let tl = gsap.timeline()
   useGSAP(() => {
-    gsap.fromTo(
-      "#About_container > *",
+    tl.fromTo(
+      listContainer?.current?.children,
       {
+        y: 3,
         opacity: 0,
-        scale: 0.9,
-        y: 30,
       },
       {
-        opacity: 1,
-        scale: 1,
         y: 0,
+        opacity: 1,
+        delay: 0.2,
         stagger: 0.2,
-        yoyo: true,
-        ease: "power1.inOut",
         duration: 1,
+        ease: "sine.out",
       }
     )
   })
   return (
-    <section className="p-2 min-h-screen bg-[url('../public/blue_background.jpg')] bg-fixed bg-cover ">
-      <div
-        id="About_container"
-        className="p-5 grid lg:grid-cols-12 container mx-auto  gap-5"
-      >
-        {/* //todo image section */}
-        <div className=" col-span-12 lg:col-span-4 w-full rounded-[3rem] bg-gradient-to-br from-[#2e0bf4]  to-[#48ada4]  shadow-lg p-3 grid place-items-center text-white">
-          <h1
-            className={`text-[2.5rem] p-2 capitalize  ${Spline_Font_bold?.className}`}
-          >
-            ABOUT
-          </h1>
-        </div>
+    <section className="min-h-screen bg-black p-10 lg:overflow-hidden grid place-items-center">
+      <div className="lg:w-3/5 p-2 mx-auto">
+        <ul ref={listContainer} className="p-3 flex flex-col gap-2 ">
+          <li>
+            <h1 className={headerStyle}>About me</h1>
+            <Image
+              className="p-2"
+              src={banner}
+              alt="bannerImage"
+              width={200}
+              height={200}
+            />
+          </li>
+          <li className="">
+            <div className="p-3">
+              <p className={contentStyle}>
+                Hello!
+                <span className="bg-green-500 p-1 rounded -skew-y-3 text-xl font-medium inline-block">
+                  I'm Arun
+                </span>
+                , a frontend developer with{" "}
+                <span className="text-pink-500 font-medium">3 years</span> of
+                professional experience at
+                <Link
+                  href={"http://www.zettastack.com/"}
+                  className="text-indigo-400 p-1 hover:border-b border-indigo-400"
+                >
+                  Zetta Stack Systems Pvt
+                </Link>
+                . Ltd. I&rsquo;m passionate about creating responsive,
+                interactive, and user-friendly web applications. During my time
+                at Zetta Stack Systems, I honed my skills in modern frontend
+                technologies like React, Next.js, Tailwind CSS, and Figma.
+              </p>
 
-        {/* content section */}
-        <div className="col-span-12 lg:col-span-8 rounded-[3rem] bg-[#473bd8] text-white  shadow-lg p-10">
-          <h1
-            className={`text-[2.5rem] p-2 capitalize  ${Spline_Font_bold?.className}`}
-          >
-            I design digital interfaces
-          </h1>
-          <p
-            className={` p-2 ${Spline_Font_normal?.className} tracking-wide leading-7`}
-          >
-            I am an enthusiastic Frontend Developer with a strong penchant for
-            creating elegant and responsive user interfaces. My journey in web
-            development began ZettaStack, which has sharpened my skills and
-            passion for creating exceptional web applications.
-          </p>
-        </div>
+              <p className={contentStyle}>
+                Throughout my journey, I&rsquo;ve mastered key frontend tools
+                like React, Next.js, Tailwind CSS, and Figma to build intuitive
+                interfaces. I&rsquo;m also proficient in Spline for 3D design
+                and GSAP for creating smooth animations, ensuring that every
+                project I work on is engaging and visually captivating.
+              </p>
+            </div>
+          </li>
 
-        {/* //todo image section */}
-        <div className="col-span-12 lg:col-span-8 rounded-[3rem] bg-[#ffffff]  shadow-lg p-10">
-          <h1
-            className={`text-[2.5rem] text-[#2C2C2C] p-2 ${Spline_Font_bold?.className} `}
-          >
-            Experience
-          </h1>
-          <p
-            className={` p-2 ${Spline_Font_normal?.className} tracking-wide leading-7`}
-          >
-            During my three years at Zettastack System Pvt Ltd in Tidel
-            Coimbatore, I honed my skills as a frontend developer, collaborating
-            with cross-functional teams to deliver responsive web solutions. I
-            focused on designing intuitive user interfaces and leveraging modern
-            technologies such as HTML5, CSS3,Tailwind CSS,JavaScript frameworks.
-            By optimizing performance and continuously learning, I contributed
-            to the success of various projects while staying updated with
-            industry trends.
-          </p>
-        </div>
+          <li className="">
+            <h1 className={headerStyle}>Skills & Expertise</h1>
+            <div className="p-3">
+              <ul className="text-stone-200 flex flex-col gap-3">
+                <li>
+                  <strong>Languages:</strong>{" "}
+                  <span className="text-orange-400">HTML</span>,{" "}
+                  <span className="text-sky-400">CSS</span>,{" "}
+                  <span className="text-yellow-400">JavaScript (ES6+)</span>,
+                  TypeScript
+                </li>
+                <li>
+                  <strong>Frameworks & Libraries:</strong>{" "}
+                  <span className="text-sky-400">React</span>, Next.js,
+                  <span className="text-green-400 font-medium"> GSAP</span>
+                  (GreenSock Animation Platform)
+                </li>
+                <li>
+                  <strong>Design & Tools:</strong> Figma, Spline (3D design),
+                  Tailwind CSS
+                </li>
+                <li>
+                  <strong>API Integration:</strong> RESTful APIs
+                </li>
+                <li>
+                  <strong>Responsive Design:</strong> Mobile-first approach,
+                  Flexbox, CSS Grid
+                </li>
+                <li>
+                  <strong>Version Control:</strong> Git, GitHub
+                </li>
+              </ul>
+            </div>
+          </li>
 
-        {/* content section */}
-        <div className="col-span-12 lg:col-span-4 w-full rounded-[3rem] bg-[#ffefd6]  shadow-lg grid place-items-center">
-          <ul className="flex  items-center flex-wrap gap-4  p-10">
-            {SkillItems?.length > 0 &&
-              SkillItems?.map((skillItems, index: number) => {
-                return (
-                  <li key={index} className="size-14">
-                    {skillItems?.icon}
-                  </li>
-                )
-              })}
-          </ul>
-        </div>
-
-        {/* //todo help section */}
-        <div className="col-span-12 lg:col-span-6 rounded-[3rem] bg-[#07c057] text-[#fefefe]  shadow-lg p-10">
-          <h1
-            className={`text-[2.5rem]  p-2 font-semibold ${Spline_Font_bold?.className} `}
-          >
-            How can I help you?
-          </h1>
-          <ul className={`p-2  ${Spline_Font_normal?.className}`}>
-            <li className="p-2 list-disc list-inside">Improve your website</li>
-            <li className="p-2 list-disc list-inside">Create a web app</li>
-            <li className="p-2 list-disc list-inside">Create a new website</li>
-            <li className="p-2 list-disc list-inside">Design/Refactor UI</li>
-          </ul>
-        </div>
-
-        {/* //todo tool uses */}
-        <div className="col-span-12 lg:col-span-6 rounded-[3rem] bg-[#e4ae0f]  shadow-lg p-10">
-          <div>
-            <h1
-              className={`text-[2.5rem] p-2 capitalize  ${Spline_Font_bold?.className}`}
-            >
-              I also like to code
-            </h1>
-            <p
-              className={` p-2 ${Spline_Font_normal?.className} tracking-wide leading-7`}
-            >
-              A few years back, I came across Creative Coding, and was obsessed
-              with it. Since then, I ve done a lot of creative coding work,
-              learnt about shaders, and also taught myself frontend development.
-            </p>
-          </div>
-        </div>
+          <li className="">
+            <h1 className={headerStyle}>My Approach</h1>
+            <div className="p-3">
+              <p className={contentStyle}>
+                I believe in crafting clean, maintainable code that blends
+                functionality with beautiful design. With a strong focus on
+                collaboration, I enjoy working with designers and developers
+                alike to create seamless user experiences. My expertise in using
+                design systems, animation tools, and frameworks like Next.js
+                enables me to deliver performance-optimized, dynamic web
+                applications.
+              </p>
+            </div>
+          </li>
+          <li className="">
+            <h1 className={headerStyle}>When I'm Not Coding</h1>
+            <div className="p-3">
+              <p className={contentStyle}>
+                Outside of coding, I enjoy exploring new web development trends
+                and experimenting with innovative tools and techniques. I'm also
+                passionate about art, which fuels my creativity and inspires my
+                design work. In my free time, you'll often find me playing
+                volleyball or working on personal art projects to stay balanced
+                and inspired.
+              </p>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   )

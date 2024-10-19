@@ -5,78 +5,59 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 
 gsap.registerPlugin(useGSAP)
+
 function BottomToolbar() {
   const { NavMenus } = useGetMenus()
   const [isDark, setDark] = useState(false)
+  const [trigger, setTrigger] = useState(false)
   const currentPath: any = usePathname()
+  const navContainer: any = useRef(null)
+  const navlist: any = useRef(null)
   const dispatch = useDispatch()
   const handleChange_Darkmode = () => {
     setDark(!isDark)
     dispatch(change_darkmode(!isDark))
   }
 
-  useGSAP(() => {
-    gsap.fromTo(
-      "#container_ref",
-      {
-        y: 80,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        delay: 2,
-        opacity: 1,
-        duration: 0.7,
-      }
-    )
-  })
+  let tl = gsap.timeline({ paused: true })
+
   return (
-    <div id="container_ref" className=" fixed bottom-7 gap-2 mx-auto w-full">
-      <div className="bg-black/30 backdrop-blur-sm p-2 rounded-lg shadow-lg  flex justify-center items-center w-fit mx-auto gap-2">
-        {NavMenus?.length > 0 &&
-          NavMenus?.map((items, index) => {
-            const isActive = items?.path === currentPath
-            return items?.path && items?.name !== "Dark mode" ? (
-              <Link key={index} href={items?.path ?? ""}>
-                <button
-                  className={`rounded p-2 ${
-                    isActive ? "bg-white" : "text-white"
-                  }`}
-                  title={items?.name}
-                >
-                  {items?.icon}
-                </button>
+    <div className="fixed top-2 flex justify-center gap-2 w-full z-50">
+      <div
+        id="container_ref"
+        className="bg-black/20 backdrop-blur-sm group rounded-3xl p-1 overflow-hidden shadow-lg"
+      >
+        <div className="flex justify-center gap-2 items-center">
+          {NavMenus?.map((links) => {
+            const isActive = links?.path === currentPath
+            return links?.name !== "Dark mode" ? (
+              <Link
+                key={links?.name}
+                href={links?.path ?? ""}
+                title={links?.name}
+                className={`p-2 text-white  relative ${
+                  isActive && "  bg-lime-400 rounded-full "
+                }`}
+                type="button"
+              >
+                {links?.icon}
               </Link>
             ) : (
               <button
-                key={index}
                 onClick={handleChange_Darkmode}
-                className={`rounded p-2  text-white`}
-                title={items?.name}
+                title={links?.name}
+                className={`p-2 rounded-full text-white`}
+                type="button"
               >
-                {isDark ? (
-                  items?.icon
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="size-5"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9 6a9 9 0 0 0 9 9 8.97 8.97 0 0 0 3.463-.69.75.75 0 0 1 .981.98 10.503 10.503 0 0 1-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 0 1 .818.162Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                )}
+                {links?.icon}
               </button>
             )
           })}
+        </div>
       </div>
     </div>
   )

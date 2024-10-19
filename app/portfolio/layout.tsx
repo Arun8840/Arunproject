@@ -7,8 +7,8 @@ gsap.registerPlugin(useGSAP)
 function layout({ children }: { children: React.ReactNode }) {
   return (
     <section className="w-full min-h-screen bg-black">
-      {children}
       <BottomToolbar />
+      {children}
     </section>
   )
 }
