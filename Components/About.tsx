@@ -64,7 +64,7 @@ function About() {
               <p className={contentStyle}>
                 Hello!
                 <span className="bg-green-500 p-1 rounded -skew-y-3 text-xl font-medium inline-block">
-                  I'm Arun
+                  I&rsquo;m Arun
                 </span>
                 , a frontend developer with{" "}
                 <span className="text-pink-500 font-medium">3 years</span> of
@@ -141,15 +141,15 @@ function About() {
             </div>
           </li>
           <li className="">
-            <h1 className={headerStyle}>When I'm Not Coding</h1>
+            <h1 className={headerStyle}>When I&rsquo;m Not Coding</h1>
             <div className="p-3">
               <p className={contentStyle}>
                 Outside of coding, I enjoy exploring new web development trends
-                and experimenting with innovative tools and techniques. I'm also
-                passionate about art, which fuels my creativity and inspires my
-                design work. In my free time, you'll often find me playing
-                volleyball or working on personal art projects to stay balanced
-                and inspired.
+                and experimenting with innovative tools and techniques.
+                I&rsquo;m also passionate about art, which fuels my creativity
+                and inspires my design work. In my free time, you&rsquo;ll often
+                find me playing volleyball or working on personal art projects
+                to stay balanced and inspired.
               </p>
             </div>
           </li>
