@@ -18,7 +18,7 @@ function BottomToolbar() {
   }
 
   return (
-    <div className="fixed top-2 flex justify-center gap-2 w-full z-50">
+    <div className="fixed bottom-5 flex justify-center gap-2 w-full z-50">
       <div
         id="container_ref"
         className="bg-black/20 backdrop-blur-sm group rounded-3xl p-1 overflow-hidden shadow-lg"
