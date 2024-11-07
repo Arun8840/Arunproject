@@ -19,7 +19,7 @@ function Home() {
         <h1
           className={`${nunitoSans_normal.className} text-3xl font-bold mb-4 text-white capitalize`}
         >
-          hey, iam Arun 👋
+          hey&#44; I&apos;m Arun 👋
         </h1>
         <h1
           className={`${nunitoSans.className} text-[70px] font-bold mb-4 bg-white bg-clip-text text-transparent uppercase mix-blend-overlay`}
@@ -30,9 +30,9 @@ function Home() {
           className={`${nunitoSans_normal.className} mb-4 text-white capitalize`}
         >
           Passionate about crafting seamless user experiences with modern web
-          technologies. <br /> Specializing in React, Next.js, and responsive
-          design, I transform ideas into elegant, performant applications.{" "}
-          <br /> Let's build something amazing together.
+          technologies <br /> Specializing in React Next js and responsive
+          design I transform ideas into elegant performant applications
+          <br /> Let build something amazing together
         </p>
 
         <Link
