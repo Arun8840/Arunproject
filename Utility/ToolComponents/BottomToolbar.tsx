@@ -1,5 +1,4 @@
 "use client"
-import { change_darkmode } from "@/Store/features/pageSlice"
 import useGetMenus from "@/data/Menus"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -14,7 +13,6 @@ function BottomToolbar() {
   const dispatch = useDispatch()
   const handleChange_Darkmode = () => {
     setDark(!isDark)
-    dispatch(change_darkmode(!isDark))
   }
 
   return (
