@@ -1,170 +1,57 @@
-"use client"
-import gsap from "gsap"
-import { Spicy_Rice, Spline_Sans_Mono } from "next/font/google"
 import React from "react"
-import { useGSAP } from "@gsap/react"
-import TextPlugin from "gsap/TextPlugin"
-import useSWR from "swr"
-import { fetchAndSet_Pagecontent } from "@/Store/features/pageSlice"
-import { useAppDispatch } from "@/Store/hooks"
-import { useParams } from "next/navigation"
-import { MdStars } from "react-icons/md"
-import { IoSparklesSharp } from "react-icons/io5"
-import { FaCode } from "react-icons/fa"
-import useGetSkills from "@/data/SkillsData"
-
-const Spicy_Font = Spicy_Rice({
-  weight: "400",
-  style: "normal",
+import { Nunito_Sans, Poppins } from "next/font/google"
+import Spline from "@splinetool/react-spline"
+import Link from "next/link"
+import { MoveUpRight } from "lucide-react"
+const nunitoSans = Poppins({
   subsets: ["latin"],
-  display: "block",
-})
-const Poppins_Font = Spline_Sans_Mono({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-  display: "block",
+  weight: "700",
 })
 
-// todo gsap plugins
-gsap.registerPlugin(TextPlugin, useGSAP)
-function Homepage() {
-  const tl = gsap.timeline()
-  const dispatch = useAppDispatch()
-  const params = useParams()
-  const { SkillItems } = useGetSkills()
-  const current_page = params?.portfolio_pages
-  const fetcher = async () => {
-    try {
-      const res = await dispatch(fetchAndSet_Pagecontent())
-      return res
-    } catch (error: any) {
-      throw new Error(error)
-    }
-  }
+const nunitoSans_normal = Poppins({
+  subsets: ["latin"],
+  weight: "400",
+})
 
-  const { data, isLoading, error } = useSWR(
-    "api/portfolio/load-home-page",
-    fetcher,
-    {
-      revalidateOnFocus: false, // Disable revalidation on focus
-    }
-  )
-
-  let filterdPage = data?.payload?.find((pageItems: any) =>
-    current_page?.includes(pageItems?.pageName)
-  )
-
-  useGSAP(
-    () => {
-      if (!isLoading) {
-        tl.fromTo(
-          "#main_container",
-          {
-            opacity: 0,
-          },
-          {
-            opacity: 1,
-            duration: 1,
-          }
-        )
-          .to("#circle", {
-            scale: 1,
-            opacity: 1,
-            duration: 0.4,
-          })
-          .fromTo(
-            ["#header_text", "#content_text"],
-            {
-              opacity: 0,
-              y: 10,
-            },
-            {
-              y: 0,
-              stagger: 0.4,
-              opacity: 1,
-              duration: 1,
-            }
-          )
-          .fromTo(
-            "#chip",
-            {
-              rotate: "-50deg",
-              scale: 0,
-            },
-            {
-              rotate: 0,
-              transformOrigin: "left bottom",
-              scale: 1,
-              ease: "bounce.out",
-              duration: 1.2,
-            }
-          )
-
-          .fromTo(
-            "#skill_container >*",
-            {
-              opacity: 0,
-            },
-            {
-              opacity: 1,
-              stagger: 0.2,
-              duration: 0.2,
-            }
-          )
-      }
-    },
-    { dependencies: [isLoading] }
-  )
-
-  let values = filterdPage?.contents[0]
-  let element = {
-    title: values?.header?.split(" ").join("<br/>"),
-    para: values?.subContent,
-  }
-
+function Home() {
   return (
-    <div
-      id="main_container"
-      className={`w-full min-h-screen grid place-items-center relative bg-[url('../public/blue_background.jpg')] bg-center bg-cover opacity-0`}
-    >
-      <div className="w-[90%] lg:w-1/2">
-        <div className="relative">
-          <h1
-            id="header_text"
-            className={`text-white text-center tracking-wide text-5xl lg:text-8xl  ${Spicy_Font?.className}`}
-            dangerouslySetInnerHTML={{ __html: element?.title }}
-          />
-          <small
-            className="hidden lg:flex items-center bg-black/30 backdrop-blur-sm  rounded-full text-white p-2 text-center absolute top-0 right-[12rem] gap-1 rotate-[-50deg]"
-            id="chip"
-          >
-            <IoSparklesSharp color="#FFDC7F" size={18} /> Developer
-          </small>
-        </div>
-
-        <p
-          id="content_text"
-          className={`text-center text-white tracking-wide ${Poppins_Font?.className} p-4 lg:w-[80%] mx-auto`}
+    <section className="grid min-h-screen place-items-center relative">
+      <Spline
+        className="absolute inset-0"
+        scene="https://prod.spline.design/vZRyx9smXjR603nG/scene.splinecode"
+      />
+      {/* <div className="text-center relative z-10">
+        <h1
+          className={`${nunitoSans_normal.className} text-3xl font-bold mb-4 text-white capitalize`}
         >
-          {element?.para}
+          hey, iam Arun 👋
+        </h1>
+        <h1
+          className={`${nunitoSans.className} text-[70px] font-bold mb-4 bg-white bg-clip-text text-transparent uppercase mix-blend-overlay`}
+        >
+          Frontend Developer
+        </h1>
+        <p
+          className={`${nunitoSans_normal.className} mb-4 text-white capitalize`}
+        >
+          Passionate about crafting seamless user experiences with modern web
+          technologies. <br /> Specializing in React, Next.js, and responsive
+          design, I transform ideas into elegant, performant applications.{" "}
+          <br /> Let's build something amazing together.
         </p>
 
-        <ul
-          id="skill_container"
-          className="flex flex-wrap gap-2 items-center justify-center p-5"
+        <Link
+          href="/portfolio/About"
+          className={`${nunitoSans_normal.className} bg-lime-300 rounded-full p-2 transition-colors flex items-center gap-1 size-fit mx-auto group`}
         >
-          {SkillItems?.map((items, index) => {
-            return (
-              <li key={`${items?.name}${index}`} className="size-6">
-                {items?.icon}
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-    </div>
+          <span className="px-2"> About us</span>
+          <span className="bg-white rounded-full p-2 group-hover:rotate-45 transition-transform">
+            <MoveUpRight color="#000" size={18} />
+          </span>
+        </Link>
+      </div> */}
+    </section>
   )
 }
 
-export default Homepage
+export default Home
