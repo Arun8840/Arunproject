@@ -1,6 +1,5 @@
 import React from "react"
 import { Nunito_Sans, Poppins } from "next/font/google"
-import Spline from "@splinetool/react-spline"
 import Link from "next/link"
 import { MoveUpRight } from "lucide-react"
 const nunitoSans = Poppins({
@@ -16,15 +15,11 @@ const nunitoSans_normal = Poppins({
 function Home() {
   return (
     <section className="grid min-h-screen place-items-center relative">
-      <Spline
-        className="absolute inset-0"
-        scene="https://prod.spline.design/vZRyx9smXjR603nG/scene.splinecode"
-      />
-      {/* <div className="text-center relative z-10">
+      <div className="text-center relative z-10">
         <h1
           className={`${nunitoSans_normal.className} text-3xl font-bold mb-4 text-white capitalize`}
         >
-          hey&apos; iam Arun 👋
+          hey, iam Arun 👋
         </h1>
         <h1
           className={`${nunitoSans.className} text-[70px] font-bold mb-4 bg-white bg-clip-text text-transparent uppercase mix-blend-overlay`}
@@ -36,9 +31,8 @@ function Home() {
         >
           Passionate about crafting seamless user experiences with modern web
           technologies. <br /> Specializing in React, Next.js, and responsive
-          design&apos; I transform ideas into elegant&apos; performant
-          applications.
-          <br /> Lets build something amazing together.
+          design, I transform ideas into elegant, performant applications.{" "}
+          <br /> Let's build something amazing together.
         </p>
 
         <Link
@@ -50,7 +44,7 @@ function Home() {
             <MoveUpRight color="#000" size={18} />
           </span>
         </Link>
-      </div> */}
+      </div>
     </section>
   )
 }
